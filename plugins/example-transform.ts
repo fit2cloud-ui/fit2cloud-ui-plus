@@ -1,0 +1,30 @@
+import path from "path";
+import fs from "fs";
+import { baseParse } from "@vue/compiler-core";
+
+const ExampleTransform = {
+  // 插件名称
+  name: "preview",
+  // 代码转译，这个函数的功能类似于 `webpack` 的 `loader`
+  transform(code, id) {
+    if (
+      !/\/examples\/pages\/.*\/preview\/.*\.vue/.test(id) ||
+      !/vue&type=preview/.test(id)
+    ) {
+      return;
+    }
+    let path = `.${id.match(/\/examples\/pages\/.*\/preview\/.*\.vue/)[0]}`;
+    const file = fs.readFileSync(path).toString();
+
+    const parsed: any = baseParse(file).children.find((n: any) => n.tag === "preview");
+    const title = parsed.children[0].content;
+    const main = file.split(parsed.loc.source).join("").trim();
+
+    return `export default function (Component) {
+        Component.__sourceCode = ${JSON.stringify(main)}
+        Component.__sourceCodeTitle = ${JSON.stringify(title)}
+      }`.trim();
+  },
+};
+
+export default ExampleTransform;
