@@ -7,55 +7,21 @@
  * {name}, 目录的中文名以及页面标题
  */
 const componentsDocRoutes = [
-  // {
-  //   name: 'Table 表格',
-  //   path: 'table',
-  //   component: 'TableDoc'
-  // },
-  // {
-  //   name: 'SearchBar 搜索条',
-  //   path: 'search',
-  //   component: 'SearchDoc'
-  // },
+  {
+    name: 'Table 表格',
+    path: 'table',
+    component: () => import('../pages/table/index.vue')
+  },
+  {
+    name: 'SearchBar 搜索条',
+    path: 'search',
+    component: () => import('../pages/search/index.vue')
+  },
   {
     name: 'SplitPane 分割面板',
     path: 'split-pane',
     component: () => import('../pages/split-pane/index.vue')
   },
 ]
-
-// /**
-//  * @docMenus 目录，侧边栏使用
-//  */
-// const docMenus: any = [
-//   {
-//     name: "开发指南",
-//     value: "guide",
-//     children: [
-//       {
-//         name: "快速上手",
-//         path: "getting-started",
-//         component: Doc,
-//         children: docRoutes,
-//         component: GetStartedDoc,
-//       },
-//     ]
-//   },
-//   {
-//     name: "组件",
-//     value: "components",
-//     children: componentsList
-//   },
-//   // {
-//   //   name: "过滤器",
-//   //   value: "filters",
-//   // },
-//   // {
-//   //   name: "指令",
-//   //   value: "directives",
-//   // },
-// ];
-
-
 
 export { componentsDocRoutes };
