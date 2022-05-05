@@ -4,19 +4,19 @@ import { baseParse } from "@vue/compiler-core";
 
 const ExampleTransform = {
   // 插件名称
-  name: "preview",
+  name: "demo",
   // 代码转译，这个函数的功能类似于 `webpack` 的 `loader`
   transform(code, id) {
     if (
-      !/\/examples\/pages\/.*\/preview\/.*\.vue/.test(id) ||
-      !/vue&type=preview/.test(id)
+      !/\/examples\/pages\/.*\/demo\/.*\.vue/.test(id) ||
+      !/vue&type=demo/.test(id)
     ) {
       return;
     }
-    let path = `.${id.match(/\/examples\/pages\/.*\/preview\/.*\.vue/)[0]}`;
+    let path = `.${id.match(/\/examples\/pages\/.*\/demo\/.*\.vue/)[0]}`;
     const file = fs.readFileSync(path).toString();
 
-    const parsed: any = baseParse(file).children.find((n: any) => n.tag === "preview");
+    const parsed: any = baseParse(file).children.find((n: any) => n.tag === "demo");
     const title = parsed.children[0].content;
     const main = file.split(parsed.loc.source).join("").trim();
 

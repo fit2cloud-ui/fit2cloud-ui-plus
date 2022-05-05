@@ -5,11 +5,11 @@
       <component :is="component" />
     </div>
     <div class="meta" ref="meta" :style="{ height: childHeight }" v-if="component">
-      <div class="preview-container-code" >
+      <div class="demo-container-code" >
         <pre class="language-html" v-html="html" />
       </div>
     </div>
-    <div class="demo-block-control" ref="control" @click="showCode = !showCode" v-if="component.name">
+    <!-- <div class="demo-block-control" ref="control" @click="showCode = !showCode" v-if="component.name">
       <transition name="arrow-slide">
         <i :class="[iconClass(), { hovering: hovering }]"></i>
       </transition>
@@ -21,7 +21,7 @@
       <el-button v-show="fixedControl" class="is-fixed" @click="showCode = false" circle>
         <img src="../assets/hidden-code.png" width="18" />
       </el-button>
-    </el-tooltip>
+    </el-tooltip> -->
 
   </div>
 </template>

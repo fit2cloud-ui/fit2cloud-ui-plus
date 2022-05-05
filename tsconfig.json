@@ -17,6 +17,6 @@
       "@/*": ["src/*"]
     }
   },
-  "include": ["**/*", "examples/**/*", "src/**/*", "plugins/example-transform"],
+  "include": ["**/*", "examples/**/*", "src/**/*", "plugins/*"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

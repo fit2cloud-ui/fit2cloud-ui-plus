@@ -1,10 +1,13 @@
 <template>
   <el-scrollbar>
-    <div class="sidebar" v-for="(value, key, index) in docMenus" :key="index">
-      <h1>{{ getGroupName(key) }}</h1>
-      <ul v-for="(item, i) in value" :key="i">
-        <li :class="{ active: showPath === item.path }" @click="isPath(item.path, key)">
-          {{ item.name }}
+    <div class="sidebar" v-for="(item, index) in routes" :key="index">
+      <h1>{{ item.name }}</h1>
+      <ul v-for="(child, i) in item.children" :key="i">
+        <li
+          :class="{ active: showPath === Path(child.path, item.path) }"
+          @click="toPath(child.path, item.path)"
+        >
+          {{ child.name }}
         </li>
       </ul>
     </div>
@@ -14,21 +17,24 @@
 <script setup lang="ts">
 import { ref, Ref, onMounted } from "vue";
 import { useRoute, useRouter } from "vue-router";
-import { getGroupName, docMenus } from "../../router/doc-routers";
+import { routes } from "../../router/index";
 
 const route = useRoute();
 const router = useRouter();
 const showPath = ref();
 
 onMounted(() => {
-  showPath.value = route.params.comName || 'complex-table';
-})
+  showPath.value = route.path || "/";
+});
 
-function isPath(path: String, key: String) {
-  showPath.value = path;
-  router.push(`/${key}/${path}`);
+function Path(path: String, parentPath: String) {
+  return `${parentPath}/${path}`;
 }
 
+function toPath(path: String, parentPath: String) {
+  showPath.value = Path(path, parentPath);
+  router.push(Path(path, parentPath));
+}
 </script>
 <style lang="scss" scoped>
 $themeColor: #2d61a2;

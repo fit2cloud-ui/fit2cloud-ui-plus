@@ -1,19 +1,37 @@
 import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
-import Home from '../layout/index.vue'
-// //获取原型对象上的push函数
-// const originalPush = VueRouter.prototype.replace
-// //修改原型对象中的push方法
-// VueRouter.prototype.replace = function replace(location) {
-//   return originalPush.call(this, location).catch(err => err)
-// }
+import Doc from '../layout/index.vue'
 
-const routes: Array<RouteRecordRaw> = [{
-    path: "/:type/:comName",
-    meta: {
-      title: "首页"
-    },
-    component: Home,
-}]
+import { componentsDocRoutes } from "./doc-routes";
+
+// md文档文件
+import { h } from 'vue'
+import Markdown from '../components/Markdown.vue'
+import { html as GettingStarted }  from '../markdown/getting-started.md'
+
+const md = (string: any) => h(Markdown, { content: string, key: string });
+const GetStartedDoc = md(GettingStarted);
+
+export const routes: Array<RouteRecordRaw> = [
+  {
+    name: "开发指南",
+    path: "/guide",
+    redirect: "/guide/getting-started",
+    component: Doc,
+    children: [
+      {
+        name: "快速上手",
+        path: "getting-started",
+        component: GetStartedDoc,
+      },
+    ]
+  },
+  {
+    name: "组件",
+    path: "/components",
+    component: Doc,
+    children: componentsDocRoutes,
+  },
+]
 const router = createRouter({
   history: createWebHashHistory(), // hash模式：createWebHashHistory，history模式：createWebHistory
   scrollBehavior: () => ({
@@ -29,9 +47,9 @@ router.beforeEach((to, from, next) => {
   if (scrollParent) {
     scrollParent.scrollTop = 0
   }
-  // if (to.path === '/') {
-  //   next('/guide/getting-started')
-  // }
+  if (to.path === '/') {
+    next('/guide/getting-started')
+  }
   next()
 })
 

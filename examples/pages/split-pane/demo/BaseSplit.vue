@@ -1,5 +1,5 @@
 
-<preview>基本用法</preview>
+<demo>基本用法</demo>
 <template>
   <div>
     <el-divider content-position="left">水平分割</el-divider>

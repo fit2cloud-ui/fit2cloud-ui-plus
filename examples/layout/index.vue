@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import AppHeader from "./components/AppHeader.vue";
-import AppMain from "./components/AppMain.vue";
 import Sidebar from "./components/Sidebar.vue";
 </script>
 
@@ -13,7 +12,9 @@ import Sidebar from "./components/Sidebar.vue";
       <el-scrollbar class="page-component__scroll" ref="componentScrollBar">
         <div class="app-main">
           <sidebar class="sidebar-container" />
-          <app-main />
+          <div class="main-wrapper">
+            <router-view></router-view>
+          </div>
         </div>
       </el-scrollbar>
     </div>
@@ -42,5 +43,13 @@ import Sidebar from "./components/Sidebar.vue";
 .app-main {
   width: 1140px;
   margin: 0 auto;
+}
+
+.main-wrapper {
+
+  // width: 100%;
+  :v-deep.page-container {
+    position: relative;
+  }
 }
 </style>
