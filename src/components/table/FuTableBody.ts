@@ -1,4 +1,4 @@
-import { defineComponent, h } from 'vue'
+import { h } from 'vue'
 
 // const isFix = node => {
 //   const includeTag = node.tag.indexOf("FuTableColumnDropdown") >= 0
@@ -17,29 +17,25 @@ import { defineComponent, h } from 'vue'
 //   label ??= prefix + type
 //   return label
 // }
+const FuTableBody = (props: any, context: any) => {
+  const slots = context.slots.default()
+  const nodes: any = [];
+  let { columns } = props
+  const children = slots[0].children.filter((c: any) => c.type !== undefined)
+  if (!children) return nodes
+  if (!columns || columns?.length === 0) return children
+  // columns.forEach(col => {
+  //   let node = children.find(child => {
+  //     return col.label === getLabel(child)
+  //   })
+  //   if (node && (isFix(node) || col.show !== false)) {
+  //     nodes.push(node);
+  //   }
+  // })
 
-export default defineComponent({
-  name: "FuTableBody",
-  props: {
-    columns: Array
-  },
-  setup(props, context) {
-    console.log(context)
-    const nodes: any = [];
-    // let {columns} = context.props
-    // const children = context.children.filter(c => c.tag !== undefined)
-    // if (!children) return nodes
-    // if (!columns || columns?.length === 0) return children
-    // columns.forEach(col => {
-    //   let node = children.find(child => {
-    //     return col.label === getLabel(child)
-    //   })
-    //   if (node && (isFix(node) || col.show !== false)) {
-    //     nodes.push(node);
-    //   }
-    // })
+  return h(`h${props.name}`, context.attrs, nodes)
+}
 
-    return nodes
-  }
-})
+export default FuTableBody;
+
 

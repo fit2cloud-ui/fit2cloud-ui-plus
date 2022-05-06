@@ -1,17 +1,18 @@
 <template>
-  <el-table class="fu-table" v-bind="$attrs"> // :key="key"
-    <fu-table-body :columns="columns">
+  <el-table class="fu-table" v-bind="$attrs" :key="key">
+    <fu-table-body name="table-body" :columns="columns">
       <slot></slot>
     </fu-table-body>
   </el-table>
 </template>
 <script lang="ts">
 export default {
-  name: "FuTable"
-}
+  name: "FuTable",
+};
 </script>
 
 <script setup lang="ts">
+import { computed, ref, watch, nextTick, onBeforeUnmount } from "vue";
 
 import FuTableBody from "@/components/table/FuTableBody";
 
@@ -80,71 +81,69 @@ import FuTableBody from "@/components/table/FuTableBody";
 //   })
 // }
 
-const props =defineProps({
-    columns: Array,
-    refresh: {
-      type: Boolean,
-      default: true
-    },
-    localKey: String, // 如果需要记住选择的列，则这里添加一个唯一的Key
-})
+const props = defineProps({
+  columns: Array,
+  refresh: {
+    type: Boolean,
+    default: true,
+  },
+  localKey: String, // 如果需要记住选择的列，则这里添加一个唯一的Key
+});
 
-// const key = ref(0);
+const key = ref(0);
 
-  // watch: {
-  //   columns: {
-  //     handler: function () {
-  //       // 设置refresh，可以避免抖动或闪烁，但是table会更新一次
-  //       if (this.refresh) {
-  //         this.key++
-  //       }
-  //       if (this.localKey) {
-  //         localStorage.setItem(this.columnsKey, JSON.stringify(this.columns))
-  //       }
-  //     },
-  //     deep: true
-  //   }
-  // },
-  // provide() {
-  //   return {
-  //     localKey: this.localKey
-  //   }
-  // },
-  // computed: {
-  //   columnsKey() {
-  //     return prefix + this.localKey
-  //   }
-  // },
-  // updated() {
-  //   const children = this.$slots.default.filter(c => c.tag !== undefined)
-  //   updateNodes(children)
-  //   updateColumns(children, this.columns)
-  // },
-  // created() {
-  //   // 去掉v-if=false的node
-  //   const children = this.$slots.default.filter(c => c.tag !== undefined)
-  //   updateNodes(children)
-  //   // 表格没有内容或者不需要选列
-  //   if (!children || !this.columns) return
+// watch(columns, () => {
+//     // 设置refresh，可以避免抖动或闪烁，但是table会更新一次
+//     if (this.refresh) {
+//       key.value++;
+//     }
+//     if (this.localKey) {
+//       localStorage.setItem(this.columnsKey, JSON.stringify(this.columns));
+//     }
+//   },
+//   { deep: true }
+// )
 
-  //   // 需要读取localStorage
-  //   if (this.localKey) {
-  //     let str = localStorage.getItem(this.columnsKey)
-  //     if (str) {
-  //       try {
-  //         const columns = JSON.parse(str)
-  //         cleanColumns(this.columns)
-  //         copyColumns(columns, this.columns)
-  //         updateColumns(children, this.columns)
-  //         return
-  //       } catch (e) {
-  //         console.error("get columns error", e)
-  //       }
-  //     }
-  //   }
+// provide() {
+//   return {
+//     localKey: this.localKey
+//   }
+// },
+// computed: {
+//   columnsKey() {
+//     return prefix + this.localKey
+//   }
+// },
+// updated() {
+//   const children = this.$slots.default.filter(c => c.tag !== undefined)
+//   updateNodes(children)
+//   updateColumns(children, this.columns)
+// },
+// created() {
+//   // 去掉v-if=false的node
+//   const children = this.$slots.default.filter(c => c.tag !== undefined)
+//   updateNodes(children)
+//   // 表格没有内容或者不需要选列
+//   if (!children || !this.columns) return
 
-  //   if (this.columns.length === 0) {
-  //     initColumns(children, this.columns)
-  //   }
-  // }
+//   // 需要读取localStorage
+//   if (this.localKey) {
+//     let str = localStorage.getItem(this.columnsKey)
+//     if (str) {
+//       try {
+//         const columns = JSON.parse(str)
+//         cleanColumns(this.columns)
+//         copyColumns(columns, this.columns)
+//         updateColumns(children, this.columns)
+//         return
+//       } catch (e) {
+//         console.error("get columns error", e)
+//       }
+//     }
+//   }
+
+//   if (this.columns.length === 0) {
+//     initColumns(children, this.columns)
+//   }
+// }
 </script>

@@ -1,11 +1,20 @@
 
 <template>
-  <div class="code-example" @mouseenter="hovering = true" @mouseleave="hovering = false">
+  <div
+    class="code-example"
+    @mouseenter="hovering = true"
+    @mouseleave="hovering = false"
+  >
     <div class="source" v-if="component">
       <component :is="component" />
     </div>
-    <div class="meta" ref="meta" :style="{ height: childHeight }" v-if="component">
-      <div class="demo-container-code" >
+    <div
+      class="meta"
+      ref="meta"
+      :style="{ height: childHeight }"
+      v-if="component"
+    >
+      <div class="demo-container-code">
         <pre class="language-html" v-html="html" />
       </div>
     </div>
@@ -22,18 +31,17 @@
         <img src="../assets/hidden-code.png" width="18" />
       </el-button>
     </el-tooltip> -->
-
   </div>
 </template>
 
 <script setup lang="ts">
 import "prismjs";
 import "prismjs/themes/prism.css";
-import { computed, ref, watch, nextTick, onBeforeUnmount } from 'vue'
+import { computed, ref, watch, nextTick, onBeforeUnmount } from "vue";
 
 const Prism = (window as any).Prism;
 
-const props =defineProps({
+const props = defineProps({
   component: {
     type: Object,
     default: () => ({}),
@@ -44,7 +52,7 @@ const props =defineProps({
     default: "Vue",
   },
   lang: String,
-})
+});
 
 const html = computed(() => {
   return Prism.highlight(
@@ -54,44 +62,39 @@ const html = computed(() => {
   );
 });
 
-const showCode = ref(false)
-const hovering = ref(false)
-const fixedControl = ref(false)
-const scrollParent = ref<HTMLElement | null | undefined>()
-const childHeight = ref("0")
+const showCode = ref(false);
+const hovering = ref(false);
+const fixedControl = ref(false);
+const scrollParent = ref<HTMLElement | null | undefined>();
+const childHeight = ref("0");
 
 // refs
-const codeBlock = ref()
-const control = ref()
-const meta = ref()
-watch(
-  showCode,
-  (val) => {
-    nextTick(() => {
-      childHeight.value = val
-        ? `${codeBlock.value.$el.offsetHeight}px`
-        : "0";
-    });
-    if (!val) {
-      fixedControl.value = false;
-      control.value.style.left = "0";
-      removeScrollHandler();
-      return;
-    }
-    setTimeout(() => {
-      scrollParent.value = document.querySelector(
-        ".page-component__scroll > .el-scrollbar__wrap"
-      ) as HTMLElement;
-      scrollParent.value &&
-        scrollParent.value.addEventListener("scroll", scrollHandler);
-      scrollHandler();
-    }, 200);
-  },
-);
+const codeBlock = ref();
+const control = ref();
+const meta = ref();
+watch(showCode, (val) => {
+  nextTick(() => {
+    childHeight.value = val ? `${codeBlock.value.$el.offsetHeight}px` : "0";
+  });
+  if (!val) {
+    fixedControl.value = false;
+    control.value.style.left = "0";
+    removeScrollHandler();
+    return;
+  }
+  setTimeout(() => {
+    scrollParent.value = document.querySelector(
+      ".page-component__scroll > .el-scrollbar__wrap"
+    ) as HTMLElement;
+    scrollParent.value &&
+      scrollParent.value.addEventListener("scroll", scrollHandler);
+    scrollHandler();
+  }, 200);
+});
 
 onBeforeUnmount(() => {
   removeScrollHandler();
-})
+});
 
 function iconClass() {
   return showCode ? "el-icon-caret-top" : "el-icon-caret-bottom";
@@ -114,7 +117,6 @@ function removeScrollHandler() {
   scrollParent.value &&
     scrollParent.value.removeEventListener("scroll", scrollHandler);
 }
-
 </script>
 
 <style lang="scss" scoped>
@@ -173,7 +175,7 @@ $themeColor: #2d61a2;
       }
     }
 
-    >span {
+    > span {
       position: absolute;
       transform: translateX(-30px);
       font-size: 14px;
