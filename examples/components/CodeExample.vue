@@ -32,6 +32,7 @@ import "prismjs/themes/prism.css";
 import { computed, ref, watch, nextTick, onBeforeUnmount } from 'vue'
 
 const Prism = (window as any).Prism;
+
 const props =defineProps({
   component: {
     type: Object,

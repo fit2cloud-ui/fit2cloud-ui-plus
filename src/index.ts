@@ -6,7 +6,7 @@ const components = import.meta.globEager('@/components/*/index.ts');
 const install = (app: App): void => {
   Object.keys(components).forEach(key => {
     let component = components[key].default;
-    app.use(component);
+    app.component(component.name, component)
   })
 }
 
