@@ -3,6 +3,7 @@ import App from './App.vue'
 // 整体引入
 import Fit2CloudPlus from '@/index'
 import ElementPlus from 'element-plus'
+import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 import router from "./router/index";
 // import pages from './pages/index'
 import CodeExample from "./components/CodeExample.vue";
@@ -14,6 +15,9 @@ import '@/styles/index.scss';
 const app = createApp(App);
 // pages(app)
 app.use(router).use(ElementPlus, { size: 'default', zIndex: 3000 })
+for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
+    app.component(key, component)
+  }
 app.use(Fit2CloudPlus);
 app.component('code-example', CodeExample)
 

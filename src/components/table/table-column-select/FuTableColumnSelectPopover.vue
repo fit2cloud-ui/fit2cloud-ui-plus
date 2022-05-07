@@ -1,6 +1,7 @@
 <template>
   <el-popover class="fu-table-column-select" popper-class="fu-table-column-select-popper" :trigger="trigger"
-              :visible-arrow="false" v-if="hasSelect">
+    :visible-arrow="false"> 
+     <!-- v-if="hasSelect" -->
     <!-- <h3>
       {{ t('fu.table.custom_table_fields') }}
     </h3>
@@ -14,28 +15,55 @@
         </el-checkbox>
       </div>
     </div> -->
-    <div class="fu-table-column-select-popper__footer">
+    <!-- <div class="fu-table-column-select-popper__footer">
       <el-button :size="configSize" @click="reset" v-if="columnsKey">{{ t('fu.table.reset') }}</el-button>
-    </div>
-    <!-- <fu-search-bar-button slot="reference" :icon="icon" :size="configSize"/> -->
+    </div> -->
+    <template #reference>
+      <fu-search-bar-button :icon="icon"/>
+    </template>
+    <!-- :size="configSize" -->
   </el-popover>
 </template>
 
-<script>
-// import FuSearchBarButton from "@/components/search-bar/FuSearchBarButton";
+<script setup lang="ts">
+import { computed, ref, watch, nextTick, onBeforeUnmount } from "vue";
+import FuSearchBarButton from "@/components/search-bar/FuSearchBarButton.vue";
+
+const props = defineProps({
+  icon: {
+    type: String,
+    default: "Grid"
+  },
+  trigger: {
+    type: String,
+    default: "hover",
+    validator: (value: string) => ['click', 'hover'].includes(value)
+  },
+  columns: {
+    type: Array,
+    default: () => []
+  },
+
+});
+
+console.log(props.columns)
+const isFixAll = computed(() => {
+  return props.columns?.every((c: any) => c.fix)
+});
+
+const hasSelect = computed(() => {
+  return props.columns?.length > 0 && !isFixAll
+});
+
 // import mixins from "@/components/table/table-column-select/mixins";
 
-export default {
-  name: "FuTableColumnSelectPopover",
-  // components: {FuSearchBarButton},
-  // mixins: [mixins],
-  methods: {
-    reset() {
-      if (this.columnsKey) {
-        localStorage.removeItem(this.columnsKey)
-      }
-      this.columns.splice(0, this.columns.length)
-    }
-  }
-}
+//   // mixins: [mixins],
+//   methods: {
+//     reset() {
+//       if (this.columnsKey) {
+//         localStorage.removeItem(this.columnsKey)
+//       }
+//       this.columns.splice(0, this.columns.length)
+//     }
+//   }
 </script>

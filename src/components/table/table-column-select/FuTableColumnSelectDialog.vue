@@ -3,7 +3,6 @@
     <!-- <el-tooltip :content="t('fu.table.custom_table_fields')">
       <fu-search-bar-button :icon="icon" :size="configSize" @click="visible = true"/>
     </el-tooltip> -->
-111
     <!-- <el-dialog custom-class="fu-table-column-select-dialog" :visible.sync="visible" @open="open" append-to-body>
       <template #title>
         <h3>{{ t('fu.table.custom_table_fields') }}</h3>
@@ -26,45 +25,43 @@
 
 </template>
 
-<script>
+<script setup lang="ts">
 // import mixins from "./mixins"
 // import FuSearchBarButton from "@/components/search-bar/FuSearchBarButton"
 
-const cloneColumns = (source, target) => {
-  source.forEach(col => {
-    target.push(Object.assign({}, col))
-  })
-  return target
-}
-export default {
-  name: "FuTableColumnSelectDialog",
+// const cloneColumns = (source, target) => {
+//   source.forEach(col => {
+//     target.push(Object.assign({}, col))
+//   })
+//   return target
+// }
+
   // components: {FuSearchBarButton},
   // mixins: [mixins],
-  data() {
-    return {
-      cloneColumns: [],
-      visible: false
-    }
-  },
-  methods: {
-    open() {
-      this.cloneColumns = []
-      cloneColumns(this.columns, this.cloneColumns)
-    },
-    ok() {
-      this.columns.splice(0, this.columns.length)
-      this.cloneColumns.forEach(c => {
-        this.columns.push(c)
-      })
-      this.visible = false
-    },
-    reset() {
-      if (this.columnsKey) {
-        localStorage.removeItem(this.columnsKey)
-      }
-      this.columns.splice(0, this.columns.length)
-      this.visible = false
-    }
-  }
-}
+  // data() {
+  //   return {
+  //     cloneColumns: [],
+  //     visible: false
+  //   }
+  // },
+  // methods: {
+  //   open() {
+  //     this.cloneColumns = []
+  //     cloneColumns(this.columns, this.cloneColumns)
+  //   },
+  //   ok() {
+  //     this.columns.splice(0, this.columns.length)
+  //     this.cloneColumns.forEach(c => {
+  //       this.columns.push(c)
+  //     })
+  //     this.visible = false
+  //   },
+  //   reset() {
+  //     if (this.columnsKey) {
+  //       localStorage.removeItem(this.columnsKey)
+  //     }
+  //     this.columns.splice(0, this.columns.length)
+  //     this.visible = false
+  //   }
+  // }
 </script>

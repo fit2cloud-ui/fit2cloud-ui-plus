@@ -8,11 +8,6 @@ export default {
       type: String,
       default: "el-icon-s-grid"
     },
-    trigger: {
-      type: String,
-      default: "hover",
-      validator: value => ['click', 'hover'].includes(value)
-    },
     columns: Array,
     localKey: String
   },
@@ -20,12 +15,6 @@ export default {
     columnsKey() {
       return this.localKey ? "FU-T-" + this.localKey : undefined
     },
-    isFixAll() {
-      return this.columns?.every(c => c.fix)
-    },
-    hasSelect() {
-      return this.columns?.length > 0 && !this.isFixAll
-    }
   },
   methods: {
     dragstart(event, index) {

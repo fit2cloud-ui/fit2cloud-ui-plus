@@ -1,19 +1,20 @@
 <template>
   <el-tooltip :content="tooltip" :disabled="!tooltip">
-    <el-button class="fu-search-bar-button" circle :size="configSize" v-on="$listeners" v-bind="$attrs">
-      <slot></slot>
-    </el-button>
+    <!-- :size="configSize"  -->
+    <el-button class="fu-search-bar-button" circle v-bind="$attrs" />
+    <!-- <slot></slot> -->
+     <!-- *****element问题  加上插槽 空的情况下渲染多出一个span标签问题 待考虑 -->
   </el-tooltip>
 </template>
 
-<script>
-import ConfigSize from "@/mixins/config-size";
-
+<script lang="ts">
 export default {
   name: "FuSearchBarButton",
-  mixins: [ConfigSize],
-  props: {
-    tooltip: String
-  }
-}
+};
+</script>
+
+<script setup lang="ts">
+defineProps({
+  tooltip: String
+});
 </script>

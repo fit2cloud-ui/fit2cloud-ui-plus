@@ -1,6 +1,6 @@
 const COMPONENTS_TYPE = ["default", "primary", "success", "warning", "danger", "info"];
 
-export const validateType = value => {
+export const validateType = (value: string) => {
   if (!value) return true;
 
   if (COMPONENTS_TYPE.includes(value)) {
@@ -12,7 +12,7 @@ export const validateType = value => {
 
 const COMPONENTS_SIZE = ["default", "medium", "small", "mini"];
 
-export const validateSize = value => {
+export const validateSize = (value: string) => {
   if (!value) return true;
 
   if (COMPONENTS_SIZE.includes(value)) {
