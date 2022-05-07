@@ -1,10 +1,10 @@
 <template>
   <div style="display: inline-block">
-    <el-tooltip :content="t('fu.table.custom_table_fields')">
+    <!-- <el-tooltip :content="t('fu.table.custom_table_fields')">
       <fu-search-bar-button :icon="icon" :size="configSize" @click="visible = true"/>
-    </el-tooltip>
-
-    <el-dialog custom-class="fu-table-column-select-dialog" :visible.sync="visible" @open="open" append-to-body>
+    </el-tooltip> -->
+111
+    <!-- <el-dialog custom-class="fu-table-column-select-dialog" :visible.sync="visible" @open="open" append-to-body>
       <template #title>
         <h3>{{ t('fu.table.custom_table_fields') }}</h3>
         <el-alert :title="t('fu.table.custom_table_fields_desc')" type="info" :closable="false"/>
@@ -21,14 +21,14 @@
         <el-button :size="configSize" @click="reset" v-if="columnsKey">{{ t('fu.table.reset') }}</el-button>
         <el-button type="primary" :size="configSize" @click="ok">{{ t('fu.table.ok') }}</el-button>
       </template>
-    </el-dialog>
+    </el-dialog> -->
   </div>
 
 </template>
 
 <script>
-import mixins from "./mixins"
-import FuSearchBarButton from "@/components/search-bar/FuSearchBarButton"
+// import mixins from "./mixins"
+// import FuSearchBarButton from "@/components/search-bar/FuSearchBarButton"
 
 const cloneColumns = (source, target) => {
   source.forEach(col => {
@@ -38,8 +38,8 @@ const cloneColumns = (source, target) => {
 }
 export default {
   name: "FuTableColumnSelectDialog",
-  components: {FuSearchBarButton},
-  mixins: [mixins],
+  // components: {FuSearchBarButton},
+  // mixins: [mixins],
   data() {
     return {
       cloneColumns: [],

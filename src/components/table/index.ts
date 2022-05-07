@@ -1,7 +1,8 @@
 import FuTable from "./FuTable.vue"
+import FuTableColumnSelect from "./table-column-select/index"
 // import FuTablePagination from "./FuTablePagination"
 // import FuTableOperations from "./table-operations"
-// import FuTableColumnSelect from "./table-column-select"
+
 // import FuTableColumnDropdown from "./table-column-dropdown"
 
 // FuTable.install = function (Vue, opts = {}) {
@@ -12,9 +13,8 @@ import FuTable from "./FuTable.vue"
 // }
 
 import type { App } from 'vue'
-
 FuTable.install = (app: App): void => {
   app.component(FuTable.name, FuTable);
+  // app.use(FuTableColumnSelect)
 };
-
 export default FuTable;
