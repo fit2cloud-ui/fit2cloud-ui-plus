@@ -1,86 +1,82 @@
 <template>
   <el-table class="fu-table" v-bind="$attrs" :key="key">
     <fu-table-body name="table-body" :columns="columns">
-      <slot></slot>
+      <slot />
     </fu-table-body>
   </el-table>
 </template>
 <script lang="ts">
 export default {
-  name: "FuTable",
-};
+  name: "FuTable"
+}
 </script>
 
-<script setup lang="ts">
-import { computed, ref, watch, nextTick, onBeforeUnmount } from "vue";
-
+<script lang="ts" setup>
+import { onMounted, useSlots, ref, watch, computed, onUpdated, provide } from "vue";
 import FuTableBody from "@/components/table/FuTableBody";
 
-// const prefix = "FU-T-"
+const prefix = "FU-T-"
 
-// const isFix = node => {
-//   const includeTag = node.tag.indexOf("FuTableColumnDropdown") >= 0
-//   const {fix} = node.data.attrs
-//   let {type} = node.componentOptions.propsData
-//   return (fix !== undefined && fix !== false) || ["selection", "index", "expand"].includes(type) || includeTag
-// }
+const isFix = (node: any) => {
+  const includeTag = node.type.name.indexOf("FuTableColumnDropdown") >= 0
+  const { fix } = node.props
+  let { type } = node.props
+  return (fix !== undefined && fix !== false) || ["selection", "index", "expand"].includes(type) || includeTag
+}
 
-// const getLabel = node => {
-//   if (node.data.key) return node.data.key
-//   const includeTag = node.tag.indexOf("FuTableColumnDropdown") >= 0
-//   let {label, type} = node.componentOptions.propsData
-//   if (includeTag) label = prefix + "dropdown"
-//   label ??= node.data.attrs.label
-//   label ??= prefix + type
-//   return label;
-// }
+const getLabel = (node: any) => {
+  if (node.props.label) return node.props.label
+  const includeTag = node.type.name.indexOf("FuTableColumnDropdown") >= 0
+  let { label, type } = node.props
+  if (includeTag) label = prefix + "dropdown"
+  label ??= node.props.label
+  label ??= prefix + type
+  return label;
+}
 
-// const cleanColumns = columns => {
-//   columns.splice(0, columns.length)
-// }
+const cleanColumns = (columns: any) => {
+  columns.splice(0, columns.length)
+}
 
-// const initColumns = (nodes, columns) => {
-//   nodes.forEach(node => {
-//     const label = getLabel(node)
-//     const fix = isFix(node);
-//     const {show} = node.data.attrs
-//     if (!label && !fix) {
-//       throw new Error("unfixed column's label is required.")
-//     }
+const updateNodes = (nodes: any) => {
+  nodes.forEach((node: any) => {
+    if (!node.type.key) {
+      node.type.key = getLabel(node)
+    }
+  })
+}
 
-//     columns.push({label, show, fix})
-//   })
-// }
+const initColumns = (nodes: any, columns: any) => {
+  nodes.forEach((node: any) => {
+    const label = getLabel(node)
+    const fix = isFix(node);
+    const { show } = node.props
+    if (!label && !fix) {
+      throw new Error("unfixed column's label is required.")
+    }
+    columns.push({ label, show, fix })
+  })
+}
 
-// const copyColumns = (source, target) => {
-//   source.forEach(col => {
-//     target.push(col)
-//   })
-// }
+const copyColumns = (source: any, target: any) => {
+  source.forEach((col: any) => {
+    target.push(col)
+  })
+}
 
-// const updateColumns = (nodes, columns) => {
-//   if (columns === undefined) return
-//   // 如果保存的列跟实际的列冲突则以实际的为准
-//   if (nodes.length !== columns.length) {
-//     cleanColumns(columns)
-//     initColumns(nodes, columns)
-//   }
-
-//   if (columns.some(col => col.label === undefined)) {
-//     columns.forEach((col, i) => {
-//       col.label ??= getLabel(nodes[i])
-//     })
-//   }
-// }
-
-// const updateNodes = nodes => {
-//   nodes.forEach(node => {
-//     if (!node.data.key) {
-//       node.data.key = getLabel(node)
-//     }
-//   })
-// }
-
+const updateColumns = (nodes: any, columns: any) => {
+  if (columns === undefined) return
+  // 如果保存的列跟实际的列冲突则以实际的为准
+  if (nodes.length !== columns.length) {
+    cleanColumns(columns)
+    initColumns(nodes, columns)
+  }
+  if (columns.some((col: any) => col.label === undefined)) {
+    columns.forEach((col: any, i: any) => {
+      col.label ??= getLabel(nodes[i])
+    })
+  }
+}
 const props = defineProps({
   columns: Array,
   refresh: {
@@ -88,62 +84,64 @@ const props = defineProps({
     default: true,
   },
   localKey: String, // 如果需要记住选择的列，则这里添加一个唯一的Key
+
 });
+
+const slots = useSlots()
 
 const key = ref(0);
 
-// watch(columns, () => {
-//     // 设置refresh，可以避免抖动或闪烁，但是table会更新一次
-//     if (this.refresh) {
-//       key.value++;
-//     }
-//     if (this.localKey) {
-//       localStorage.setItem(this.columnsKey, JSON.stringify(this.columns));
-//     }
-//   },
-//   { deep: true }
-// )
+const columnsKey = computed(() => {
+  return prefix + props.localKey
+})
+// 去掉v-if=false的node
+const children = slots.default?.().filter((c: any) => c.type.name !== undefined)
+watch(() => props.columns,
+  () => {
+    // 设置refresh，可以避免抖动或闪烁，但是table会更新一次
+    if (props.refresh) {
+      key.value++;
+    }
+    if (props.localKey) {
+      localStorage.setItem(columnsKey.value, JSON.stringify(props.columns));
+    }
 
-// provide() {
-//   return {
-//     localKey: this.localKey
-//   }
-// },
-// computed: {
-//   columnsKey() {
-//     return prefix + this.localKey
-//   }
-// },
-// updated() {
-//   const children = this.$slots.default.filter(c => c.tag !== undefined)
-//   updateNodes(children)
-//   updateColumns(children, this.columns)
-// },
-// created() {
-//   // 去掉v-if=false的node
-//   const children = this.$slots.default.filter(c => c.tag !== undefined)
-//   updateNodes(children)
-//   // 表格没有内容或者不需要选列
-//   if (!children || !this.columns) return
+  },
+  { deep: true }
+)
+// 之前的created
+onMounted(() => {
+  updateNodes(children)
+  // 表格没有内容或者不需要选列
+  if (!children || !props.columns) return
 
-//   // 需要读取localStorage
-//   if (this.localKey) {
-//     let str = localStorage.getItem(this.columnsKey)
-//     if (str) {
-//       try {
-//         const columns = JSON.parse(str)
-//         cleanColumns(this.columns)
-//         copyColumns(columns, this.columns)
-//         updateColumns(children, this.columns)
-//         return
-//       } catch (e) {
-//         console.error("get columns error", e)
-//       }
-//     }
-//   }
+  // 需要读取localStorage
+  if (props.localKey) {
+    let str = localStorage.getItem(columnsKey.value)
+    if (str) {
+      try {
+        const columns = JSON.parse(str)
+        cleanColumns(props.columns)
+        copyColumns(columns, props.columns)
+        updateColumns(children, props.columns)
+        return
+      } catch (e) {
+        console.error("get columns error", e)
+      }
+    }
+  }
 
-//   if (this.columns.length === 0) {
-//     initColumns(children, this.columns)
-//   }
-// }
+  if (props.columns.length === 0) {
+    initColumns(children, props.columns)
+  }
+})
+
+
+provide("localKey", props.localKey)
+
+onUpdated(() => {
+  updateNodes(children)
+  updateColumns(children, props.columns)
+})
+
 </script>

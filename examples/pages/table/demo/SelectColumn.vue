@@ -11,7 +11,7 @@
     <fu-table :data="tableData" :columns="columns">
       <el-table-column type="selection"></el-table-column>
       <el-table-column prop="date" label="日期" min-width="180"></el-table-column>
-      <el-table-column prop="name" label="姓名" min-width="180" fix></el-table-column>
+      <el-table-column prop="name" label="姓名" min-width="180"></el-table-column>
       <el-table-column prop="address" label="地址" :show="false"></el-table-column>
     </fu-table>
   </div>

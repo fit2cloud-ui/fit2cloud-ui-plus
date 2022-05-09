@@ -1,7 +1,6 @@
 <template>
   <el-popover class="fu-table-column-select" popper-class="fu-table-column-select-popper" :trigger="trigger"
-    :visible-arrow="false"> 
-     <!-- v-if="hasSelect" -->
+    :visible-arrow="false" v-if="hasSelect">
     <!-- <h3>
       {{ t('fu.table.custom_table_fields') }}
     </h3>
@@ -19,7 +18,7 @@
       <el-button :size="configSize" @click="reset" v-if="columnsKey">{{ t('fu.table.reset') }}</el-button>
     </div> -->
     <template #reference>
-      <fu-search-bar-button :icon="icon"/>
+      <fu-search-bar-button :icon="icon" />
     </template>
     <!-- :size="configSize" -->
   </el-popover>
@@ -46,7 +45,7 @@ const props = defineProps({
 
 });
 
-console.log(props.columns)
+
 const isFixAll = computed(() => {
   return props.columns?.every((c: any) => c.fix)
 });
@@ -54,7 +53,7 @@ const isFixAll = computed(() => {
 const hasSelect = computed(() => {
   return props.columns?.length > 0 && !isFixAll
 });
-
+console.log(props.columns)
 // import mixins from "@/components/table/table-column-select/mixins";
 
 //   // mixins: [mixins],
