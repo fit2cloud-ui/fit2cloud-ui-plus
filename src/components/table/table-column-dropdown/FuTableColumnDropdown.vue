@@ -6,7 +6,9 @@
         v-if="isShow(scope.row)" placement="bottom" :ref="`dropdown${scope.$index}`">
         <span class="el-dropdown-link">
           <slot name="icon">
-            <i class="el-icon-more fu-icon-more" />
+            <el-icon class="fu-icon-more">
+              <MoreFilled />
+            </el-icon>
           </slot>
         </span>
         <template #dropdown>
@@ -90,7 +92,7 @@ function composeValue(item: any, row: any) {
     row,
   };
 }
-  console.log(instance)
+console.log(instance)
 function show(index: number) {
   instance.refs[`dropdown${index}`].handleOpen();
 }
