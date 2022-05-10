@@ -2,11 +2,11 @@
 <template>
   <div>
     Popover选列按钮(hover)：
-    <fu-table-column-select :columns="columns"/>
+    <fu-table-column-select :columns="columns" />
     Popover选列按钮(click)：
-    <fu-table-column-select :columns="columns" trigger="click"/>
+    <fu-table-column-select :columns="columns" trigger="click" />
     Dialog选列按钮：
-    <fu-table-column-select type="dialog" :columns="columns"/>
+    <fu-table-column-select type="dialog" :columns="columns" />
 
     <fu-table :data="tableData" :columns="columns">
       <el-table-column type="selection"></el-table-column>
@@ -18,7 +18,10 @@
 </template>
 
 <script setup lang="ts">
-const columns: any = []
+import { ref } from 'vue'
+
+const columns = ref([])
+
 const tableData = [
   {
     date: "2016-05-02",

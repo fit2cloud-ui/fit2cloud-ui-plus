@@ -16,6 +16,9 @@
 <script setup lang="ts">
 import BaseTable from "./demo/BaseTable.vue";
 import SelectColumn from "./demo/SelectColumn.vue";
+import TablePagination from "./demo/TablePagination.vue";
+import DropdownColumn from "./demo/DropdownColumn.vue";
+import DropdownColumnSlot from "./demo/DropdownColumnSlot.vue";
 
 const comList = [
   {
@@ -29,6 +32,23 @@ const comList = [
     component: SelectColumn,
     description: `建议与TableColumnSelect一起使用。设置fix属性或者type属性为selection/index/expand的列不可选择显隐，设置:show="false"的列，默认隐藏`,
   },
+  {
+    title: "分页",
+    titleDesc: "TablePagination: 表格分页",
+    component: TablePagination,
+    description: `传入columns则显示选列按钮。控制台查看按钮的click事件`
+  },
+  {
+    title: "列组件下拉菜单",
+    titleDesc: "可增加一列下拉菜单组件，有三种显示方式，允许自定义内容",
+    component: DropdownColumn,
+    description: `通过show设置三种显示方式，always/hover/selected`
+  },
+  {
+    title: "通过slot自定义列组件下拉菜单",
+    titleDesc: "slot可以自定义触发按钮、标题、内容",
+    component: DropdownColumnSlot,
+  }
 ];
 </script>
 
@@ -38,6 +58,7 @@ const comList = [
   color: #1f2f3d;
   font-size: 28px;
 }
+
 .component-block {
   margin-top: 40px;
 

@@ -1,4 +1,5 @@
 <demo>基本用法</demo>
+
 <template>
   <fu-table :data="tableData" style="width: 100%">
     <el-table-column type="selection"></el-table-column>

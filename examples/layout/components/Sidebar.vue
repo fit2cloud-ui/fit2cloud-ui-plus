@@ -15,13 +15,13 @@
 </template>
 
 <script setup lang="ts">
-import { ref, Ref, onMounted } from "vue";
+import { ref, onMounted } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { routes } from "../../router/index";
 
 const route = useRoute();
 const router = useRouter();
-const showPath = ref();
+const showPath = ref("");
 
 onMounted(() => {
   showPath.value = route.path || "/";

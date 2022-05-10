@@ -14,6 +14,20 @@ export default {
 <script lang="ts" setup>
 import { onMounted, useSlots, ref, watch, computed, onUpdated, provide } from "vue";
 import FuTableBody from "@/components/table/FuTableBody";
+const props = defineProps({
+  columns: Array,
+  refresh: {
+    type: Boolean,
+    default: true,
+  },
+  localKey: String, // 如果需要记住选择的列，则这里添加一个唯一的Key
+
+});
+
+const slots = useSlots()
+
+const key = ref(0);
+
 
 const prefix = "FU-T-"
 
@@ -77,19 +91,7 @@ const updateColumns = (nodes: any, columns: any) => {
     })
   }
 }
-const props = defineProps({
-  columns: Array,
-  refresh: {
-    type: Boolean,
-    default: true,
-  },
-  localKey: String, // 如果需要记住选择的列，则这里添加一个唯一的Key
 
-});
-
-const slots = useSlots()
-
-const key = ref(0);
 
 const columnsKey = computed(() => {
   return prefix + props.localKey
