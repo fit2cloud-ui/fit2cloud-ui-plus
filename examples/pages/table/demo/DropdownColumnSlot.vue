@@ -6,10 +6,12 @@
       <fu-table-column-dropdown showType="always" width="auto" ref="tableDrop">
         <!-- 自定义触发图标 -->
         <template #icon>
-          <i class="el-icon-setting">自定义</i>
+          <el-icon>
+            <setting />
+          </el-icon>自定义
         </template>
         <!-- 自定义触发图标 -->
-        <template  #title>
+        <template #title>
           <div class="example-title">自定义标题</div>
         </template>
         <!-- 内容 -->
