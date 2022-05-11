@@ -10,7 +10,7 @@ export const validateType = (value: string) => {
   return false;
 }
 
-const COMPONENTS_SIZE = ["default", "medium", "small", "mini"];
+const COMPONENTS_SIZE = ["default", "large", "small"];
 
 export const validateSize = (value: string) => {
   if (!value) return true;

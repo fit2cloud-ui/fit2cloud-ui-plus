@@ -17,7 +17,7 @@ import BaseSearchbar from "./demo/BaseSearchbar.vue";
 const comList = [
   {
     title: "基本用法",
-    titleDesc: "使用size属性控制大小: 默认值(空) / medium / small / mini",
+    titleDesc: "使用size属性控制大小: large / 默认值(空) / small",
     component: BaseSearchbar,
     // description: "",
   },
@@ -26,10 +26,11 @@ const comList = [
 
 <style lang="scss" scoped>
 .component-h1 {
-    font-weight: 400;
-    color: #1f2f3d;
-    font-size: 28px;
-  }
+  font-weight: 400;
+  color: #1f2f3d;
+  font-size: 28px;
+}
+
 .component-block {
   margin-top: 40px;
 

@@ -92,7 +92,7 @@ function composeValue(item: any, row: any) {
     row,
   };
 }
-console.log(instance)
+
 function show(index: number) {
   instance.refs[`dropdown${index}`].handleOpen();
 }

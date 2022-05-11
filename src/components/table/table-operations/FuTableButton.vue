@@ -9,7 +9,7 @@
 defineProps({
     size: {
       type: String,
-      default: "mini"
+      default: "default"
     },
     label: String,
     disabled: Boolean

@@ -3,7 +3,7 @@
   <div>
     选列按钮：
     <fu-table-column-select :columns="columns"/>
-    <fu-table :data="tableData" :columns="columns" local-key="SaveSelectColumn">
+    <fu-table :data="tableData" :columns="columns" localKey="SaveSelectColumn">
       <el-table-column type="selection"></el-table-column>
       <el-table-column prop="date" label="日期" min-width="180"></el-table-column>
       <el-table-column prop="name" label="姓名" min-width="180" fix></el-table-column>

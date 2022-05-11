@@ -23,8 +23,8 @@
               <el-checkbox label="复选框 C" />
             </el-checkbox-group>
             <div class="example-button">
-              <el-button type="primary" size="mini">确认</el-button>
-              <el-button type="primary" plain size="mini" @click="cancel(scope.$index)">取消</el-button>
+              <el-button type="primary">确认</el-button>
+              <el-button type="primary" plain @click="cancel(scope.$index)">取消</el-button>
             </div>
           </div>
         </template>

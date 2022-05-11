@@ -1,67 +1,97 @@
 <template>
   <div style="display: inline-block">
-    <!-- <el-tooltip :content="t('fu.table.custom_table_fields')">
-      <fu-search-bar-button :icon="icon" :size="configSize" @click="visible = true"/>
-    </el-tooltip> -->
-    <!-- <el-dialog custom-class="fu-table-column-select-dialog" :visible.sync="visible" @open="open" append-to-body>
+    <el-tooltip content="自定义表格字段">
+      <!-- :size="configSize"  -->
+      <fu-search-bar-button :icon="icon" @click="visible = true" />
+    </el-tooltip>
+    <el-dialog custom-class="fu-table-column-select-dialog" v-model:visible="visible" @open="open" append-to-body>
       <template #title>
-        <h3>{{ t('fu.table.custom_table_fields') }}</h3>
-        <el-alert :title="t('fu.table.custom_table_fields_desc')" type="info" :closable="false"/>
+        <h3>
+          自定义表格字段
+          <!-- {{ t('fu.table.custom_table_fields') }} -->
+        </h3>
+        <el-alert title="固定字段不在选择范围，可拖拽自定义顺序" type="info" :closable="false" />
       </template>
 
-      <el-checkbox v-for="(c, i) in cloneColumns" :key="i" v-model="c.show" :checked="c.show !== false"
-                   draggable="true" @dragstart.native="dragstart($event, i)" @dragenter.native="dragenter"
-                   @dragleave.native="dragleave" @dragover.native.prevent @dragend.native="dragend"
-                   @drop.native="drop($event, cloneColumns, i)" v-show="!c.fix">
+      <el-checkbox v-for="(c, i) in cloneColumns" :key="i" v-model="c.show" :checked="c.show !== false" draggable="true"
+        @dragstart="dragstart($event, i)" @dragenter="dragenter" @dragleave="dragleave"
+        @dragover.prevent @dragend="dragend" @drop="drop($event, cloneColumns, i)" v-show="!c.fix">
         {{ c.label }}
       </el-checkbox>
 
       <template #footer>
-        <el-button :size="configSize" @click="reset" v-if="columnsKey">{{ t('fu.table.reset') }}</el-button>
-        <el-button type="primary" :size="configSize" @click="ok">{{ t('fu.table.ok') }}</el-button>
+        <el-button @click="reset" v-if="columnsKey">重置
+          <!-- {{ t('fu.table.reset') }} -->
+        </el-button>
+        <el-button type="primary" @click="ok">确定
+          <!-- {{ t('fu.table.ok') }} -->
+        </el-button>
       </template>
-    </el-dialog> -->
+    </el-dialog>
   </div>
 
 </template>
 
 <script setup lang="ts">
-// import mixins from "./mixins"
-// import FuSearchBarButton from "@/components/search-bar/FuSearchBarButton"
+import { ref, inject } from "vue";
+import { tableColumnSelect } from "./utils"
+import FuSearchBarButton from "@/components/search-bar/FuSearchBarButton.vue"
 
-// const cloneColumns = (source, target) => {
-//   source.forEach(col => {
-//     target.push(Object.assign({}, col))
-//   })
-//   return target
-// }
+const props = defineProps({
+  icon: {
+    type: String,
+    default: "Grid"
+  },
+  trigger: {
+    type: String,
+    default: "hover",
+    validator: (value: string) => ['click', 'hover'].includes(value)
+  },
+  columns: {
+    type: Array,
+    default: () => []
+  },
 
-  // components: {FuSearchBarButton},
-  // mixins: [mixins],
-  // data() {
-  //   return {
-  //     cloneColumns: [],
-  //     visible: false
-  //   }
-  // },
-  // methods: {
-  //   open() {
-  //     this.cloneColumns = []
-  //     cloneColumns(this.columns, this.cloneColumns)
-  //   },
-  //   ok() {
-  //     this.columns.splice(0, this.columns.length)
-  //     this.cloneColumns.forEach(c => {
-  //       this.columns.push(c)
-  //     })
-  //     this.visible = false
-  //   },
-  //   reset() {
-  //     if (this.columnsKey) {
-  //       localStorage.removeItem(this.columnsKey)
-  //     }
-  //     this.columns.splice(0, this.columns.length)
-  //     this.visible = false
-  //   }
-  // }
+})
+
+const localKey = inject("localKey")
+
+const cloneColumn = (source: any, target: any) => {
+  source.forEach((col: any) => {
+    target.push(Object.assign({}, col))
+  })
+  return target
+}
+
+
+const { 
+  columnsKey,
+  dragstart,
+  dragenter,
+  dragleave,
+  dragend,
+  drop } = tableColumnSelect(localKey)
+
+const cloneColumns = ref([])
+const visible = ref(false)
+
+function open() {
+  cloneColumns.value = []
+  cloneColumn(props.columns, cloneColumns)
+}
+function ok() {
+  props.columns.splice(0, props.columns.length)
+  cloneColumns.value.forEach(c => {
+    props.columns.push(c)
+  })
+  visible.value = false
+}
+function reset() {
+  if (columnsKey) {
+    localStorage.removeItem(columnsKey)
+  }
+  props.columns.splice(0, props.columns.length)
+  visible.value = false
+}
+
 </script>
