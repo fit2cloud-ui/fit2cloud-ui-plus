@@ -7,8 +7,7 @@
     <el-dialog custom-class="fu-table-column-select-dialog" v-model:visible="visible" @open="open" append-to-body>
       <template #title>
         <h3>
-          自定义表格字段
-          <!-- {{ t('fu.table.custom_table_fields') }} -->
+          {{ t('fu.table.custom_table_fields') }}
         </h3>
         <el-alert title="固定字段不在选择范围，可拖拽自定义顺序" type="info" :closable="false" />
       </template>
@@ -20,11 +19,11 @@
       </el-checkbox>
 
       <template #footer>
-        <el-button @click="reset" v-if="columnsKey">重置
-          <!-- {{ t('fu.table.reset') }} -->
+        <el-button @click="reset" v-if="columnsKey">
+          {{ t('fu.table.reset') }}
         </el-button>
-        <el-button type="primary" @click="ok">确定
-          <!-- {{ t('fu.table.ok') }} -->
+        <el-button type="primary" @click="ok">
+          {{ t('fu.table.ok') }}
         </el-button>
       </template>
     </el-dialog>
@@ -36,6 +35,7 @@
 import { ref, inject } from "vue";
 import { tableColumnSelect } from "./utils"
 import FuSearchBarButton from "@/components/search-bar/FuSearchBarButton.vue"
+import { useLocale } from "@/hooks"
 
 const props = defineProps({
   icon: {
@@ -55,6 +55,8 @@ const props = defineProps({
 })
 
 const localKey = inject("localKey")
+
+const { t } = useLocale()
 
 const cloneColumn = (source: any, target: any) => {
   source.forEach((col: any) => {

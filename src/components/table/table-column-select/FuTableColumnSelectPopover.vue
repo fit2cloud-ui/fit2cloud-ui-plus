@@ -2,8 +2,7 @@
   <el-popover class="fu-table-column-select" popper-class="fu-table-column-select-popper" :trigger="trigger"
     :visible-arrow="false" v-if="hasSelect">
     <h3>
-      自定义表格字段
-      <!-- {{ t('fu.table.custom_table_fields') }} -->
+      {{ t('fu.table.custom_table_fields') }}
     </h3>
     <div class="fu-table-column-select-popper__body">
       <div v-for="(c, i) in columns" :key="i" class="fu-table-column-select-popper__item">
@@ -15,8 +14,8 @@
       </div>
     </div>
     <div class="fu-table-column-select-popper__footer">
-      <el-button @click="reset" v-if="columnsKey">重置
-        <!-- {{ t('fu.table.reset') }} -->
+      <el-button @click="reset" v-if="columnsKey">
+        {{ t('fu.table.reset') }}
       </el-button>
     </div>
     <template #reference>
@@ -27,9 +26,10 @@
 </template>
 
 <script setup lang="ts">
-import { computed, inject  } from "vue";
+import { computed, inject } from "vue";
 import FuSearchBarButton from "@/components/search-bar/FuSearchBarButton.vue";
 import { tableColumnSelect } from "./utils"
+import { useLocale } from "@/hooks"
 
 const props = defineProps({
   icon: {
@@ -47,6 +47,9 @@ const props = defineProps({
   },
 
 });
+
+const { t } = useLocale()
+
 const localKey = inject("localKey")
 
 const {
