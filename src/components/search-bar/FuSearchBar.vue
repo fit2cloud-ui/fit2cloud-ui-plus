@@ -1,20 +1,25 @@
 <template>
   <div class="fu-search-bar">
-    <!-- <div class="fu-search-bar__content">
-      <fu-complex-search ref="complex" :components="components" @change="change" :size="configSize" v-if="showComplex" @close="closePopover">
-        <slot name="complex"></slot>
+    <div class="fu-search-bar__content">
+       <!-- :size="configSize" -->
+      <fu-complex-search ref="complex" :components="components" @change="change" v-if="showComplex" @close="closePopover">
+        <slot name="complex" />
       </fu-complex-search>
-      <fu-search-conditions :conditions="conditions" :size="configSize" @change="change" v-if="showComplex"/>
-      <fu-quick-search :size="configSize" :use-icon="!showComplex" :placeholder="placeholder" v-model="quick"
+       <!-- :size="configSize" -->
+      <fu-search-conditions :conditions="conditions" @change="change" v-if="showComplex"/>
+      <!-- :size="configSize" -->
+      <fu-quick-search :use-icon="!showComplex" :placeholder="placeholder" v-model="quick"
                        @change="quickChange" v-if="useQuickSearch"/>
-    </div> -->
+    </div>
     <div class="fu-search-bar__buttons">
       <slot name="buttons">
-        <fu-search-bar-button icon="el-icon-close" @click="clean" :size="configSize" :tooltip="t('fu.search_bar.clean')"
+        <!-- :size="configSize" -->
+        <fu-search-bar-button icon="el-icon-close" @click="clean" :tooltip="t('fu.search_bar.clean')"
           v-if="showClean" />
-        <fu-search-bar-button icon="el-icon-refresh" @click="refresh" :size="configSize"
+          <!-- :size="configSize" -->
+        <fu-search-bar-button icon="el-icon-refresh" @click="refresh"
           :tooltip="t('fu.search_bar.refresh')" v-if="showRefresh" />
-        <slot></slot>
+        <slot />
       </slot>
     </div>
   </div>
@@ -27,15 +32,13 @@ export default {
 </script>
 
 <script setup lang="ts">
-import { ref, computed,useSlots } from "vue";
-// import FuQuickSearch from "./FuQuickSearch";
-// import FuComplexSearch from "./FuComplexSearch";
+import { ref, computed, useSlots } from "vue";
+import FuQuickSearch from "./FuQuickSearch.vue";
+import FuComplexSearch from "./FuComplexSearch.vue";
 import FuSearchBarButton from "@/components/search-bar/FuSearchBarButton.vue";
-import { useLocale } from "@/hooks"
-
-// import FuSearchConditions from "@/components/search-bar/FuSearchContions";
-
+import FuSearchConditions from "@/components/search-bar/FuSearchContions.vue";
 import ComplexCondition from "@/components/search-bar/store";
+import { useLocale } from "@/hooks"
 
 const { t } = useLocale()
 

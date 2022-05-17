@@ -4,7 +4,6 @@
     <div>
       <fu-search-bar quick-placeholder="按 姓名/邮箱 搜索" :components="components" @exec="search" size="large" />
       <fu-search-bar quick-placeholder="按 姓名/邮箱 搜索" :components="components" @exec="search" @close="close" />
-
       <fu-search-bar quick-placeholder="按 姓名/邮箱 搜索" :components="components" @exec="search" size="small" />
     </div>
     <pre class="condition_display">{{ condition }}</pre>

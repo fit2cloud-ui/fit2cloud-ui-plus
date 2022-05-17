@@ -1,6 +1,6 @@
 <template>
   <el-popover class="fu-table-column-select" popper-class="fu-table-column-select-popper" :trigger="trigger"
-    :visible-arrow="false" v-if="hasSelect">
+    :show-arrow="false" v-if="hasSelect">
     <h3>
       {{ t('fu.table.custom_table_fields') }}
     </h3>
