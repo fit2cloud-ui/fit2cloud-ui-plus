@@ -14,12 +14,12 @@
     <div class="fu-search-bar__buttons">
       <slot name="buttons">
         <!-- :size="configSize" -->
-        <fu-search-bar-button icon="el-icon-close" @click="clean" :tooltip="t('fu.search_bar.clean')"
+        <fu-search-bar-button icon="Close" @click="clean" :tooltip="t('fu.search_bar.clean')"
           v-if="showClean" />
           <!-- :size="configSize" -->
-        <fu-search-bar-button icon="el-icon-refresh" @click="refresh"
+        <fu-search-bar-button icon="Refresh" @click="refresh"
           :tooltip="t('fu.search_bar.refresh')" v-if="showRefresh" />
-        <slot />
+        <slot></slot>
       </slot>
     </div>
   </div>
@@ -111,6 +111,7 @@ function quickChange(value: string, e?: any) {
   if (value) {
     const field = props.quickKey
     const valueLabel = value
+    // *****此处有问题，待解决
     conditions.value = merge(conditions.value, [new ComplexCondition({ field, value, valueLabel })])
     exec(e)
     quick.value = "";

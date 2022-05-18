@@ -1,7 +1,9 @@
 <template>
   <!-- , 'fu-quick-search--' + configSize -->
   <div :class="['fu-quick-search']">
-    <i class="el-icon-search" v-if="useIcon" />
+    <el-icon v-if="useIcon">
+      <Search />
+    </el-icon>
     <label>
       <input :placeholder="placeholder" v-model="quick" @input="input" @blur="blur" @keydown="keydown" />
     </label>
