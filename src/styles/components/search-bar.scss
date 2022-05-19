@@ -1,5 +1,5 @@
-@import "../common/mixins.scss";
-@import "../common/variables.scss";
+@use "../common/mixins.scss" as *;
+@use "../common/variables.scss" as *;
 
 @include b(search-bar) {
   @include flex-row(flex-start, center);
@@ -116,7 +116,7 @@
       cursor: pointer;
 
       &:hover {
-        // color: $--color-primary;
+        color: getCssVar('color', 'primary');
       }
     }
   }
@@ -173,7 +173,7 @@
     cursor: pointer;
 
     &:hover {
-      // color: $--color-primary;
+      color: getCssVar('color', 'primary');
     }
   }
 }

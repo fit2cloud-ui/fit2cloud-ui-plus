@@ -1,0 +1,110 @@
+@use "../common/mixins.scss" as *;
+@use "../common/variables.scss" as *;
+
+@include b(steps) {
+  @include e(footer) {
+    margin-top: 15px;
+
+    @include m(block) {
+      display: inline-block;
+    }
+
+    @include m(flex) {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+    }
+
+    @include m(left) {
+      text-align: left;
+    }
+
+    @include m(right) {
+      text-align: right;
+    }
+
+    @include m(center) {
+      text-align: center;
+    }
+
+  }
+
+  @include e(container) {
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
+  // horizontal横向布局样式
+  @include m(horizontal) {
+    @include e(wrapper) {
+      overflow: hidden;
+      transition: none;
+    }
+
+    @include e(container) {
+      display: flex;
+      align-items: flex-start;
+      flex-wrap: nowrap;
+    }
+
+    @include b(step) {
+      width: 100%;
+      flex: 1 0 100%;
+      margin-top: 15px;
+    }
+  }
+
+  // vertical横向布局样式
+  @include m(vertical) {
+    .el-step__description {
+      padding-right: 0;
+    }
+
+    @include b(step) {
+      font-size: 14px;
+    }
+  }
+
+
+
+  // 禁用样式
+  @include b(step) {
+    @include m(disable) {
+      cursor: not-allowed !important;
+
+      .is-wait {
+        color: #C0C4CC !important;
+        border-color: #C0C4CC !important;
+      }
+    }
+  }
+
+  .el-step:hover {
+    cursor: pointer;
+
+    .is-wait {
+      color: getCssVar('color', 'primary');
+      border-color: getCssVar('color', 'primary');
+    }
+  }
+}
+
+/* 可以设置不同的进入和离开动画 */
+/* 设置持续时间和动画函数 */
+.carousel-enter-active {
+  transition: all .3s ease;
+}
+
+.carousel-leave-active {
+  transition: all .5s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+}
+
+.carousel-enter {
+  transform: translateX(100%);
+  opacity: 0;
+}
+
+.carousel-leave-to {
+  transform: translateX(-100%);
+  opacity: 0;
+}

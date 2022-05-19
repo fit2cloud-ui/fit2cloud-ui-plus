@@ -1,5 +1,5 @@
-@import "../common/mixins.scss";
-@import "../common/variables.scss";
+@use "../common/mixins.scss" as *;
+@use "../common/variables.scss" as *;
 
 @include b(table) {
   &.el-table {
