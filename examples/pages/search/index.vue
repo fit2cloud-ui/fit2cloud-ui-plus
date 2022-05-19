@@ -15,6 +15,7 @@
 import BaseSearchbar from "./demo/BaseSearchbar.vue";
 import SearchBarButton from "./demo/SearchBarButton.vue";
 import QuickSearch from "./demo/QuickSearch.vue";
+import ComplexSearch from "./demo/ComplexSearch.vue";
 
 const comList = [
   {
@@ -33,12 +34,12 @@ const comList = [
     component: QuickSearch,
     description: `控制台显示change事件输出`
   },
-  // {
-  //   title: "高级搜索",
-  //   titleDesc: "两种方式设置高级搜索组件: 1、使用v-slot:complex。2、设置components组件数组",
-  //   component: "ComplexSearchDemo",
-  //   description: `控制台显示事件输出`
-  // },
+  {
+    title: "高级搜索",
+    titleDesc: "两种方式设置高级搜索组件: 1、使用v-slot:complex。2、设置components组件数组",
+    component: "ComplexSearch",
+    description: `控制台显示事件输出`
+  },
   // {
   //   title: "搜索组件",
   //   titleDesc: "高级搜索提供5种常用的搜索组件: 输入框，选择框，异步选择框，日期选择，日期时间选择",

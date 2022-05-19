@@ -17,11 +17,16 @@ const componentsDocRoutes = [
     path: 'search',
     component: () => import('../pages/search/index.vue')
   },
-  // {
-  //   name: 'SplitPane 分割面板',
-  //   path: 'split-pane',
-  //   component: () => import('../pages/split-pane/index.vue')
-  // },
+  {
+    name: 'SplitPane 分割面板',
+    path: 'split-pane',
+    component: () => import('../pages/split-pane/index.vue')
+  },
+  {
+    name: 'Tabs 标签页',
+    path: 'tabs',
+    component: () => import('../pages/tabs/index.vue')
+  },
 ]
 
 export { componentsDocRoutes };

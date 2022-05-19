@@ -19,7 +19,7 @@
           <!-- :size="configSize" -->
         <fu-search-bar-button icon="Refresh" @click="refresh"
           :tooltip="t('fu.search_bar.refresh')" v-if="showRefresh" />
-        <slot></slot>
+        <slot />
       </slot>
     </div>
   </div>
