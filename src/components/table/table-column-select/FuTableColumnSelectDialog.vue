@@ -1,20 +1,18 @@
 <template>
   <div style="display: inline-block">
-    <el-tooltip content="自定义表格字段">
-      <!-- :size="configSize"  -->
-      <fu-search-bar-button :icon="icon" @click="visible = true" />
-    </el-tooltip>
-    <el-dialog custom-class="fu-table-column-select-dialog" v-model:visible="visible" @open="open" append-to-body>
-      <template #title>
+    <!-- :size="configSize"  -->
+    <el-button class="fu-search-bar-button" circle :icon="icon" @click="visible = true"/>
+    <el-dialog custom-class="fu-table-column-select-dialog" v-model="visible" @open="open" append-to-body>
+      <template #header>
         <h3>
           {{ t('fu.table.custom_table_fields') }}
         </h3>
-        <el-alert title="固定字段不在选择范围，可拖拽自定义顺序" type="info" :closable="false" />
+        <el-alert title="固定字段不在选择范围，可拖拽自定义顺序" type="info" :closable="false"/>
       </template>
 
       <el-checkbox v-for="(c, i) in cloneColumns" :key="i" v-model="c.show" :checked="c.show !== false" draggable="true"
-        @dragstart="dragstart($event, i)" @dragenter="dragenter" @dragleave="dragleave"
-        @dragover.prevent @dragend="dragend" @drop="drop($event, cloneColumns, i)" v-show="!c.fix">
+                   @dragstart="dragstart($event, i)" @dragenter="dragenter" @dragleave="dragleave"
+                   @dragover.prevent @dragend="dragend" @drop="drop($event, cloneColumns, i)" v-show="!c.fix">
         {{ c.label }}
       </el-checkbox>
 
@@ -32,10 +30,10 @@
 </template>
 
 <script setup lang="ts">
-import { ref, inject } from "vue";
-import { tableColumnSelect } from "./utils"
+import {ref, inject} from "vue";
+import {tableColumnSelect} from "./utils"
 import FuSearchBarButton from "@/components/search-bar/FuSearchBarButton.vue"
-import { useLocale } from "@/hooks"
+import {useLocale} from "@/hooks"
 
 const props = defineProps({
   icon: {
@@ -56,7 +54,7 @@ const props = defineProps({
 
 const localKey = inject("localKey")
 
-const { t } = useLocale()
+const {t} = useLocale()
 
 const cloneColumn = (source: any, target: any) => {
   source.forEach((col: any) => {
@@ -66,21 +64,23 @@ const cloneColumn = (source: any, target: any) => {
 }
 
 
-const { 
+const {
   columnsKey,
   dragstart,
   dragenter,
   dragleave,
   dragend,
-  drop } = tableColumnSelect(localKey)
+  drop
+} = tableColumnSelect(localKey)
 
 const cloneColumns = ref([])
 const visible = ref(false)
 
 function open() {
   cloneColumns.value = []
-  cloneColumn(props.columns, cloneColumns)
+  cloneColumn(props.columns, cloneColumns.value)
 }
+
 function ok() {
   props.columns.splice(0, props.columns.length)
   cloneColumns.value.forEach(c => {
@@ -88,9 +88,10 @@ function ok() {
   })
   visible.value = false
 }
+
 function reset() {
   if (columnsKey) {
-    localStorage.removeItem(columnsKey)
+    localStorage.removeItem(columnsKey.value)
   }
   props.columns.splice(0, props.columns.length)
   visible.value = false
