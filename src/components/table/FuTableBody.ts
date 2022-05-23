@@ -32,7 +32,7 @@ const FuTableBody = (props: any, context: any) => {
       nodes.push(node);
     }
   })
-  return h(`h${props.name}`, context.attrs, nodes)
+  return nodes
 }
 
 export default FuTableBody;

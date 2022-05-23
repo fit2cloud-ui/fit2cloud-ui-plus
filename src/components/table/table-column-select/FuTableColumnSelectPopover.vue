@@ -1,14 +1,14 @@
 <template>
   <el-popover class="fu-table-column-select" popper-class="fu-table-column-select-popper" :trigger="trigger"
-    :show-arrow="false" v-if="hasSelect">
+              :show-arrow="false" v-show="hasSelect">
     <h3>
       {{ t('fu.table.custom_table_fields') }}
     </h3>
     <div class="fu-table-column-select-popper__body">
       <div v-for="(c, i) in columns" :key="i" class="fu-table-column-select-popper__item">
         <el-checkbox v-model="c.show" :checked="c.show !== false" draggable="true" @dragstart="dragstart($event, i)"
-          @dragenter="dragenter" @dragleave="dragleave" @dragover.prevent @dragend="dragend"
-          @drop="drop($event, columns, i)" v-show="!c.fix">
+                     @dragenter="dragenter" @dragleave="dragleave" @dragover.prevent @dragend="dragend"
+                     @drop="drop($event, columns, i)" v-show="!c.fix">
           {{ c.label }}
         </el-checkbox>
       </div>
@@ -18,18 +18,18 @@
         {{ t('fu.table.reset') }}
       </el-button>
     </div>
+
     <template #reference>
-      <fu-search-bar-button :icon="icon" />
+      <el-button class="fu-search-bar-button" circle :icon="icon"/>
     </template>
     <!-- :size="configSize" -->
   </el-popover>
 </template>
 
 <script setup lang="ts">
-import { computed, inject } from "vue";
-import FuSearchBarButton from "@/components/search-bar/FuSearchBarButton.vue";
-import { tableColumnSelect } from "./utils"
-import { useLocale } from "@/hooks"
+import {computed, inject} from "vue";
+import {tableColumnSelect} from "./utils"
+import {useLocale} from "@/hooks"
 
 const props = defineProps({
   icon: {
@@ -48,7 +48,7 @@ const props = defineProps({
 
 });
 
-const { t } = useLocale()
+const {t} = useLocale()
 
 const localKey = inject("localKey")
 
@@ -58,22 +58,22 @@ const {
   dragenter,
   dragleave,
   dragend,
-  drop } = tableColumnSelect(localKey)
+  drop
+} = tableColumnSelect(localKey)
 
 const isFixAll = computed(() => {
-  return props.columns?.every((c: any) => c.fix)
+  return props.columns?.every((c: any) => {
+    return c.fix
+  })
 });
 
 const hasSelect = computed(() => {
-  return props.columns?.length > 0 && !isFixAll
+  return props.columns?.length > 0 && !isFixAll.value
 });
-
-
-console.log(props.columns)
 
 function reset() {
   if (columnsKey) {
-    localStorage.removeItem(columnsKey)
+    localStorage.removeItem(columnsKey.value)
   }
   props.columns.splice(0, props.columns.length)
 }
