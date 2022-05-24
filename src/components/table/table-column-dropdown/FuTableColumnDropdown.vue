@@ -4,7 +4,7 @@
     <template #default="scope">
       <el-dropdown @command="handleCommand" :trigger="trigger" :class="showType === 'hover' ? 'fu-show-icon' : ''"
         v-if="isShow(scope.row)" placement="bottom" :ref="`dropdown${scope.$index}`">
-        <span class="el-dropdown-link">
+        <span class="fu-dropdown-link">
           <slot name="icon">
             <el-icon class="fu-icon-more">
               <MoreFilled />
@@ -37,7 +37,7 @@ export default {
 }
 </script>
 <script lang="ts" setup>
-import { computed, getCurrentInstance } from "vue";
+import { computed, getCurrentInstance, defineExpose } from "vue";
 const props = defineProps({
   showType: {
     type: String,
@@ -99,5 +99,8 @@ function show(index: number) {
 function hide(index: number) {
   instance.refs[`dropdown${index}`].handleClose();
 }
-
+defineExpose({
+  show,
+  hide
+})
 </script>

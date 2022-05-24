@@ -16,7 +16,7 @@
 <script setup lang="ts">
 import BaseTable from "./demo/BaseTable.vue";
 import SelectColumn from "./demo/SelectColumn.vue";
-import SaveSelectColumn from "./demo/SelectColumn.vue";
+import SaveSelectColumn from "./demo/SaveSelectColumn.vue";
 import TableOperations from "./demo/TableOperations.vue";
 import TablePagination from "./demo/TablePagination.vue";
 import DropdownColumn from "./demo/DropdownColumn.vue";
@@ -34,17 +34,17 @@ const comList = [
     component: SelectColumn,
     description: `建议与TableColumnSelect一起使用。设置fix属性或者type属性为selection/index/expand的列不可选择显隐，设置:show="false"的列，默认隐藏`,
   },
-  // {
-  //   title: "选列保存",
-  //   titleDesc: "给表格设置唯一的local-key，将选列状态自动保存到localStorage",
-  //   component: SaveSelectColumn,
-  // },
-  // {
-  //   title: "操作列",
-  //   titleDesc: "TableOperations: 按钮自动折叠，提供选列功能，控制显隐或禁用",
-  //   component: TableOperations,
-  //   description: `传入columns则显示选列按钮。控制台查看按钮的click事件`
-  // },
+  {
+    title: "选列保存",
+    titleDesc: "给表格设置唯一的local-key，将选列状态自动保存到localStorage",
+    component: SaveSelectColumn,
+  },
+  {
+    title: "操作列",
+    titleDesc: "TableOperations: 按钮自动折叠，提供选列功能，控制显隐或禁用",
+    component: TableOperations,
+    description: `传入columns则显示选列按钮。控制台查看按钮的click事件`
+  },
   {
     title: "分页",
     titleDesc: "TablePagination: 表格分页",

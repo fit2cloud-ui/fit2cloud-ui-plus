@@ -1,6 +1,6 @@
 <demo>列组件下拉菜单</demo>
 <template>
-    <el-radio-group v-model="showType" style="margin-bottom: 20px" size="small">
+    <el-radio-group v-model="showType" style="margin-bottom: 20px">
         <el-radio-button label="always">always</el-radio-button>
         <el-radio-button label="hover">hover</el-radio-button>
         <el-radio-button label="selected">selected</el-radio-button>
@@ -56,14 +56,14 @@ const tableData: User[] = [
 const menus = [
     {
         label: "批量编辑",
-        icon: "el-icon-view",
+        icon: "Edit",
         click: (row: User) => {
             console.log("编辑:" + row.name);
         },
     },
     {
         label: "批量移动",
-        icon: "el-icon-rank",
+        icon: "Switch",
         click: (row: User) => {
             console.log("移动:" + row.name);
         },
@@ -75,7 +75,7 @@ const menus = [
     },
     {
         label: "批量删除",
-        icon: "el-icon-delete",
+        icon: "Delete",
         click: (row: User) => {
             console.log("删除:" + row.name);
         },

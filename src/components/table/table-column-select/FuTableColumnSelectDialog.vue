@@ -3,11 +3,11 @@
     <!-- :size="configSize"  -->
     <el-button class="fu-search-bar-button" circle :icon="icon" @click="visible = true"/>
     <el-dialog custom-class="fu-table-column-select-dialog" v-model="visible" @open="open" append-to-body>
-      <template #header>
+      <template #title>
         <h3>
           {{ t('fu.table.custom_table_fields') }}
         </h3>
-        <el-alert title="固定字段不在选择范围，可拖拽自定义顺序" type="info" :closable="false"/>
+        <el-alert :title="t('fu.table.custom_table_fields_desc')" type="info" :closable="false"/>
       </template>
 
       <el-checkbox v-for="(c, i) in cloneColumns" :key="i" v-model="c.show" :checked="c.show !== false" draggable="true"
@@ -32,7 +32,6 @@
 <script setup lang="ts">
 import {ref, inject} from "vue";
 import {tableColumnSelect} from "./utils"
-import FuSearchBarButton from "@/components/search-bar/FuSearchBarButton.vue"
 import {useLocale} from "@/hooks"
 
 const props = defineProps({

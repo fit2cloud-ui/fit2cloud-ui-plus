@@ -3,7 +3,7 @@
   <div>
     <fu-table :data="tableData">
       <el-table-column type="selection" />
-      <fu-table-column-dropdown showType="always" width="auto" ref="tableDrop">
+      <fu-table-column-dropdown showType="always" width="auto" ref="tableDropRef">
         <!-- 自定义触发图标 -->
         <template #icon>
           <el-icon>
@@ -23,8 +23,8 @@
               <el-checkbox label="复选框 C" />
             </el-checkbox-group>
             <div class="example-button">
-              <el-button type="primary">确认</el-button>
-              <el-button type="primary" plain @click="cancel(scope.$index)">取消</el-button>
+              <el-button type="primary" size="small">确认</el-button>
+              <el-button type="primary" plain @click="cancel(scope.$index)" size="small">取消</el-button>
             </div>
           </div>
         </template>
@@ -39,7 +39,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 const checkList = ref([])
-const tableDrop = ref()
+const tableDropRef = ref()
 
 const tableData = [
   {
@@ -68,8 +68,8 @@ const tableData = [
   },
 ]
 
-function cancel(index: string) {
-  tableDrop.value.hide(index);
+function cancel(index: number) {
+  tableDropRef.value?.hide(index);
 }
 
 </script>
@@ -78,6 +78,7 @@ function cancel(index: string) {
   color: #004a71;
   text-align: center;
   padding: 5px 0;
+  font-size: 15px;
 }
 
 .example {

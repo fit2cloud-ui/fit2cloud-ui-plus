@@ -75,8 +75,9 @@
     color: #888888;
   }
 
-  .el-dropdown-link {
+  .fu-dropdown-link {
     cursor: pointer;
+    line-height: 23px;
   }
 
   @include b(icon-more) {
