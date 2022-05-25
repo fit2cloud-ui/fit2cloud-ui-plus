@@ -1,6 +1,6 @@
 <template>
   <el-dropdown @command="handleCommand" class="fu-table-more-button">
-    <el-button circle icon="MoreFilled" :size="size" @click.stop />
+    <el-button link type="primary" @click.stop>更多</el-button>
     <template #dropdown>
       <el-dropdown-menu>
         <el-dropdown-item v-for="(btn, i) in buttons" :key="i" :icon="btn.icon" :disabled="disabled(btn)"
@@ -25,9 +25,9 @@ const props = defineProps({
   }
 });
 
-const disabled = computed(({ row }) => {
-  return (btn: any) => {
-    return typeof btn.disabled === "function" ? btn.disabled(row) : btn.disabled
+const disabled = computed(() => {
+  return function(btn: any) {
+    return typeof btn.disabled === "function" ? btn.disabled(props.row) : btn.disabled
   }
 });
 

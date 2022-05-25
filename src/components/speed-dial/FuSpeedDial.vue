@@ -21,7 +21,7 @@ export default {
 };
 </script>
 <script setup lang="ts">
-import { ref, watch, getCurrentInstance, onMounted, computed, provide, useSlots } from "vue";
+import { ref, watch, getCurrentInstance, onMounted, computed, provide, useSlots, defineExpose } from "vue";
 import type { CSSProperties } from 'vue'
 // import OutsideClick from "element-ui/src/utils/clickoutside"
 // directives: { OutsideClick },
@@ -133,8 +133,8 @@ watch(() => props.right, updateStyle)
 watch(() => props.top, updateStyle)
 watch(() => props.bottom, updateStyle)
 
-const saveKey = computed(({ localKey }) => {
-  return "Fu-SD-" + localKey
+const saveKey = computed(() => {
+  return "Fu-SD-" + props.localKey
 })
 const hashChildren = computed(() => {
   if (props.items && props.items.length > 0) {
@@ -181,12 +181,7 @@ function toggle(active?: any) {
     active.value = active === undefined ? !active.value : active
   }
 }
-function close() {
-  if (props.itemClickClose && !props.manual) {
-    toggle(false)
-  }
-  emit("close", [props.id, active.value])
-}
+
 function outsideClickClose() {
   if (props.outsideClose && !props.manual) {
     toggle(false)
@@ -269,7 +264,20 @@ function itemClick(arg: any, e: any) {
   }
 }
 
+function close() {
+  if (props.itemClickClose && !props.manual) {
+    toggle(false)
+  }
+  emit("close", [props.id, active.value])
+}
+
 onMounted(() => {
   readPosition()
-}
+})
+
+
+defineExpose({
+  close
+})
+
 </script>

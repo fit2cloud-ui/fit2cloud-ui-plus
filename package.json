@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "@element-plus/icons-vue": "^1.1.4",
-    "element-plus": "^2.1.11",
+    "element-plus": "^2.2.2",
     "github-markdown-css": "^5.1.0",
     "prismjs": "^1.28.0",
     "vite-plugin-markdown": "^2.0.2",

@@ -4,9 +4,9 @@
       {{ $attrs.label }}
       <fu-table-column-select type="dialog" :columns="columns" :local-key="localKey" v-if="columns" />
     </template>
-    <template v-slot:default="{ row }">
-      <fu-table-button v-for="(btn, i) in defaultButtons(row)" :key="i" v-bind="btn" @click.stop="btn.click(row)"
-        :disabled="disableButton(btn, row)" />
+    <template #default="{row}">
+      <el-button v-for="(btn, i) in defaultButtons(row)" :key="i" @click.stop="btn.click(row)"
+        :disabled="disableButton(btn, row)" link type="primary">{{btn.label}}</el-button>
       <fu-table-more-button :buttons="moreButtons(row)" :row="row" v-if="moreButtons(row).length > 0" />
     </template>
   </el-table-column>
@@ -20,7 +20,7 @@ export default {
 
 <script lang="ts" setup>
 import { computed, inject } from "vue";
-import FuTableButton from "./FuTableButton.vue";
+// import FuTableButton from "./FuTableButton.vue";
 import FuTableMoreButton from "./FuTableMoreButton.vue";
 import FuTableColumnSelect from "../table-column-select/FuTableColumnSelect.vue";
 const props = defineProps({
@@ -48,20 +48,20 @@ const hasShowFunc = computed(() => {
 });
 
 const defaultButtons = computed(() => {
-  return (row: any) => {
+  return function(row: any) {
     return hasMore(row) ? showButtons(row).slice(0, props.ellipsis) : showButtons(row)
   }
 });
 
 const moreButtons = computed(() => {
-  return (row: any) => {
+  return function(row: any) {
     return hasMore(row) ? showButtons(row).slice(props.ellipsis) : []
   }
 });
 
 const computeWidth = computed(() => {
-  let length = hasShowFunc ? props.ellipsis : defaultButtons.length
-  let buttonsWidth = 20 + length * 38 + 38
+  let length = hasShowFunc.value ? props.ellipsis : defaultButtons.value.length
+  let buttonsWidth = 35 + length * 58 + 58
   if (props.minWidth) {
     buttonsWidth = buttonsWidth < props.minWidth ? props.minWidth : buttonsWidth
   }
@@ -69,7 +69,7 @@ const computeWidth = computed(() => {
 });
 
 const disableButton = computed(() => {
-  return (btn: any, row: any) => {
+  return function(btn: any, row: any) {
     return typeof btn.disabled === "function" ? btn.disabled(row) : btn.disabled
   }
 });
