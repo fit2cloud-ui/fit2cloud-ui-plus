@@ -1,5 +1,5 @@
 <template>
-  <el-table class="fu-table" v-bind="$attrs" :key="key">
+  <el-table class="fu-table" v-bind="$attrs" :key="key" header-row-class-name="fu-table-header">
     <fu-table-body name="table-body" :columns="columns">
       <slot />
     </fu-table-body>

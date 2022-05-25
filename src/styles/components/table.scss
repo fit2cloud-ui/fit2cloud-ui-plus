@@ -3,7 +3,7 @@
 
 @include b(table) {
   &.el-table {
-    th.el-table-column--selection > .cell {
+    th.el-table-column--selection>.cell {
       padding-left: 14px;
       padding-right: 14px;
     }
@@ -16,6 +16,18 @@
   &.el-table--small {
     font-size: 13px;
   }
+}
+
+@include b(table-header) {
+  // ****** 颜色变量未定
+  th {
+    background-color: #F5F6F7 !important;
+    border-top: 1px solid rgba(31, 35, 41, 0.15);
+    font-weight: 500 !important;;
+  }
+}
+.el-table__inner-wrapper::before {
+  background: none;
 }
 
 @include b(table-column-select) {
@@ -34,7 +46,7 @@
   }
 
   @include e(item) {
-    & + & {
+    &+& {
       margin-top: 5px;
     }
   }
@@ -57,13 +69,13 @@
 }
 
 @include b(table-operations) {
-  div[type='dialog'] > .fu-search-bar-button {
+  div[type='dialog']>.fu-search-bar-button {
     border: none;
   }
 }
 
 @include b(table-more-button) {
-  button + & {
+  button+& {
     margin-left: 10px;
   }
 }
