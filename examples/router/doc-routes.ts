@@ -13,10 +13,15 @@ const componentsDocRoutes = [
     component: () => import('../pages/table/index.vue')
   },
   {
-    name: 'SearchBar 搜索条',
-    path: 'search',
-    component: () => import('../pages/search/index.vue')
+    name: 'FilterBar 筛选条',
+    path: 'filter',
+    component: () => import('../pages/filter-bar/index.vue')
   },
+  // {
+  //   name: 'SearchBar 搜索条',
+  //   path: 'search',
+  //   component: () => import('../pages/search/index.vue')
+  // },
   // {
   //   name: 'SpeedDial 快速拨号',
   //   path: 'speed-dial',
@@ -32,11 +37,11 @@ const componentsDocRoutes = [
   //   path: 'read-write-switch',
   //   component: 'ReadWriteSwitchDoc'
   // },
-  {
-    name: 'SplitPane 分割面板',
-    path: 'split-pane',
-    component: () => import('../pages/split-pane/index.vue')
-  },
+  // {
+  //   name: 'SplitPane 分割面板',
+  //   path: 'split-pane',
+  //   component: () => import('../pages/split-pane/index.vue')
+  // },
   {
     name: 'Tabs 标签页',
     path: 'tabs',

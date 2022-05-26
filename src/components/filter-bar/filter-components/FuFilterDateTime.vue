@@ -58,8 +58,8 @@ function getCondition() {
   let { field, label } = props
   return new FilterCondition({ field, label, value: value.value, valueLabel: valueLabel.value })
 }
-function init(value: any) {
-  value.value = value !== undefined ? value : ''
+function init(v: any) {
+  value.value = v !== undefined ? v : ''
 }
 
 defineExpose({

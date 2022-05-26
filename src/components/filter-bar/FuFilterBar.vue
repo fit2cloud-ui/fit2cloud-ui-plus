@@ -9,7 +9,7 @@
           <!-- :size="configSize" -->
           <fu-search-input v-model="quick" :placeholder="quickPlaceholder" @change="change" />
           <el-button @click="open">
-            <i class="el-icon-finished" /> {{ t('fu.filter_bar.filter') }}
+            <el-icon><Finished /></el-icon> {{ t('fu.filter_bar.filter') }}
             <span v-if="conditions.length > 0">({{ conditions.length }})</span>
           </el-button>
         </slot>
@@ -52,7 +52,7 @@ const filterRef = ref()
 
 
 function open() {
-  filterRef.value.open()
+  filterRef.value?.open()
 }
 function change() {
   emit("exec", conditionObj.value)
@@ -62,7 +62,7 @@ function filter(conditions: any) {
   emit("exec", conditionObj.value)
 }
 function setConditions(conditionObj: any) {
-  filterRef.value.setConditions(conditionObj)
+  filterRef.value?.setConditions(conditionObj)
 }
 
 
@@ -73,4 +73,8 @@ const conditionObj = computed(() => {
   })
   return obj
 });
+
+defineExpose({
+  setConditions
+})
 </script>

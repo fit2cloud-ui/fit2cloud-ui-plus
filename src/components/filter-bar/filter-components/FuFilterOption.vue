@@ -21,16 +21,16 @@ const props = defineProps({
 const select = inject('select')
 
 const selected = computed(() => {
-  if (!select.multiple) {
-    return select.value === props.value
+  if (!select?.props.multiple) {
+    return select?.value === props.value
   } else {
-    return select.value.includes(props.value)
+    return select?.value.includes(props.value)
   }
 })
 
 
 function click() {
-  select.clickOption(props.value, selected.value)
+  select?.clickOption(props.value, selected.value)
 }
 
 </script>

@@ -37,7 +37,7 @@ const comList = [
   {
     title: "高级搜索",
     titleDesc: "两种方式设置高级搜索组件: 1、使用v-slot:complex。2、设置components组件数组",
-    component: "ComplexSearch",
+    component: ComplexSearch,
     description: `控制台显示事件输出`
   },
   // {

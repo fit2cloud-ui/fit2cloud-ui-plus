@@ -21,7 +21,7 @@ export default {
 };
 </script>
 <script setup lang="ts">
-import { ref, watch, getCurrentInstance, onMounted, computed, provide, useSlots } from "vue";
+import { reactive, ref, watch, getCurrentInstance, onMounted, computed, provide, useSlots } from "vue";
 import type { CSSProperties } from 'vue'
 // import OutsideClick from "element-ui/src/utils/clickoutside"
 // directives: { OutsideClick },
@@ -116,7 +116,7 @@ const { zIndex, position, left, top, right, bottom } = props
 
 const active = ref(false)
 const moving = ref(false)
-const style = ref({ zIndex, position, left, top, right, bottom }) as any
+const style = reactive({ zIndex, position, left, top, right, bottom }) as any
 const updateStyle = function () {
   style.value = { zIndex, position, left, top, right, bottom }
 }

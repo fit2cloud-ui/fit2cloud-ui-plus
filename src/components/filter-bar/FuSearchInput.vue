@@ -1,5 +1,5 @@
 <template>
-  <el-input class="fu-search-input" prefix-icon="el-icon-search" v-model="quick" @input="input" @blur="blur"
+  <el-input class="fu-search-input" prefix-icon="Search" v-model="quick" @input="input" @blur="blur"
     @keydown="keydown" v-bind="$attrs" clearable />
 </template>
 

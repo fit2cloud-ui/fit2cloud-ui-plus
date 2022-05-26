@@ -61,8 +61,6 @@ const props = defineProps({
   options: Array
 })
 const emit = defineEmits(["change"])
-provide('select', instance)
-
 // const visible = ref(false)
 const value = ref(props.multiple ? [] : '')
 
@@ -123,13 +121,19 @@ function getCondition() {
   return new FilterCondition({ field, label, value: value.value, valueLabel: valueLabel.value })
 }
 
-function init(value: any) {
-  value.value = value !== undefined ? value : props.multiple ? [] : ''
+function init(v: any) {
+  value.value = v !== undefined ? v : props.multiple ? [] : ''
 }
+
+provide('select', {
+  clickOption,
+  value: value.value,
+  props
+})
 
 defineExpose({
   clickOption,
   getCondition,
-  init
+  init,
 })
 </script>

@@ -38,7 +38,7 @@
 
 <script lang="ts">
 export default {
-  name: "FuSearchBar",
+  name: "FuFilter",
 };
 </script>
 
@@ -157,10 +157,12 @@ const scrollWidth = computed(() => {
 
 const refs = computed(() => {
   let refs: any = [];
-  if (slots.default?.()) {
+  const defaultSlot = slots.default?.()
+  const slot = defaultSlot?.length === 1 && defaultSlot[0]
+  if (slot.children && slot.children?.length > 0) {
     // 使用slot
-    slots.default?.().forEach((component: any) => {
-      refs.push(component.componentInstance)
+    slot.children.forEach((component: any) => {
+      refs.push(component)
     })
   } else {
     // 使用components
