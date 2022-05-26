@@ -21,7 +21,7 @@ export default {
 };
 </script>
 <script setup lang="ts">
-import { ref, watch, getCurrentInstance, onMounted, computed, provide, useSlots, defineExpose } from "vue";
+import { ref, watch, getCurrentInstance, onMounted, computed, provide, useSlots } from "vue";
 import type { CSSProperties } from 'vue'
 // import OutsideClick from "element-ui/src/utils/clickoutside"
 // directives: { OutsideClick },
@@ -203,8 +203,8 @@ function mousedown() {
 function mousemove(e: MouseEvent) {
   moving.value = true
   if (props.position === "fixed") {
-    // ******* $el 待修改
-    const rect = instance?.$el.getBoundingClientRect()
+    const el = instance.vnode.el as HTMLElement
+    const rect = el.getBoundingClientRect()
     let left = e.clientX - rect.width / 2
     let top = e.clientY - rect.height / 2
     style.value.left = left + 'px'
@@ -244,15 +244,15 @@ function writePosition() {
 function readPosition() {
   // *******????
   // if (this.savePosition) {
-    let position = localStorage.getItem(saveKey.value)
-    try {
-      localStorage.getItem(saveKey.value)
-      if (position) {
-        style.value = JSON.parse(position)
-      }
-    } catch (e) {
-      console.warn(saveKey.value + " error", e)
+  let position = localStorage.getItem(saveKey.value)
+  try {
+    localStorage.getItem(saveKey.value)
+    if (position) {
+      style.value = JSON.parse(position)
     }
+  } catch (e) {
+    console.warn(saveKey.value + " error", e)
+  }
   // }
 }
 function itemClick(arg: any, e: any) {

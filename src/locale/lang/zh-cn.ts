@@ -1,6 +1,16 @@
 export default {
   name: 'zh-cn',
   fu: {
+    filter_bar: {
+      filter: "筛选",
+      results: "个结果",
+      clear: "清空条件",
+      drawer_title: "筛选条件",
+      cancel: "取消",
+      search: "查询",
+      select_all: "全选",
+      more: "更多"
+    },
     search_bar: {
       search: "搜索",
       adv_search: "高级搜索",

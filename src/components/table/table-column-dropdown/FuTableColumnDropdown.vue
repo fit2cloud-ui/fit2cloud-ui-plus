@@ -37,7 +37,7 @@ export default {
 }
 </script>
 <script lang="ts" setup>
-import { computed, getCurrentInstance, defineExpose } from "vue";
+import { computed, getCurrentInstance } from "vue";
 const props = defineProps({
   showType: {
     type: String,
