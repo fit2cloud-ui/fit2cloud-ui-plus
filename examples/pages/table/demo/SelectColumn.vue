@@ -1,20 +1,20 @@
 <demo>表格选列</demo>
 <template>
-  <div>
-    Popover选列按钮(hover)：
+  <div style="margin-bottom: 20px">
+    <span>Popover选列(hover)：</span>
     <fu-table-column-select :columns="columns" />
-    Popover选列按钮(click)：
+    <span style="margin-left: 20px">Popover选列(click)：</span>
     <fu-table-column-select :columns="columns" trigger="click" />
-    Dialog选列按钮：
+    <span style="margin-left: 20px">Dialog选列：</span>
     <fu-table-column-select type="dialog" :columns="columns" />
-
-    <fu-table :data="tableData" :columns="columns">
-      <el-table-column type="selection"></el-table-column>
-      <el-table-column prop="date" label="日期" min-width="180"></el-table-column>
-      <el-table-column prop="name" label="姓名" min-width="180"></el-table-column>
-      <el-table-column prop="address" label="地址" :show="false"></el-table-column>
-    </fu-table>
   </div>
+  <fu-table :data="tableData" :columns="columns">
+    <el-table-column type="selection"></el-table-column>
+    <el-table-column prop="date" label="日期" min-width="180"></el-table-column>
+    <el-table-column prop="name" label="姓名" min-width="180"></el-table-column>
+    <el-table-column prop="address" label="地址" :show="false"></el-table-column>
+  </fu-table>
+
 </template>
 
 <script setup lang="ts">

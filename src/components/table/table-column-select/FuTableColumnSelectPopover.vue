@@ -20,7 +20,7 @@
     </div>
 
     <template #reference>
-      <el-button class="fu-search-bar-button" circle :icon="icon"/>
+      <el-button class="fu-search-bar-button" :icon="icon">{{t('fu.table.custom_table_rows')}}</el-button>
     </template>
     <!-- :size="configSize" -->
   </el-popover>
@@ -34,7 +34,7 @@ import {useLocale} from "@/hooks"
 const props = defineProps({
   icon: {
     type: String,
-    default: "Grid"
+    default: "Setting"
   },
   trigger: {
     type: String,

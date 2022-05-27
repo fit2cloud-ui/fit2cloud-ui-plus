@@ -2,12 +2,20 @@
   <el-table-column class-name="fu-table-operations" :align="align" :width="computeWidth" v-bind="$attrs">
     <template #header>
       {{ $attrs.label }}
-      <fu-table-column-select type="dialog" :columns="columns" :local-key="localKey" v-if="columns" />
+      <!-- <fu-table-column-select type="dialog" :columns="columns" :local-key="localKey" v-if="columns" /> -->
     </template>
-    <template #default="{row}">
-      <el-button v-for="(btn, i) in defaultButtons(row)" :key="i" @click.stop="btn.click(row)"
-        :disabled="disableButton(btn, row)" link type="primary">{{btn.label}}</el-button>
-      <fu-table-more-button :buttons="moreButtons(row)" :row="row" v-if="moreButtons(row).length > 0" />
+    <template #default="{ row }">
+      <fu-table-button :icon="type === 'icon'" v-for="(btn, i) in defaultButtons(row)" :key="i"
+        @click.stop="btn.click(row)" :disabled="disableButton(btn, row)" :label="btn.label" :type="btn.type || 'primary'"
+        link>
+        <el-icon v-if="type === 'icon'">
+          <component :is="btn.icon" />
+        </el-icon>
+        <template v-else>
+          {{ btn.label }}
+        </template>
+      </fu-table-button>
+      <fu-table-more-button :type="type" :buttons="moreButtons(row)" :row="row" v-if="moreButtons(row).length > 0" />
     </template>
   </el-table-column>
 </template>
@@ -20,11 +28,11 @@ export default {
 
 <script lang="ts" setup>
 import { computed, inject } from "vue";
-// import FuTableButton from "./FuTableButton.vue";
+import FuTableButton from "./FuTableButton.vue";
 import FuTableMoreButton from "./FuTableMoreButton.vue";
 import FuTableColumnSelect from "../table-column-select/FuTableColumnSelect.vue";
 const props = defineProps({
-  columns: Array,
+  // columns: Array,
   align: {
     type: String,
     default: "center"
@@ -38,23 +46,28 @@ const props = defineProps({
   buttons: {
     type: Array,
     required: true
-  }
+  },
+  type: {
+    type: String,
+    default: "label",
+    validator: (value: string) => ['icon', 'label'].includes(value)
+  },
 });
 
-const localKey = inject("localKey")
+// const localKey = inject("localKey")
 
 const hasShowFunc = computed(() => {
   return props.buttons.some((btn: any) => typeof btn.show === "function")
 });
 
 const defaultButtons = computed(() => {
-  return function(row: any) {
+  return function (row: any) {
     return hasMore(row) ? showButtons(row).slice(0, props.ellipsis) : showButtons(row)
   }
 });
 
 const moreButtons = computed(() => {
-  return function(row: any) {
+  return function (row: any) {
     return hasMore(row) ? showButtons(row).slice(props.ellipsis) : []
   }
 });
@@ -69,7 +82,7 @@ const computeWidth = computed(() => {
 });
 
 const disableButton = computed(() => {
-  return function(btn: any, row: any) {
+  return function (btn: any, row: any) {
     return typeof btn.disabled === "function" ? btn.disabled(row) : btn.disabled
   }
 });

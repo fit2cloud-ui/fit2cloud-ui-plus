@@ -1,7 +1,7 @@
 <template>
   <div style="display: inline-block">
     <!-- :size="configSize"  -->
-    <el-button class="fu-search-bar-button" circle :icon="icon" @click="visible = true"/>
+    <el-button class="fu-search-bar-button" :icon="icon" @click="visible = true">{{t('fu.table.custom_table_rows')}}</el-button>
     <el-dialog custom-class="fu-table-column-select-dialog" v-model="visible" @open="open" append-to-body>
       <template #title>
         <h3>
@@ -37,7 +37,7 @@ import {useLocale} from "@/hooks"
 const props = defineProps({
   icon: {
     type: String,
-    default: "Grid"
+    default: "Setting"
   },
   trigger: {
     type: String,

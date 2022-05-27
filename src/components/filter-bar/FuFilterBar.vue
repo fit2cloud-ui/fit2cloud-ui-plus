@@ -8,8 +8,7 @@
         <slot name="tr">
           <!-- :size="configSize" -->
           <fu-search-input v-model="quick" :placeholder="quickPlaceholder" @change="change" />
-          <el-button @click="open">
-            <el-icon><Finished /></el-icon> {{ t('fu.filter_bar.filter') }}
+          <el-button @click="open" icon="Filter">{{ t('fu.filter_bar.filter') }}
             <span v-if="conditions.length > 0">({{ conditions.length }})</span>
           </el-button>
         </slot>

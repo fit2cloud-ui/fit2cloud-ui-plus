@@ -1,9 +1,16 @@
 <template>
   <el-dropdown @command="handleCommand" class="fu-table-more-button">
-    <el-button link type="primary" @click.stop>更多</el-button>
+    <el-button link type="primary" @click.stop>
+      <el-icon v-if="type === 'icon'">
+        <MoreFilled />
+      </el-icon>
+      <template v-else>
+        {{ t('fu.table.more') }}
+      </template>
+    </el-button>
     <template #dropdown>
       <el-dropdown-menu>
-        <el-dropdown-item v-for="(btn, i) in buttons" :key="i" :icon="btn.icon" :disabled="disabled(btn)"
+        <el-dropdown-item v-for="(btn, i) in buttons" :key="i" :icon="type === 'icon'&& btn.icon" :disabled="disabled(btn)"
           :command="btn">
           {{ btn.label }}
         </el-dropdown-item>
@@ -13,6 +20,9 @@
 </template>
 <script lang="ts" setup>
 import { computed } from "vue";
+import { useLocale } from "@/hooks"
+
+const { t } = useLocale()
 const props = defineProps({
   row: Object,
   buttons: {
@@ -22,11 +32,16 @@ const props = defineProps({
   size: {
     type: String,
     default: "default"
-  }
+  },
+  type: {
+    type: String,
+    default: "label",
+    validator: (value: string) => ['icon', 'label'].includes(value)
+  },
 });
 
 const disabled = computed(() => {
-  return function(btn: any) {
+  return function (btn: any) {
     return typeof btn.disabled === "function" ? btn.disabled(props.row) : btn.disabled
   }
 });

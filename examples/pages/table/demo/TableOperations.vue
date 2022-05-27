@@ -1,16 +1,24 @@
 <demo>操作列</demo>
 <template>
-  <div>
+  <div style="margin-bottom: 20px">
     <el-button @click="enableAll">启用全部按钮</el-button>
     <el-button @click="showAll">显示全部按钮</el-button>
-    <fu-table :data="tableData" :columns="columns">
-      <el-table-column type="selection"></el-table-column>
-      <el-table-column prop="date" label="日期" min-width="180"></el-table-column>
-      <el-table-column prop="name" label="姓名" min-width="180" fix></el-table-column>
-      <el-table-column prop="address" label="地址" min-width="300" :show="false"></el-table-column>
-      <fu-table-operations :ellipsis="2" :columns="columns" :buttons="buttons" label="操作" fixed="right" />
-    </fu-table>
   </div>
+  <fu-table :data="tableData" :columns="columns">
+    <el-table-column type="selection"></el-table-column>
+    <el-table-column prop="date" label="日期" min-width="180"></el-table-column>
+    <el-table-column prop="name" label="姓名" min-width="180" fix></el-table-column>
+    <el-table-column prop="address" label="地址" min-width="300" :show="false"></el-table-column>
+    <fu-table-operations :ellipsis="2" :buttons="buttons" label="操作" fixed="right" />
+  </fu-table>
+
+  <fu-table :data="tableData" :columns="columns" style="margin-top: 20px">
+    <el-table-column type="selection"></el-table-column>
+    <el-table-column prop="date" label="日期" min-width="180"></el-table-column>
+    <el-table-column prop="name" label="姓名" min-width="180" fix></el-table-column>
+    <el-table-column prop="address" label="地址" min-width="300" :show="false"></el-table-column>
+    <fu-table-operations :ellipsis="2" type="icon" :buttons="buttons" label="操作" fixed="right" />
+  </fu-table>
 </template>
 
 <script setup lang="ts">
@@ -42,26 +50,26 @@ const columns = ref([])
 
 const buttons = [
   {
-    label: "查看", click: (row: User) => {
+    label: "查看", icon: "View", click: (row: User) => {
       console.log("查看:" + row.name)
     }, disabled: (row: User) => {
       return row.date === "2016-05-01"
     }
   },
   {
-    label: "编辑", click: (row: User) => {
+    label: "编辑", icon: "Edit", click: (row: User) => {
       console.log("编辑:" + row.name)
     }, show: false
   }, {
-    label: "执行", click: (row: User) => {
+    label: "执行", icon: "VideoPlay", click: (row: User) => {
       console.log("执行:" + row.name)
     }, disabled: true
   }, {
-    label: "删除", type: "danger", click: (row: User) => {
+    label: "删除", icon: "Delete", type: "danger", click: (row: User) => {
       console.log("删除:" + row.name)
     }
   }, {
-    label: "复制", click: (row: User) => {
+    label: "复制", icon: "DocumentCopy", click: (row: User) => {
       console.log("复制:" + row.name)
     }
   }
