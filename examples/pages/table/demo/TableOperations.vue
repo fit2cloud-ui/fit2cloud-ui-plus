@@ -4,6 +4,9 @@
     <el-button @click="enableAll">启用全部按钮</el-button>
     <el-button @click="showAll">显示全部按钮</el-button>
   </div>
+  <h4>
+    laber 按钮
+  </h4>
   <fu-table :data="tableData" :columns="columns">
     <el-table-column type="selection"></el-table-column>
     <el-table-column prop="date" label="日期" min-width="180"></el-table-column>
@@ -11,7 +14,9 @@
     <el-table-column prop="address" label="地址" min-width="300" :show="false"></el-table-column>
     <fu-table-operations :ellipsis="2" :buttons="buttons" label="操作" fixed="right" />
   </fu-table>
-
+  <h4>
+    icon 按钮
+  </h4>
   <fu-table :data="tableData" :columns="columns" style="margin-top: 20px">
     <el-table-column type="selection"></el-table-column>
     <el-table-column prop="date" label="日期" min-width="180"></el-table-column>
