@@ -109,6 +109,7 @@ function setConditions(conditions: any) {
         }
       })
     })
+    console.log(conditions.value)
     change();
   }
 }

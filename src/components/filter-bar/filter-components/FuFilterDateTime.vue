@@ -4,8 +4,8 @@
     <div class="fu-filter-component__content">
        <!-- :size="configSize"  -->
       <el-date-picker class="fu-filter-date" v-model="value" v-bind="$attrs"
-                      :align="align" :placeholder="t('fu.search_bar.select_date_time')" type="datetimerange"
-                      :value-format="valueFormat" range-separator=" - "
+                      :placeholder="t('fu.search_bar.select_date_time')" type="datetimerange"
+                      :value-format="valueFormat"
                       :start-placeholder="t('fu.search_bar.start_date_time')"
                       :end-placeholder="t('fu.search_bar.end_date_time')">
       </el-date-picker>
@@ -33,13 +33,13 @@ const props = defineProps({
       type: String,
       required: true
     },
-    align: {
-      type: String,
-      default: "right",
-    },
+    // align: {
+    //   type: String,
+    //   default: "right",
+    // },
     valueFormat: {
       type: String,
-      default: "timestamp",
+      default: "x",
     },
 })
 

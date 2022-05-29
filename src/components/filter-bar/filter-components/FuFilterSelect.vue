@@ -30,15 +30,13 @@ export default {
 </script>
 
 <script setup lang="ts">
-import { ref, provide, getCurrentInstance, computed } from "vue";
+import { ref, provide, computed } from "vue";
 import FuFilterOption from "./FuFilterOption.vue";
 import FilterCondition from "../model";
 
 import { useLocale } from "@/hooks"
 
 const { t } = useLocale()
-
-const instance = getCurrentInstance()
 
 const props = defineProps({
   multiple: {
