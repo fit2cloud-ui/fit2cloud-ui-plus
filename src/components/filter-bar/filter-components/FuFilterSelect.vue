@@ -3,7 +3,7 @@
     <div class="fu-filter-component__label">{{ label }}</div>
     <div class="fu-filter-component__content">
       <fu-filter-option :label="o.label" :value="o.value" v-for="o in showOptions" :key="o.value" />
-      <el-popover popper-class="fu-filter-component-popover" :visible-arrow="false" placement="bottom-start"
+      <el-popover popper-class="fu-filter-component-popover" :show-arrow="false" placement="bottom-start"
         trigger="click">
         <!-- :size="configSize" -->
         <el-select v-model="value" v-bind="$attrs" :multiple="multiple" @change="change">

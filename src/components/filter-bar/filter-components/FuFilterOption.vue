@@ -29,7 +29,6 @@ const selected = computed(() => {
 
 
 function click() {
-
   select.clickOption(props.value, selected.value)
 }
 

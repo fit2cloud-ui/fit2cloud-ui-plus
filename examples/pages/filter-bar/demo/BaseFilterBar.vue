@@ -53,15 +53,9 @@ const components = [
 ]
 
 const count = ref(0)
-const quick = ref("")
 const condition = ref({})
 
-const filterRef = ref(null)
-
-function init() {
-  filterRef.value.setConditions({ user: { value: [2, 3, 4] } })
-}
-function exec(condition) {
+function exec(condition: any) {
   condition.value = condition
   count.value = Object.keys(condition).length * 10
 }
