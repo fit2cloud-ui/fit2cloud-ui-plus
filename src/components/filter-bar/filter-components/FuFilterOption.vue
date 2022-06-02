@@ -5,7 +5,9 @@
 </template>
 
 <script setup lang="ts">
-import { inject, computed } from "vue";
+import {computed, inject} from "vue";
+import {selectKey} from "@/components/filter-bar/types";
+
 const props = defineProps({
   value: {
     type: [String, Number],
@@ -18,18 +20,19 @@ const props = defineProps({
   }
 })
 
-const select = inject('select')
+const select = inject(selectKey)
+
 const selected = computed(() => {
-  if (!select.props.multiple) {
-    return select.value === props.value
+  if (!select) return false
+  if (Array.isArray(select.selection.value)) {
+    return select.selection.value.includes(props.value)
   } else {
-    return select.value.includes(props.value)
+    return select.selection.value === props.value
   }
 })
 
-
 function click() {
-  select.clickOption(props.value, selected.value)
+  select?.setSelected(props.value, selected.value)
 }
 
 </script>
