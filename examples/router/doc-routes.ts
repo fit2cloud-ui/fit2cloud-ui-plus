@@ -37,11 +37,11 @@ const componentsDocRoutes = [
   //   path: 'read-write-switch',
   //   component: 'ReadWriteSwitchDoc'
   // },
-  // {
-  //   name: 'SplitPane 分割面板',
-  //   path: 'split-pane',
-  //   component: () => import('../pages/split-pane/index.vue')
-  // },
+  {
+    name: 'SplitPane 分割面板',
+    path: 'split-pane',
+    component: () => import('../pages/split-pane/index.vue')
+  },
   {
     name: 'Tabs 标签页',
     path: 'tabs',

@@ -68,7 +68,7 @@ const hover = ref(false)
 watch(() => props.left, (newValue, oldValue) => {
   if (newValue !== oldValue) {
     nextTick(() => {
-      usedValue.value = defaultValue;
+      usedValue.value = defaultValue.value;
     });
   }
 }, { immediate: true })
@@ -76,7 +76,7 @@ watch(() => props.left, (newValue, oldValue) => {
 watch(() => props.bottom, (newValue, oldValue) => {
   if (newValue !== oldValue) {
     nextTick(() => {
-      usedValue.value = defaultValue;
+      usedValue.value = defaultValue.value;
     });
   }
 }, { immediate: true })
@@ -96,31 +96,31 @@ const userSelect = computed(() => {
 
 const cursor = computed(() => {
   return active.value && props.resizable
-    ? isHorizontal
+    ? isHorizontal.value
       ? "col-resize"
       : "row-resize"
     : "";
 })
 
 const outerWrapperSize = computed(() => {
-  return instance.refs.outerWrapper[offsetSize];
+  return instance.refs.outerWrapper[offsetSize.value];
 })
 
 const offsetSize = computed(() => {
-  return isHorizontal ? "offsetWidth" : "offsetHeight";
+  return isHorizontal.value ? "offsetWidth" : "offsetHeight";
 })
 
 const defaultValue = computed(() => {
-  if (isHorizontal) {
+  if (isHorizontal.value) {
     return props.left
       ? getMin(percentToValue(props.left))
       : (props.right && getMin(percentToValue(props.right))) ||
-      outerWrapperSize / 2;
+      outerWrapperSize.value / 2;
   } else {
     return props.top
       ? getMin(percentToValue(props.top))
       : (props.bottom && getMin(percentToValue(props.bottom))) ||
-      outerWrapperSize / 2;
+      outerWrapperSize.value / 2;
   }
 })
 const valueAnother = computed(() => {
@@ -128,15 +128,15 @@ const valueAnother = computed(() => {
 })
 
 const attr = computed(() => {
-  return isHorizontal ? "width" : "height";
+  return isHorizontal.value ? "width" : "height";
 })
 
 const resizerAttr = computed(() => {
-  return isHorizontal
-    ? isReverse
+  return isHorizontal.value
+    ? isReverse.value
       ? "right"
       : "left"
-    : isReverse
+    : isReverse.value
       ? "bottom"
       : "top" ;
 })
@@ -160,7 +160,7 @@ const padding = computed(() => {
 
 
 function onMouseDown(e: MouseEvent) {
-  initOffset.value = isHorizontal ? e.pageX : e.pageY;
+  initOffset.value = isHorizontal.value ? e.pageX : e.pageY;
   oldValue.value = usedValue.value;
   active.value = true;
   document.addEventListener("mousemove", onMouseMove);
@@ -175,14 +175,14 @@ function onMouseUp() {
 function onMouseMove(e: MouseEvent) {
   if (!props.resizable) return;
   if (active.value) {
-    const currentPage = isHorizontal ? e.pageX : e.pageY;
+    const currentPage = isHorizontal.value ? e.pageX : e.pageY;
     const offset = currentPage - initOffset.value;
-    const value = isReverse
+    const value = isReverse.value
       ? oldValue.value - offset
       : oldValue.value + offset;
     if (
       value > percentToValue(props.min) &&
-      value < outerWrapperSize - percentToValue(props.min)
+      value < outerWrapperSize.value - percentToValue(props.min)
     ) {
       usedValue.value = value;
       writeValue();
@@ -191,7 +191,7 @@ function onMouseMove(e: MouseEvent) {
 }
 // 百分比换算成像素
 function percentToValue(val: any) {
-  const size = instance.refs.outerWrapper[offsetSize];
+  const size = instance.refs.outerWrapper[offsetSize.value];
   if (typeof val === "string" && val.includes("%")) {
     return (parseInt(val) / 100) * size;
   } else {
@@ -207,23 +207,23 @@ function getMin(val: any) {
 // localStorage储存数值
 function writeValue() {
   const obj = {
-    [resizerAttr]: usedValue.value,
+    [resizerAttr.value]: usedValue.value,
   };
   if (props.localKey) {
-    localStorage.setItem(saveKey, JSON.stringify(obj));
+    localStorage.setItem(saveKey.value, JSON.stringify(obj));
   }
 }
 
 function readValue() {
   if (props.localKey) {
-    const local = localStorage.getItem(saveKey);
-    if (local && local[resizerAttr]) {
-      usedValue.value = parseInt(local) || defaultValue;
+    const local = localStorage.getItem(saveKey.value);
+    if (local && local[resizerAttr.value]) {
+      usedValue.value = parseInt(local) || defaultValue.value;
     } else {
-      usedValue.value = defaultValue;
+      usedValue.value = defaultValue.value;
     }
   } else {
-    usedValue.value = defaultValue;
+    usedValue.value = defaultValue.value;
   }
 }
 

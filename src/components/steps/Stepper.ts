@@ -1,24 +1,40 @@
 import { useLocale } from "@/hooks"
 const { t } = useLocale()
 
-export interface StepperOptions {
-  // steps: string
-  // index: string
-  // isLoading?: string
-  // cancelButtonText: string
-  // finishButtonText: string
-  // prevButtonText: string
-  // nextButtonText: string
-  // buttonSize: string
-  // footerAlign: string
-  // showCancel: string
-  // beforeActive: string
-  // beforeLeave: string
-  // height: string
+interface StepperOptions {
+  steps: string
+  index: number
+  activeSet: any
+  isLoading?: string
+  cancelButtonText: string
+  finishButtonText: string
+  prevButtonText: string
+  nextButtonText: string
+  buttonSize: string
+  footerAlign: string
+  showCancel: any
+  beforeActive: Function
+  beforeLeave: Function
+  height: string
 }
 
-export default class Stepper {
-  constructor(options = {}) {
+export class Stepper {
+  steps: string
+  index: number
+  activeSet: any
+  isLoading?: string
+  cancelButtonText: string
+  finishButtonText: string
+  prevButtonText: string
+  nextButtonText: string
+  buttonSize: string
+  footerAlign: string
+  showCancel: any
+  beforeActive: Function
+  beforeLeave: Function
+  height: string
+  constructor(options: StepperOptions) {
+    options = options || ({} as StepperOptions)
     // 所有步骤节点(Step对象数组)
     this.steps = options.steps
     // 正在执行的节点的索引
@@ -45,27 +61,27 @@ export default class Stepper {
   }
 
   // index是否为第一个节点
-  isFirst(index) {
+  isFirst(index: number) {
     return index === 0;
   }
 
   // index是否为最后一个节点
-  isLast(index) {
+  isLast(index: number) {
     return index === this.steps.length - 1;
   }
 
   // index的节点是否激活过
-  isActive(index) {
+  isActive(index: number) {
     return this.activeSet.has(index);
   }
 
   // index的节点是否为正在激活的节点
-  isCurrent(index) {
+  isCurrent(index: number) {
     return this.index === index
   }
 
   // 激活
-  active(index) {
+  active(index: number) {
     // 在节点范围内，并且不等于当前节点
     const isValid = index >= 0 && index < this.steps.length && this.index !== index
     const forward = index > this.index
@@ -73,7 +89,7 @@ export default class Stepper {
       // 离开前钩子返回false，则不执行激活
       if (this.executeHook("beforeLeave", this.index, forward) !== false) {
         // 激活前钩子返回false，则不执行激活
-        if (this.executeHook("beforeActive", index, forward)!== false) {
+        if (this.executeHook("beforeActive", index, forward) !== false) {
           // 激活
           this.index = index
           this.activeSet.add(index)
@@ -83,7 +99,7 @@ export default class Stepper {
   }
 
   // 反激活
-  inactive(index) {
+  inactive(index: number) {
     this.activeSet.delete(index)
   }
 
@@ -102,14 +118,14 @@ export default class Stepper {
   }
 
   // 使用索引获取Step对象
-  getStep(index) {
+  getStep(index: number) {
     if (this.steps && this.steps.length > index) {
       return this.steps[index]
     }
   }
 
   // 使用ID获取节点索引
-  getIndex(id) {
+  getIndex(id: string) {
     if (this.steps) {
       for (let i = 0; i < this.steps.length; i++) {
         let step = this.steps[i];
@@ -121,8 +137,8 @@ export default class Stepper {
     return -1;
   }
 
-  executeHook(functionName, index, forward) {
-    const step = this.getStep(index)
+  executeHook(functionName: string, index: number, forward: boolean) {
+    const step: any = this.getStep(index)
     // 如果节点定义了钩子方法，执行节点的
     if (step[functionName]) {
       return step[functionName](step, forward)
@@ -135,8 +151,28 @@ export default class Stepper {
   }
 }
 
-export default class Step {
-  constructor(options = {}) {
+interface StepOptions {
+  id: string
+  index: number
+  beforeActive: Function
+  beforeLeave: Function
+  title: string
+  description: string
+  icon: string
+  status: string
+}
+
+export class Step {
+  id: string
+  index: number
+  beforeActive: Function
+  beforeLeave: Function
+  title: string
+  description: string
+  icon: string
+  status: string
+  constructor(options?: StepOptions) {
+    options = options || ({} as StepOptions)
     this.id = options.id
     this.index = options.index
     // 激活前钩子
