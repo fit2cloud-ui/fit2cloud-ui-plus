@@ -1,7 +1,3 @@
-<example path="./examples/BaseFilterBar.vue"/>
-<example path="./examples/SetConditionsDemo.vue"/>
-<example path="./examples/SlotDemo.vue"/>
-
 <template>
   <div>
     <!-- 一级标题 -->

@@ -56,7 +56,6 @@ const count = ref(0)
 const condition = ref({})
 
 function exec(c: any) {
-  console.log(c)
   condition.value = c
   count.value = Object.keys(condition).length * 10
 }
