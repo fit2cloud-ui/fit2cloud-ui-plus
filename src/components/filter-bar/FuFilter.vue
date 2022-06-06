@@ -25,7 +25,7 @@
     </div>
 
     <el-drawer :size="drawerWidth" custom-class="fu-filter__drawer" :title="t('fu.filter_bar.drawer_title')"
-               v-model="drawer" @open="initComponents" v-show="show" :modal="modal">
+               v-model="drawer" @open="initComponents">
       <div class="drawer-body">
         <slot>
           <component v-for="(c, i) in components" :key="i" :is="c.component" v-bind="c" :ref="c.field" v-on="c"/>
@@ -81,8 +81,6 @@ const props = defineProps({
 const emit = defineEmits(["filter"])
 
 const drawer = ref(true)
-const show = ref(false)
-const modal = ref(false)
 const scroll = ref(false)
 const conditions: Ref<Array<FilterCondition>> = ref([])
 const references: Ref<Array<ReferenceContext>> = ref([])
@@ -112,20 +110,22 @@ function change() {
   nextTick(() => {
     let el = conditionsRef.value?.$el
     scroll.value = el != null && el?.getBoundingClientRect().width >= scrollWidth.value
-    console.log(el?.getBoundingClientRect().width, scrollWidth.value)
   })
   emit("filter", conditions.value)
 }
 
-function setConditions(conditions: any) {
+function setConditions(conditionObj: any) {
   conditions.value = []
-  if (conditions) {
-    Object.keys(conditions).forEach(key => {
-      let value = conditions[key].value
+  if (conditionObj) {
+    Object.keys(conditionObj).forEach(key => {
+      let value = conditionObj[key].value
       references.value.forEach(r => {
         if (r.field === key) {
           r.init(value)
-          conditions.value.push(r.getCondition())
+          const condition = r.getCondition()
+          if (condition) {
+            conditions.value.push(condition)
+          }
         }
       })
     })
@@ -147,7 +147,6 @@ function filter() {
 }
 
 function open() {
-  show.value = true
   drawer.value = true
 }
 
@@ -172,7 +171,6 @@ const scrollWidth = computed(() => {
 provide(referenceKey, references)
 
 onMounted(() => {
-  modal.value = true
   drawer.value = false
 })
 

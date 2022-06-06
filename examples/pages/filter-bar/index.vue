@@ -19,8 +19,8 @@
 
 <script setup lang="ts">
 import BaseFilterBar from "./demo/BaseFilterBar.vue";
-// import SetConditionsDemo from "./demo/SetConditionsDemo.vue";
-// import SlotDemo from "./demo/SlotDemo.vue";
+import SetConditionsDemo from "./demo/SetConditionsDemo.vue";
+import SlotDemo from "./demo/SlotDemo.vue";
 
 const comList = [
   {
@@ -28,17 +28,17 @@ const comList = [
     titleDesc: "使用FilterBar",
     component: BaseFilterBar,
   },
-  // {
-  //   title: "回显条件",
-  //   titleDesc: "设置初始条件，搜索框自动回显",
-  //   component: SetConditionsDemo,
-  //   description: `筛选组件需要提供init和getCondition方法，如果在mounted中初始化必须使用this.$nextTick`
-  // },
-  // {
-  //   title: "插槽示例",
-  //   titleDesc: "可以通过插槽设置上部左侧内容、上部右侧内容",
-  //   component: SlotDemo,
-  // }
+  {
+    title: "回显条件",
+    titleDesc: "设置初始条件，搜索框自动回显",
+    component: SetConditionsDemo,
+    description: `筛选组件需要提供init和getCondition方法，如果在mounted中初始化必须使用this.$nextTick`
+  },
+  {
+    title: "插槽示例",
+    titleDesc: "可以通过插槽设置上部左侧内容、上部右侧内容",
+    component: SlotDemo,
+  }
 ]
 </script>
 
