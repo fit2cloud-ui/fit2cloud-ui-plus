@@ -22,7 +22,7 @@ export class Stepper {
   steps: string
   index: number
   activeSet: any
-  isLoading?: string
+  isLoading: string
   cancelButtonText: string
   finishButtonText: string
   prevButtonText: string
@@ -33,7 +33,7 @@ export class Stepper {
   beforeActive: Function
   beforeLeave: Function
   height: string
-  constructor(options: StepperOptions) {
+  constructor(options?: StepperOptions) {
     options = options || ({} as StepperOptions)
     // 所有步骤节点(Step对象数组)
     this.steps = options.steps

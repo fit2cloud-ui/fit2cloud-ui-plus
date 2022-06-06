@@ -28,7 +28,7 @@ import { useLocale } from "@/hooks"
 const { t } = useLocale()
 
 const props = defineProps({
-   label: String,
+    label: String,
     field: {
       type: String,
       required: true

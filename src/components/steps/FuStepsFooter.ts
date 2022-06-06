@@ -11,57 +11,46 @@ export default defineComponent({
     const stepper = inject('stepper')
     const disabledButton = ref(false)
 
-    const isFirst = computed(()=>{
+    const isFirst = computed(() => {
       return stepper.isFirst(stepper.index);
     })
-    const isLast = computed(()=>{
+    const isLast = computed(() => {
       return stepper.isLast(stepper.index);
     })
 
-    const showCancel = computed(()=>{
+    const showCancel = computed(() => {
       return stepper.showCancel !== false;
     })
 
-    const disabled = computed(()=>{
+    const disabled = computed(() => {
       return stepper?.isLoading || disabledButton.value;
     })
+    const button = (value: string) => {
+      return h(
+        'el-button',
+        {
+          disabled: disabled,
+          size: stepper.buttonSize,   // configSize
+          onClick: () => clickHandle(value)
+        },
+        stepper[`${value}ButtonText`]
+      );
+    };
 
     function clickHandle(fnName: string) {
-        stepper[fnName]
-          ? stepper[fnName]()
-          : emit("stepperFn", fnName);
-        disabledButton.value = true;
-        setTimeout(() => {
-          disabledButton.value = false;
-        }, 500);
-      }
-      return{
-        stepper,
-        disabledButton,
-        isFirst,
-        isLast,
-        showCancel,
-        disabled,
-        clickHandle
-      }
-    },
-    render() {
-
-      const button = (value: string) => {
-        return h(
-          'el-button',
-          {
-            disabled: this.disabled,
-            size: this.stepper.buttonSize,   // configSize
-            onClick: () => this.clickHandle(value)
-          },
-          this.stepper[`${value}ButtonText`]
-        );
-      };
+      stepper[fnName]
+        ? stepper[fnName]()
+        : emit("stepperFn", fnName);
+      disabledButton.value = true;
+      setTimeout(() => {
+        disabledButton.value = false;
+      }, 500);
+    }
+    return () => {
       return h(
         'div',
         {
-          class: `fu-steps__footer--${this.stepper.footerAlign}`,
+          class: `fu-steps__footer--${stepper.footerAlign}`,
         },
         [
           h(
@@ -70,7 +59,7 @@ export default defineComponent({
               class: 'fu-steps__footer--block',
               style: 'margin-right:10px'
             },
-            this.showCancel && button("cancel")
+            showCancel && button("cancel")
           ),
           h(
             'div',
@@ -78,13 +67,13 @@ export default defineComponent({
               class: 'fu-steps__footer--block',
             },
             [
-              !this.isFirst && button("prev"),
-              this.isLast ? button("finish") : button("next")
+              !isFirst && button("prev"),
+              isLast ? button("finish") : button("next")
             ]
           ),
         ]
       );
-    },
-
+    }
+  }
 })
 

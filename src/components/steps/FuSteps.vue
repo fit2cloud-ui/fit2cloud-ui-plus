@@ -1,7 +1,7 @@
 <script lang="ts">
 import { defineComponent, h } from 'vue'
-import FuHorizontalSteps from "./FuHorizontalSteps.vue";
-import FuVerticalSteps from "./FuVerticalSteps.vue";
+import FuHorizontalSteps from "./FuHorizontalSteps";
+import FuVerticalSteps from "./FuVerticalSteps";
 
 export default defineComponent({
     name: 'FuSteps',

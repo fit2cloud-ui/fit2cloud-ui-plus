@@ -1,7 +1,7 @@
 <script>
 import FuVerticalNavigation from "./FuVerticalNavigation.vue";
 import FuStepsFooter from "./FuStepsFooter";
-import { Step, Stepper } from "./Stepper";
+import { Stepper, Step } from "./Stepper";
 
 export default {
   name: "FuVerticalSteps",
