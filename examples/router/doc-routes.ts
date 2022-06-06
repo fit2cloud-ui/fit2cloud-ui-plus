@@ -30,7 +30,7 @@ const componentsDocRoutes = [
   // {
   //   name: 'ReadWriteSwitch 读写切换',
   //   path: 'read-write-switch',
-  //   component: 'ReadWriteSwitchDoc'
+  //   component: () => import('../pages/read-write-switch/index.vue')
   // },
   {
     name: 'SplitPane 分割面板',
