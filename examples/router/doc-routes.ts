@@ -20,7 +20,7 @@ const componentsDocRoutes = [
   // {
   //   name: 'SpeedDial 快速拨号',
   //   path: 'speed-dial',
-  //   component: 'SpeedDialDoc'
+  //   component: () => import('../pages/speed-dial/index.vue')
   // },
   // {
   //   name: 'Steps 步骤条',

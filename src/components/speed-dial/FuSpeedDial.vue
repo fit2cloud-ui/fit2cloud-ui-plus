@@ -182,12 +182,12 @@ function toggle(active?: any) {
   }
 }
 
-function outsideClickClose() {
-  if (props.outsideClose && !props.manual) {
-    toggle(false)
-  }
-  emit("outside-click", [props.id, active.value])
-}
+// function outsideClickClose() {
+//   if (props.outsideClose && !props.manual) {
+//     toggle(false)
+//   }
+//   emit("outside-click", [props.id, active.value])
+// }
 function click(e: Event) {
   if (!props.manual) {
     toggle()
