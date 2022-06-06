@@ -4,7 +4,7 @@
     <div>
       <fu-filter-bar ref="filter" @exec="exec" :result-count="count" size="small">
         <template #tl>
-          <el-button size="small">导出数据</el-button>
+          <el-button>导出数据</el-button>
         </template>
         <template #default>
           <fu-filter-select size="small" label="事件类型" field="type" :options="options" multiple clearable filterable/>
@@ -12,7 +12,9 @@
           <fu-filter-date-time size="small" label="操作时间" field="datetime"/>
         </template>
         <template #buttons>
-          <el-button size="small">选列</el-button>
+          <el-button icon="setting">
+             选列
+          </el-button>
         </template>
       </fu-filter-bar>
     </div>

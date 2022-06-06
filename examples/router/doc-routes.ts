@@ -18,11 +18,6 @@ const componentsDocRoutes = [
     component: () => import('../pages/filter-bar/index.vue')
   },
   // {
-  //   name: 'SearchBar 搜索条',
-  //   path: 'search',
-  //   component: () => import('../pages/search/index.vue')
-  // },
-  // {
   //   name: 'SpeedDial 快速拨号',
   //   path: 'speed-dial',
   //   component: 'SpeedDialDoc'

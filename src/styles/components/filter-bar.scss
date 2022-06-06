@@ -54,10 +54,11 @@
     margin: 2px 8px;
   }
   @include e(scroll) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     min-width: 24px;
     height: 24px;
-    line-height: 24px;
-    text-align: center;
     cursor: pointer;
     margin: 0 2px;
 
@@ -176,26 +177,30 @@
 }
 
 @include b(filter-component-popover) {
-  display: flex;
-  align-items: center;
-  box-shadow: none;
-  border: none;
-  padding: 0;
-  width: 240px;
+  &.el-popover.el-popper {
+    display: flex;
+    align-items: center;
+    box-shadow: none;
+    border: none;
+    padding: 0;
+    width: 240px;
 
-  .el-select {
-    width: 100%;
+    .el-select {
+      width: 100%;
+    }
   }
 }
 
 @include b(filter-option) {
+  display: flex;
+  align-items: center;
   padding: 1px 6px;
   font-size: 14px;
   line-height: 22px;
   background-color: $filter-option-bgColor;
   border-radius: 2px;
   cursor: pointer;
-  margin: 11px 6px;
+  margin: 6px;
 
   &.is-selected, &:hover {
     background: $filter-condition-bgColor;
@@ -211,5 +216,12 @@
   margin-left: 6px;
   &.el-date-editor {
     width: 100% !important;
+  }
+}
+
+@include b(scale-click) {
+  cursor: pointer;
+  &:active {
+    transform: scale(0.9)
   }
 }

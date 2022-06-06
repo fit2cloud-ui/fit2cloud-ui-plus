@@ -5,13 +5,13 @@
       <h4>
         1、使用slot
       </h4>
-      <fu-filter-bar ref="filterRef" @exec="exec" :result-count="count" size="small">
+      <FuFilterBar ref="filterRef" @exec="exec" :result-count="count" size="small">
         <template #default>
-          <fu-filter-select size="small" label="事件类型" field="type" :options="options" multiple clearable filterable />
-          <fu-filter-date size="small" label="操作日期" field="date" />
-          <fu-filter-date-time size="small" label="操作时间" field="datetime" />
+          <FuFilterSelect size="small" label="事件类型" field="type" :options="options" multiple clearable filterable use-select-all/>
+          <FuFilterDate size="small" label="操作日期" field="date" />
+          <FuFilterDateTime size="small" label="操作时间" field="datetime" />
         </template>
-      </fu-filter-bar>
+      </FuFilterBar>
       <h4>
         1、使用components传参
       </h4>
@@ -55,8 +55,9 @@ const components = [
 const count = ref(0)
 const condition = ref({})
 
-function exec(condition: any) {
-  condition.value = condition
+function exec(c: any) {
+  console.log(c)
+  condition.value = c
   count.value = Object.keys(condition).length * 10
 }
 </script>

@@ -5,7 +5,7 @@
       <fu-filter-bar ref="filter" @exec="exec" :result-count="count" size="small">
         <template #default>
           <fu-filter-select size="small" label="事件类型" field="event_type" :options="options" clearable filterable />
-          <fu-filter-select size="small" label="操作用户" field="user" :options="options" multiple clearable filterable />
+          <fu-filter-select size="small" label="操作用户" field="user" :options="users" multiple clearable filterable />
           <fu-filter-date size="small" label="操作日期" field="date" />
           <fu-filter-date-time size="small" label="操作时间" field="datetime" />
         </template>
@@ -34,6 +34,17 @@ export default {
       { label: "选项9", value: 9 },
       { label: "选项10", value: 10 },
       ],
+      users: [{ label: "用户1", value: 1 },
+        { label: "用户2", value: 2 },
+        { label: "用户3", value: 3 },
+        { label: "用户4", value: 4 },
+        { label: "用户5", value: 5 },
+        { label: "用户6", value: 6 },
+        { label: "用户7", value: 7 },
+        { label: "用户8", value: 8 },
+        { label: "用户9", value: 9 },
+        { label: "用户10", value: 10 },
+      ],
       condition: {}
     }
   },
@@ -49,7 +60,7 @@ export default {
   mounted() {
     this.$nextTick(
       () => {
-        init()
+        this.init()
       }
     )
 

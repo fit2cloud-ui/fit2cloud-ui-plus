@@ -7,7 +7,7 @@
       <div class="top_right">
         <slot name="tr">
           <!-- :size="configSize" -->
-          <fu-search-input v-model="quick" :placeholder="quickPlaceholder" @change="change" />
+          <FuSearchInput v-model="quick" :placeholder="quickPlaceholder" @change="change"/>
           <el-button @click="open" icon="Filter">{{ t('fu.filter_bar.filter') }}
             <span v-if="conditions.length > 0">({{ conditions.length }})</span>
           </el-button>
@@ -16,10 +16,9 @@
       </div>
     </div>
     <div class="fu-filter-bar__bottom">
-      <!-- :size="configSize" -->
-      <fu-filter ref="filterRef" @filter="filter" :count="resultCount" :components="components">
+      <FuFilter ref="filterRef" @filter="filter" :count="resultCount" :components="components">
         <slot></slot>
-      </fu-filter>
+      </FuFilter>
     </div>
   </div>
 </template>
@@ -31,9 +30,12 @@ export default {
 </script>
 
 <script setup lang="ts">
-import { ref, computed } from "vue";
-import { useLocale } from "@/hooks"
-const { t } = useLocale()
+import {ref, computed} from "vue";
+import {useLocale} from "@/hooks"
+import FuSearchInput from "@/components/filter-bar/FuSearchInput.vue";
+import FuFilter from "@/components/filter-bar/FuFilter.vue";
+
+const {t} = useLocale()
 
 const props = defineProps({
   resultCount: Number,
@@ -46,27 +48,27 @@ const emit = defineEmits(["exec"])
 const quick = ref("")
 const conditions = ref([])
 
-// refs
 const filterRef = ref()
-
 
 function open() {
   filterRef.value?.open()
 }
+
 function change() {
   emit("exec", conditionObj.value)
 }
-function filter(conditions: any) {
-  conditions.value = conditions
+
+function filter(c: any) {
+  conditions.value = c
   emit("exec", conditionObj.value)
 }
+
 function setConditions(conditionObj: any) {
   filterRef.value?.setConditions(conditionObj)
 }
 
-
 const conditionObj = computed(() => {
-  let obj: any = { quick: quick.value }
+  let obj: any = {quick: quick.value}
   conditions.value.forEach((c: any) => {
     obj[c.field] = c
   })
