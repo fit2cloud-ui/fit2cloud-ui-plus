@@ -46,9 +46,9 @@ const filterRef = ref()
 function init() {
   filterRef.value?.setConditions({ user: { value: [2, 3, 4] } })
 }
-function exec(condition: any) {
-  condition.value = condition
-  count.value = Object.keys(condition).length * 10
+function exec(c: any) {
+  condition.value = c
+  count.value = Object.keys(c).length * 10
 }
 onMounted(() => {
   nextTick(() => {
