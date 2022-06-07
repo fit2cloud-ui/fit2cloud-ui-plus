@@ -38,7 +38,7 @@ const props = defineProps({
   },
   trigger: {
     type: String,
-    default: "hover",
+    default: "click",
     validator: (value: string) => ['click', 'hover'].includes(value)
   },
   columns: {
