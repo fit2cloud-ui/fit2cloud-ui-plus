@@ -7,15 +7,10 @@
   </fu-read-write-switch>
 </template>
 
-<script lang="ts">
-export default {
-  name: "FuInputRwSwitch",
-};
-</script>
 <script setup lang="ts">
 
 import { ref, watch } from "vue";
-
+defineOptions({ name: "FuInputRwSwitch" });
 const props = defineProps({
   value: [String, Number],
   writeTrigger: {

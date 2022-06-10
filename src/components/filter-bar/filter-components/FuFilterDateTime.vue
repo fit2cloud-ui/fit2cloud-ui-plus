@@ -13,18 +13,12 @@
   </div>
 </template>
 
-<script lang="ts">
-export default {
-  name: "FuFilterDateTime",
-};
-</script>
-
 <script setup lang="ts">
 import {ref, computed, inject} from "vue";
 import {FilterCondition, ReferenceContext, referenceKey} from "../types";
 import {datetimeFormat} from "@/tools/time";
 import {useLocale} from "@/hooks"
-
+defineOptions({ name: "FuFilterDateTime" });
 const {t} = useLocale()
 
 const props = defineProps({

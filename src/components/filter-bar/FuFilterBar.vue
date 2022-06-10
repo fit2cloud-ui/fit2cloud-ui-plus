@@ -23,18 +23,12 @@
   </div>
 </template>
 
-<script lang="ts">
-export default {
-  name: "FuFilterBar",
-};
-</script>
-
 <script setup lang="ts">
 import {ref, computed} from "vue";
 import {useLocale} from "@/hooks"
 import FuSearchInput from "@/components/filter-bar/FuSearchInput.vue";
 import FuFilter from "@/components/filter-bar/FuFilter.vue";
-
+defineOptions({ name: "FuFilterBar" });
 const {t} = useLocale()
 
 const props = defineProps({

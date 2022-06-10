@@ -10,13 +10,9 @@
   </div>
 </template>
 
-<script lang="ts">
-export default {
-  name: "FuQuickSearch",
-};
-</script>
 <script setup lang="ts">
 import { ref, watch } from "vue";
+defineOptions({ name: "FuQuickSearch" });
 const props = defineProps({
   value: String,
   placeholder: String,

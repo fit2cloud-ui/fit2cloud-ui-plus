@@ -2,7 +2,6 @@
   <el-table-column class-name="fu-table-operations" :align="align" :width="computeWidth" v-bind="$attrs">
     <template #header>
       {{ $attrs.label }}
-      <!-- <fu-table-column-select type="dialog" :columns="columns" :local-key="localKey" v-if="columns" /> -->
     </template>
     <template #default="{ row }">
       <fu-table-button :icon="type === 'icon'" v-for="(btn, i) in defaultButtons(row)" :key="i"
@@ -20,17 +19,12 @@
   </el-table-column>
 </template>
 
-<script lang="ts">
-export default {
-  name: "FuTableOperations"
-}
-</script>
-
 <script lang="ts" setup>
-import { computed, inject } from "vue";
+import { computed } from "vue";
 import FuTableButton from "./FuTableButton.vue";
 import FuTableMoreButton from "./FuTableMoreButton.vue";
-import FuTableColumnSelect from "../table-column-select/FuTableColumnSelect.vue";
+
+defineOptions({ name: "FuTableOperations" });
 const props = defineProps({
   // columns: Array,
   align: {
@@ -53,8 +47,6 @@ const props = defineProps({
     validator: (value: string) => ['icon', 'label'].includes(value)
   },
 });
-
-// const localKey = inject("localKey")
 
 const hasShowFunc = computed(() => {
   return props.buttons.some((btn: any) => typeof btn.show === "function")

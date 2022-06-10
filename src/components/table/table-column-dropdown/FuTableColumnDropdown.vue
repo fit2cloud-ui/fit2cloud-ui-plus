@@ -31,13 +31,9 @@
 
   </el-table-column>
 </template>
-<script lang="ts">
-export default {
-  name: "FuTableColumnDropdown"
-}
-</script>
 <script lang="ts" setup>
 import { computed, getCurrentInstance } from "vue";
+defineOptions({ name: "FuTableColumnDropdown" });
 const props = defineProps({
   showType: {
     type: String,

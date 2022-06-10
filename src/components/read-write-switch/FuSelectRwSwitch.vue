@@ -16,14 +16,9 @@
   </fu-read-write-switch>
 </template>
 
-<script lang="ts">
-export default {
-  name: "FuSelectRwSwitch",
-};
-</script>
 <script setup lang="ts">
-
 import { ref, watch } from "vue";
+defineOptions({ name: "FuSelectRwSwitch" });
 const props = defineProps({
   value: [String, Number],
   options: Array,

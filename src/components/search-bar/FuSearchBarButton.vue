@@ -6,14 +6,8 @@
      <!-- *****element问题  加上插槽 空的情况下渲染多出一个span标签问题 待考虑 -->
   </el-tooltip>
 </template>
-
-<script lang="ts">
-export default {
-  name: "FuSearchBarButton",
-};
-</script>
-
 <script setup lang="ts">
+defineOptions({ name: "FuSearchBarButton" });
 defineProps({
   tooltip: String
 });

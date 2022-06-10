@@ -25,19 +25,13 @@
   </div>
 </template>
 
-<script lang="ts">
-export default {
-  name: "FuFilterSelect",
-};
-</script>
-
 <script setup lang="ts">
 import {ref, provide, computed, PropType, Ref, inject} from "vue";
 import FuFilterOption from "./FuFilterOption.vue";
 import {FilterCondition, OptionProps, ReferenceContext, referenceKey, selectKey} from "../types";
 
 import {useLocale} from "@/hooks"
-
+defineOptions({ name: "FuFilterSelect" });
 const {t} = useLocale()
 
 const props = defineProps({

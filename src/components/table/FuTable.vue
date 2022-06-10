@@ -5,15 +5,11 @@
     </fu-table-body>
   </el-table>
 </template>
-<script lang="ts">
-export default {
-  name: "FuTable"
-}
-</script>
 
 <script lang="ts" setup>
 import { onMounted, useSlots, ref, watch, computed, onUpdated, provide } from "vue";
 import FuTableBody from "@/components/table/FuTableBody";
+defineOptions({ name: "FuTable" });
 const props = defineProps({
   columns: Array,
   refresh: {

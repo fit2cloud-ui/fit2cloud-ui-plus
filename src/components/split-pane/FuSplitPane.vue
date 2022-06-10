@@ -19,15 +19,9 @@
   </div>
 </template>
 
-<script lang="ts">
-export default {
-  name: "FuSplitPane"
-}
-</script>
-
 <script lang="ts" setup>
 import { ref, onMounted, watch, computed, nextTick, getCurrentInstance } from "vue";
-
+defineOptions({ name: "FuSplitPane" });
 const props = defineProps({
   min: {
     type: [Number, String],
@@ -154,7 +148,7 @@ const resizerClasses = computed(() => {
   return classes;
 })
 const padding = computed(() => {
-  return props.resizerType === "resizer" && "3px" as any;
+  return props.resizerType === "resizer" && isHorizontal.value && "3px" as any;
 })
 
 

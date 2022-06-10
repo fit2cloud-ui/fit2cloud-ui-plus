@@ -37,14 +37,9 @@
   </el-tabs>
 </template>
 
-<script lang="ts">
-export default {
-  name: "FuTabs"
-}
-</script>
-
 <script lang="ts" setup>
 import { uuid } from "@/tools/utils";
+defineOptions({ name: "FuTabs" });
 type TabPanelName = string | number
 const props = defineProps({
   addType: {

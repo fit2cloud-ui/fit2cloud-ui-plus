@@ -8,18 +8,13 @@
   </transition>
 </template>
 
-<script lang="ts">
-export default {
-  name: "FuSpeedDialItem",
-};
-</script>
 <script setup lang="ts">
 import {
   inject,
   computed
 } from 'vue'
 import FuSpeedDialActionButton from "@/components/speed-dial/FuSpeedDialActionButton.vue";
-
+defineOptions({ name: "FuSpeedDialItem" });
 const props = defineProps({
   index: {
     type: Number,

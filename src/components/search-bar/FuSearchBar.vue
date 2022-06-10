@@ -25,12 +25,6 @@
   </div>
 </template>
 
-<script lang="ts">
-export default {
-  name: "FuSearchBar",
-};
-</script>
-
 <script setup lang="ts">
 import { ref, computed, useSlots } from "vue";
 import FuQuickSearch from "./FuQuickSearch.vue";
@@ -39,7 +33,7 @@ import FuSearchBarButton from "@/components/search-bar/FuSearchBarButton.vue";
 import FuSearchConditions from "@/components/search-bar/FuSearchContions.vue";
 import ComplexCondition from "@/components/search-bar/store";
 import { useLocale } from "@/hooks"
-
+defineOptions({ name: "FuSearchBar" });
 const { t } = useLocale()
 
 const slots = useSlots()

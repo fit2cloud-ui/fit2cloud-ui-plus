@@ -3,14 +3,9 @@
     @keydown="keydown" v-bind="$attrs" clearable />
 </template>
 
-<script lang="ts">
-export default {
-  name: "FuSearchInput",
-};
-</script>
-
 <script setup lang="ts">
 import { ref, watch } from "vue";
+defineOptions({ name: "FuSearchInput" });
 const props = defineProps({
   value: String,
 })

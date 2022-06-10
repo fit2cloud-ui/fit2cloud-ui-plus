@@ -4,13 +4,8 @@
   </el-pagination>
 </template>
 
-<script lang="ts">
-export default {
-  name: "FuTablePagination"
-}
-</script>
-
 <script lang="ts" setup>
+defineOptions({ name: "FuTablePagination" });
 const props = defineProps({
   currentPage: {
     type: Number,

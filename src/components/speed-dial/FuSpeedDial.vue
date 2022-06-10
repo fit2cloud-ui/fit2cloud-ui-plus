@@ -15,11 +15,7 @@
   </div>
 </template>
 
-<script lang="ts">
-export default {
-  name: "FuSpeedDial",
-};
-</script>
+
 <script setup lang="ts">
 import { reactive, ref, watch, getCurrentInstance, onMounted, computed, provide, useSlots } from "vue";
 import type { CSSProperties } from 'vue'
@@ -27,6 +23,7 @@ import type { CSSProperties } from 'vue'
 // directives: { OutsideClick },
 import FuSpeedDialButton from "@/components/speed-dial/FuSpeedDialButton.vue"
 import FuSpeedDialItem from "@/components/speed-dial/FuSpeedDialItem.vue"
+defineOptions({ name: "FuSpeedDial" });
 const props = defineProps({
   id: String,
   value: Boolean,

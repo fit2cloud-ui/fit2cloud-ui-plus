@@ -41,12 +41,6 @@
   </div>
 </template>
 
-<script lang="ts">
-export default {
-  name: "FuFilter",
-};
-</script>
-
 <script setup lang="ts">
 import {
   ref,
@@ -60,7 +54,7 @@ import {
 import FuFilterConditions from "./FuFilterConditions.vue";
 import {useLocale} from "@/hooks"
 import {FilterCondition, ReferenceContext, referenceKey} from "@/components/filter-bar/types";
-
+defineOptions({ name: "FuFilter" });
 const {t} = useLocale()
 
 const filterRef = ref<HTMLElement | null>(null)

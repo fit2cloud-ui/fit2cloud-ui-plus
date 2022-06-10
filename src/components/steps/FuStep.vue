@@ -3,15 +3,9 @@
     <slot/>
   </div>
 </template>
-
-<script lang="ts">
-export default {
-  name: "FuStep"
-}
-</script>
-
 <script lang="ts" setup>
 import { inject, computed } from 'vue'
+defineOptions({ name: "FuStep" });
 const stepper = inject('stepper')
 const loading = computed(() => {
   return stepper?.isLoading || false;
