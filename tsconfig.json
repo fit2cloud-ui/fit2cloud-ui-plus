@@ -15,8 +15,10 @@
     "skipLibCheck": true,
     "paths": {
       "@/*": ["src/*"]
-    }
+    },
+    "types": ["unplugin-vue-define-options", "vite/client"],
+    "allowJs": true
   },
-  "include": ["**/*", "examples/**/*", "src/**/*", "plugins/*"],
+  "include": ["examples/**/*", "src/**/*", "plugins/*"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
