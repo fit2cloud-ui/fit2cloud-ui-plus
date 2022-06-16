@@ -8,7 +8,7 @@
       @mouseover="hover = true" @mouseleave="hover = false">
       <div class="icon" v-if="resizerType === 'resizer'">
         <slot name="resizer">
-          <i class="el-icon-more"></i>
+          <el-icon :size="10"><MoreFilled /></el-icon>
         </slot>
       </div>
     </div>

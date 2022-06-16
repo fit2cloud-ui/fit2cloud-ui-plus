@@ -1,14 +1,14 @@
 <template>
   <el-popover class="fu-table-column-select" popper-class="fu-table-column-select-popper" :trigger="trigger"
-              :show-arrow="false" v-show="hasSelect">
+    :show-arrow="false" v-show="hasSelect">
     <h3>
       {{ t('fu.table.custom_table_fields') }}
     </h3>
     <div class="fu-table-column-select-popper__body">
       <div v-for="(c, i) in columns" :key="i" class="fu-table-column-select-popper__item">
         <el-checkbox v-model="c.show" :checked="c.show !== false" draggable="true" @dragstart="dragstart($event, i)"
-                     @dragenter="dragenter" @dragleave="dragleave" @dragover.prevent @dragend="dragend"
-                     @drop="drop($event, columns, i)" v-show="!c.fix">
+          @dragenter="dragenter" @dragleave="dragleave" @dragover.prevent @dragend="dragend"
+          @drop="drop($event, columns, i)" v-show="!c.fix">
           {{ c.label }}
         </el-checkbox>
       </div>
@@ -20,16 +20,16 @@
     </div>
 
     <template #reference>
-      <el-button class="fu-search-bar-button" :icon="icon">{{t('fu.table.custom_table_rows')}}</el-button>
+      <el-button class="fu-search-bar-button" :icon="icon">{{ t('fu.table.custom_table_rows') }}</el-button>
     </template>
     <!-- :size="configSize" -->
   </el-popover>
 </template>
 
 <script setup lang="ts">
-import {computed, inject} from "vue";
-import {tableColumnSelect} from "./utils"
-import {useLocale} from "@/hooks"
+import { computed, inject } from "vue";
+import { tableColumnSelect } from "./utils"
+import { useLocale } from "@/hooks"
 
 const props = defineProps({
   icon: {
@@ -48,7 +48,7 @@ const props = defineProps({
 
 });
 
-const {t} = useLocale()
+const { t } = useLocale()
 
 const localKey = inject("localKey")
 

@@ -9,7 +9,7 @@
           </div>
         </template>
         <template v-slot:resizer>
-          <i class="el-icon-d-caret"></i>
+          <el-icon :size="10"><DCaret /></el-icon>
         </template>
         <template v-slot:right>
           <div style="padding-left:5px">
@@ -25,7 +25,7 @@
           Top
         </template>
         <template v-slot:resizer>
-          <i class="el-icon-d-caret"></i>
+          <el-icon :size="10"><DCaret /></el-icon>
         </template>
         <template v-slot:bottom>
           <div style="padding-top:5px">

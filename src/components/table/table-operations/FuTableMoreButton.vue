@@ -10,7 +10,7 @@
     </el-button>
     <template #dropdown>
       <el-dropdown-menu>
-        <el-dropdown-item v-for="(btn, i) in buttons" :key="i" :icon="type === 'icon'&& btn.icon" :disabled="disabled(btn)"
+        <el-dropdown-item v-for="(btn, i) in buttons" :key="i" :icon="type === 'icon'? btn.icon: ''" :disabled="disabled(btn)"
           :command="btn">
           {{ btn.label }}
         </el-dropdown-item>

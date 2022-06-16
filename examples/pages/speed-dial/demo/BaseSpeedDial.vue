@@ -30,10 +30,10 @@ const items = [
   { title: "Item 5", click: clickItem },
 ]
 
-function click(obj, e) {
+function click(obj: any, e: any) {
   console.log(obj, e)
 }
-function clickItem(item, e) {
+function clickItem(item: any, e: any) {
   console.log(item, e)
 }
 
