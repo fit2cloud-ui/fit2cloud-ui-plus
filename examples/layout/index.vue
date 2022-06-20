@@ -48,7 +48,7 @@ import Sidebar from "./components/Sidebar.vue";
 .main-wrapper {
 
   // width: 100%;
- ::v-deep(.page-container) {
+:deep(.page-container) {
     position: relative;
   }
 }

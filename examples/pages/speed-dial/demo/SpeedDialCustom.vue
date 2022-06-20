@@ -96,12 +96,12 @@ export default {
   }
 
 
-::v-deep(.custom-button) {
+:deep(.custom-button) {
     color: #222;
     background-color: #DDD;
   }
 
-::v-deep(.custom-title) {
+:deep(.custom-title) {
     color: #555;
     background-color: #F1F1F1;
   }
