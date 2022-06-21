@@ -2,7 +2,7 @@
   <el-tabs class="fu-tabs" :before-leave="beforeLeave" :editable="false" :addable="false" v-bind="$attrs">
     <slot></slot>
     <el-tab-pane name="add" key="add" v-if="addable">
-      <template v-slot:label>
+      <template #label>
         <slot name="add">
           <!-- 下拉方式 -->
           <el-dropdown @command="handleCommand" v-if="addType === 'dropdown'" :trigger="addTrigger">

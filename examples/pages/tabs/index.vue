@@ -1,15 +1,13 @@
 <template>
-  <div>
-    <!-- 一级标题 -->
-    <h1 class="component-h1">Tabs 标签页</h1>
-    <!-- 一级描述 -->
-    <p>分隔内容上有关联但属于不同类别的数据集合。</p>
-    <!--内容 -->
-    <div class="component-block" v-for="(item, index) in comList" :key="index">
-      <h2>{{ item.title }}</h2>
-      <p>{{ item.titleDesc }}</p>
-      <code-example :component="item.component" />
-    </div>
+  <!-- 一级标题 -->
+  <h1 class="component-h1">Tabs 标签页</h1>
+  <!-- 一级描述 -->
+  <p>分隔内容上有关联但属于不同类别的数据集合。</p>
+  <!--内容 -->
+  <div class="component-block" v-for="(item, index) in comList" :key="index">
+    <h2>{{ item.title }}</h2>
+    <p>{{ item.titleDesc }}</p>
+    <code-example :component="item.component" />
   </div>
 </template>
 
