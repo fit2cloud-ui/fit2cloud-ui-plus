@@ -1,28 +1,27 @@
 <script lang="ts">
-import { ref, watch, defineComponent, h, nextTick } from 'vue'
-import { uuid } from "@/tools/utils"
+import {ref, watch, defineComponent, h, nextTick} from 'vue'
+import {uuid} from "@/tools/utils"
 
-const TRIGGERS = ['manual', 'click', 'dblclick']
+const TRIGGERS = ['manual', 'onClick', 'onDblClick']
 
 export default defineComponent({
   name: "FuReadWriteSwitch",
   props: {
-    value: Boolean,
+    modelValue: Boolean,
     data: [String, Number, Boolean],
     writeTrigger: {
       type: String,
-      default: "click",
+      default: "onClick",
       validator: (value: string) => {
         return TRIGGERS.includes(value)
       }
     }
   },
 
-  setup(props, { slots, emit }) {
+  setup(props, {slots, emit}) {
     const id = ref(uuid())
-    const write = ref(props.value === undefined ? false : props.value)
-    watch(() => props.value, (v) => {
-          console.log(v)
+    const write = ref(props.modelValue === undefined ? false : props.modelValue)
+    watch(() => props.modelValue, (v) => {
       if (v === write.value) return
 
       if (v) {
@@ -33,12 +32,13 @@ export default defineComponent({
     })
 
     function change() {
-      emit("input", write.value)
+      emit("update:modelValue", write.value)
       emit("change", [props.data, write.value])
     }
+
     function switchWrite() {
       write.value = true
-  
+
       nextTick(() => {
         // 目前只支持input和textarea自动获取焦点
         const nid = document.getElementById(id.value)
@@ -52,39 +52,41 @@ export default defineComponent({
         change()
       })
     }
+
     function switchRead() {
       write.value = false
       change()
     }
-    
-    const context: any = {
-      class: "fu-read-write-switch",
-      attrs: { id: id.value },
-      on: {}
-    }
 
-    // 读状态添加触发写状态的事件
-    if (!write.value && props.writeTrigger !== TRIGGERS[0]) {
-      context.on[props.writeTrigger] = switchWrite
-    }
-    // 没有slot时显示文本数据
-    let children: any = props.data
+    return () => {
+      const context: any = {
+        class: "fu-read-write-switch",
+        id: id.value,
+      }
 
-    // 读状态内容，提供切换到写状态的方法
-    if (!write.value && slots.read) {
-      children = slots.read({
-        write: switchWrite
-      })
-    }
+      // 读状态添加触发写状态的事件
+      if (!write.value && props.writeTrigger !== TRIGGERS[0]) {
+        context[props.writeTrigger] = switchWrite
+      }
+      // 没有slot时显示文本数据
+      let children: any = props.data
 
-    // 写状态内容，提供切换到读状态的方法
-    if (write.value && slots.default) {
-      children = slots.default({
-        read: switchRead
-      })
-    }
+      // 读状态内容，提供切换到写状态的方法
+      if (!write.value && slots.read) {
+        children = slots.read({
+          write: switchWrite
+        })
+      }
 
-     return () => h("div", context, children)
+      // 写状态内容，提供切换到读状态的方法
+      if (write.value && slots.default) {
+        children = slots.default({
+          read: switchRead
+        })
+      }
+
+      return h("div", context, children)
+    }
   }
 
 })
