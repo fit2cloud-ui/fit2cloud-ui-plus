@@ -1,18 +1,16 @@
 <demo>回显条件</demo>
 <template>
   <div>
-    <div>
-      <fu-filter-bar ref="filterRef" @exec="exec" :result-count="count" size="small">
-        <template #default>
-          <fu-filter-select size="small" label="事件类型" field="event_type" :options="options" clearable filterable />
-          <fu-filter-select size="small" label="操作用户" field="user" :options="users" multiple clearable filterable />
-          <fu-filter-date size="small" label="操作日期" field="date" />
-          <fu-filter-date-time size="small" label="操作时间" field="datetime" />
-        </template>
-      </fu-filter-bar>
-    </div>
-    <pre class="condition_display">{{ condition }}</pre>
+    <fu-filter-bar ref="filterRef" @exec="exec" :result-count="count" size="small">
+      <template #default>
+        <fu-filter-select size="small" label="事件类型" field="event_type" :options="options" clearable filterable />
+        <fu-filter-select size="small" label="操作用户" field="user" :options="users" multiple clearable filterable />
+        <fu-filter-date size="small" label="操作日期" field="date" />
+        <fu-filter-date-time size="small" label="操作时间" field="datetime" />
+      </template>
+    </fu-filter-bar>
   </div>
+  <pre class="condition_display">{{ condition }}</pre>
 </template>
 
 <script setup lang="ts">

@@ -1,24 +1,23 @@
 <demo>基本用法</demo>
 <template>
   <div>
-    <div>
-      <h4>
-        1、使用slot
-      </h4>
-      <FuFilterBar ref="filterRef" @exec="exec" :result-count="count" size="small">
-        <template #default>
-          <FuFilterSelect size="small" label="事件类型" field="type" :options="options" multiple clearable filterable use-select-all/>
-          <FuFilterDate size="small" label="操作日期" field="date" />
-          <FuFilterDateTime size="small" label="操作时间" field="datetime" />
-        </template>
-      </FuFilterBar>
-      <h4>
-        1、使用components传参
-      </h4>
-      <fu-filter-bar ref="filterRef" @exec="exec" :result-count="count" size="small" :components="components" />
-    </div>
-    <pre class="condition_display">{{ condition }}</pre>
+    <h4>
+      1、使用slot
+    </h4>
+    <FuFilterBar ref="filterRef" @exec="exec" :result-count="count" size="small">
+      <template #default>
+        <FuFilterSelect size="small" label="事件类型" field="type" :options="options" multiple clearable filterable
+          use-select-all />
+        <FuFilterDate size="small" label="操作日期" field="date" />
+        <FuFilterDateTime size="small" label="操作时间" field="datetime" />
+      </template>
+    </FuFilterBar>
+    <h4>
+      1、使用components传参
+    </h4>
+    <fu-filter-bar ref="filterRef" @exec="exec" :result-count="count" size="small" :components="components" />
   </div>
+  <pre class="condition_display">{{ condition }}</pre>
 </template>
 
 <script setup lang="ts">

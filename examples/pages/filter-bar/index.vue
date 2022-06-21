@@ -1,15 +1,13 @@
 <template>
-  <div>
-    <!-- 一级标题 -->
-    <h1 class="component-h1">FilterBar 筛选条</h1>
-    <!-- 一级描述 -->
-    <p>搜索条，提供快速搜索，高级搜索，自定义按钮</p>
-    <!-- BaseTable内容 -->
-    <div class="component-block" v-for="(item, index) in comList" :key="index">
-      <h2>{{ item.title }}</h2>
-      <p>{{ item.titleDesc }}</p>
-      <code-example :description="item.description" :component="item.component" />
-    </div>
+  <!-- 一级标题 -->
+  <h1 class="component-h1">FilterBar 筛选条</h1>
+  <!-- 一级描述 -->
+  <p>搜索条，提供快速搜索，高级搜索，自定义按钮</p>
+  <!-- BaseTable内容 -->
+  <div class="component-block" v-for="(item, index) in comList" :key="index">
+    <h2>{{ item.title }}</h2>
+    <p>{{ item.titleDesc }}</p>
+    <code-example :description="item.description" :component="item.component" />
   </div>
 </template>
 
