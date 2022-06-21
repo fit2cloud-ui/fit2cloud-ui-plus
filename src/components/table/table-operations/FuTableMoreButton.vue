@@ -21,12 +21,14 @@
 <script lang="ts" setup>
 import { computed } from "vue";
 import { useLocale } from "@/hooks"
+import { PropType } from "vue";
+import { DropdownProps } from "@/tools/types";
 
 const { t } = useLocale()
 const props = defineProps({
   row: Object,
   buttons: {
-    type: Array,
+    type: Array as PropType<DropdownProps[]>,
     required: true
   },
   size: {

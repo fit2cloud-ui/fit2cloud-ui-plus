@@ -65,7 +65,7 @@ const props = defineProps({
     type: Number,
     default: 0
   },
-  components: Array,
+  components: Array as any,
   drawerWidth: {
     type: [Number, String],
     default: "680px"

@@ -32,7 +32,7 @@ const editableTabs = ref([
     title: "Tab 1",
     content: "Tab 1 content",
   },
-])
+]) as any
 
 function handleCommand(name: string, obj: any) {
   if (obj.command === "CLOSE_ALL") {
@@ -52,7 +52,7 @@ function removeTab(targetName: string) {
   let tabs = editableTabs.value;
   let activeName = editableTabsValue.value;
   if (activeName === targetName) {
-    tabs.forEach((tab, index) => {
+    tabs.forEach((tab: any, index: number) => {
       if (tab.name === targetName) {
         let nextTab = tabs[index + 1] || tabs[index - 1];
         if (nextTab) {
@@ -63,7 +63,7 @@ function removeTab(targetName: string) {
   }
 
   editableTabsValue.value = activeName;
-  editableTabs.value = tabs.filter((tab) => tab.name !== targetName);
+  editableTabs.value = tabs.filter((tab: any) => tab.name !== targetName);
 }
 
 </script>

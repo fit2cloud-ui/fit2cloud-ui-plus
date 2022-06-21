@@ -5,8 +5,8 @@
     </template>
     <template #default="{ row }">
       <fu-table-button :icon="type === 'icon'" v-for="(btn, i) in defaultButtons(row)" :key="i"
-        @click.stop="btn.click(row)" :disabled="disableButton(btn, row)" :label="btn.label" :type="btn.type || 'primary'"
-        link>
+        @click.stop="btn.click(row)" :disabled="disableButton(btn, row)" :label="btn.label"
+        :type="btn.type || 'primary'" link>
         <el-icon v-if="type === 'icon'">
           <component :is="btn.icon" />
         </el-icon>
@@ -52,13 +52,13 @@ const hasShowFunc = computed(() => {
   return props.buttons.some((btn: any) => typeof btn.show === "function")
 });
 
-const defaultButtons = computed(() => {
+const defaultButtons: any = computed(() => {
   return function (row: any) {
     return hasMore(row) ? showButtons(row).slice(0, props.ellipsis) : showButtons(row)
   }
 });
 
-const moreButtons = computed(() => {
+const moreButtons: any = computed(() => {
   return function (row: any) {
     return hasMore(row) ? showButtons(row).slice(props.ellipsis) : []
   }
@@ -66,7 +66,7 @@ const moreButtons = computed(() => {
 
 const computeWidth = computed(() => {
   let length = hasShowFunc.value ? props.ellipsis : defaultButtons.value.length
-  let buttonsWidth = 35 + length * 58 + 58
+  let buttonsWidth: string | number = 35 + length * 58 + 58
   if (props.minWidth) {
     buttonsWidth = buttonsWidth < props.minWidth ? props.minWidth : buttonsWidth
   }

@@ -14,11 +14,12 @@
     "lib": ["esnext", "dom"],
     "skipLibCheck": true,
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": ["src/*"],
     },
     "types": ["unplugin-vue-define-options", "vite/client"],
     "allowJs": true
   },
   "include": ["examples/**/*", "src/**/*", "plugins/*"],
-  "references": [{ "path": "./tsconfig.node.json" }]
+  "references": [{ "path": "./tsconfig.node.json" }],
+  "exclude": ["examples/assets/iconfont/iconfont.js"]
 }

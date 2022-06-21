@@ -1,18 +1,19 @@
 <template>
   <div style="display: inline-block">
     <!-- :size="configSize"  -->
-    <el-button class="fu-search-bar-button" :icon="icon" @click="visible = true">{{t('fu.table.custom_table_rows')}}</el-button>
+    <el-button class="fu-search-bar-button" :icon="icon" @click="visible = true">{{ t('fu.table.custom_table_rows') }}
+    </el-button>
     <el-dialog custom-class="fu-table-column-select-dialog" v-model="visible" @open="open" append-to-body>
       <template #header>
         <h3>
           {{ t('fu.table.custom_table_fields') }}
         </h3>
-        <el-alert :title="t('fu.table.custom_table_fields_desc')" type="info" :closable="false"/>
+        <el-alert :title="t('fu.table.custom_table_fields_desc')" type="info" :closable="false" />
       </template>
 
       <el-checkbox v-for="(c, i) in cloneColumns" :key="i" v-model="c.show" :checked="c.show !== false" draggable="true"
-                   @dragstart="dragstart($event, i)" @dragenter="dragenter" @dragleave="dragleave"
-                   @dragover.prevent @dragend="dragend" @drop="drop($event, cloneColumns, i)" v-show="!c.fix">
+        @dragstart="dragstart($event, i)" @dragenter="dragenter" @dragleave="dragleave" @dragover.prevent
+        @dragend="dragend" @drop="drop($event, cloneColumns, i)" v-show="!c.fix">
         {{ c.label }}
       </el-checkbox>
 
@@ -30,9 +31,9 @@
 </template>
 
 <script setup lang="ts">
-import {ref, inject} from "vue";
-import {tableColumnSelect} from "./utils"
-import {useLocale} from "@/hooks"
+import { ref, inject } from "vue";
+import { tableColumnSelect } from "./utils"
+import { useLocale } from "@/hooks"
 
 const props = defineProps({
   icon: {
@@ -53,7 +54,7 @@ const props = defineProps({
 
 const localKey = inject("localKey")
 
-const {t} = useLocale()
+const { t } = useLocale()
 
 const cloneColumn = (source: any, target: any) => {
   source.forEach((col: any) => {
@@ -72,7 +73,7 @@ const {
   drop
 } = tableColumnSelect(localKey)
 
-const cloneColumns = ref([])
+const cloneColumns = ref([]) as any
 const visible = ref(false)
 
 function open() {
@@ -82,7 +83,7 @@ function open() {
 
 function ok() {
   props.columns.splice(0, props.columns.length)
-  cloneColumns.value.forEach(c => {
+  cloneColumns.value.forEach((c: any) => {
     props.columns.push(c)
   })
   visible.value = false

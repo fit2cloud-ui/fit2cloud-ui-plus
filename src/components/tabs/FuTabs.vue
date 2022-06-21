@@ -38,6 +38,8 @@
 </template>
 
 <script lang="ts" setup>
+import { PropType } from "vue";
+import { DropdownProps } from "@/tools/types";
 import { uuid } from "@/tools/utils";
 defineOptions({ name: "FuTabs" });
 type TabPanelName = string | number
@@ -48,7 +50,7 @@ const props = defineProps({
     validator: (val: string) => ["default", "dropdown"].includes(val),
   },
   dropdownMenus: {
-    type: Array,
+    type: Array as PropType<DropdownProps[]>,
     default: () => [],
   },
   addTrigger: {

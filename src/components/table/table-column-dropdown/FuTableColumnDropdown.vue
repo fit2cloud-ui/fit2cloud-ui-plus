@@ -33,6 +33,9 @@
 </template>
 <script lang="ts" setup>
 import { computed, getCurrentInstance } from "vue";
+import { PropType } from "vue";
+import { DropdownProps } from "@/tools/types";
+
 defineOptions({ name: "FuTableColumnDropdown" });
 const props = defineProps({
   showType: {
@@ -41,7 +44,7 @@ const props = defineProps({
     validator: (value: string) => ["always", "hover", "selected"].includes(value),
   },
   menus: {
-    type: Array,
+    type: Array as PropType<DropdownProps[]>,
     default: () => [],
   },
   title: String,
@@ -56,7 +59,7 @@ const props = defineProps({
 
 });
 
-const instance = getCurrentInstance()
+const instance = getCurrentInstance() as any
 
 
 const isShow = computed(() => {

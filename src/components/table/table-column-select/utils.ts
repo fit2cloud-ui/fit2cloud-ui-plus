@@ -6,7 +6,7 @@ export const tableColumnSelect = (localKey: any) => {
     return localKey ? "FU-T-" + localKey : ''
   })
 
-  function dragstart(event: DragEvent, index: string) {
+  function dragstart(event: DragEvent, index: any) {
     if (event.dataTransfer) {
       event.dataTransfer.effectAllowed = "move"
       event.dataTransfer.setData("source_index", index)
@@ -15,15 +15,17 @@ export const tableColumnSelect = (localKey: any) => {
 
   function dragenter(event: DragEvent) {
     event.preventDefault()
-    if (event.target) {
-      event.target.style.opacity = .2
+    let target = event.target as HTMLElement
+    if (target) {
+      target.style.opacity= ".2"
     }
   }
 
   function dragleave(event: DragEvent) {
     event.preventDefault()
-    if (event.target) {
-      event.target.style.opacity = ""
+    let target = event.target as HTMLElement
+    if (target) {
+      target.style.opacity = ""
     }
   }
 
@@ -34,6 +36,7 @@ export const tableColumnSelect = (localKey: any) => {
   }
 
   function drop(event: DragEvent, list: any, index: number) {
+    let target = event.target as HTMLElement
     let source_index = Number(event.dataTransfer?.getData("source_index"))
     let target_index = index
     if (target_index > source_index) {
@@ -43,8 +46,8 @@ export const tableColumnSelect = (localKey: any) => {
       list.splice(target_index, 0, list[source_index])
       list.splice(source_index + 1, 1)
     }
-    if (event.target) {
-      event.target.style.opacity = ""
+    if (target) {
+      target.style.opacity = ""
     }
   }
 

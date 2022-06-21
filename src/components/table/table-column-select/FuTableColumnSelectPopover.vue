@@ -42,7 +42,7 @@ const props = defineProps({
     validator: (value: string) => ['click', 'hover'].includes(value)
   },
   columns: {
-    type: Array,
+    type: Array as any,
     default: () => []
   },
 

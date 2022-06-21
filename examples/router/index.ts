@@ -6,10 +6,10 @@ import { componentsDocRoutes } from "./doc-routes";
 // md文档文件
 import { h } from 'vue'
 import Markdown from '../components/Markdown.vue'
-import { html as GettingStarted }  from '../markdown/getting-started.md'
+import { html as gettingStarted } from '../markdown/getting-started.md'
 
 const md = (string: any) => h(Markdown, { content: string, key: string });
-const GetStartedDoc = md(GettingStarted);
+const GetStartedDoc = md(gettingStarted);
 
 export const routes: Array<RouteRecordRaw> = [
   {
@@ -21,7 +21,7 @@ export const routes: Array<RouteRecordRaw> = [
       {
         name: "快速上手",
         path: "getting-started",
-        component: GetStartedDoc,
+        component:  GetStartedDoc,
       },
     ]
   },
