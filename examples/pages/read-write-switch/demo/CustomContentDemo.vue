@@ -1,3 +1,4 @@
+<demo>自定义读写内容</demo>
 <template>
   <div style="line-height: 40px;">
     <fu-read-write-switch>
@@ -15,14 +16,7 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: "CustomContentDemo",
-  data() {
-    return {
-      write: false,
-      input: "单击填写"
-    }
-  }
-}
+<script setup lang="ts">
+import { ref } from "vue"
+const input = ref("单击填写")
 </script>

@@ -27,11 +27,11 @@ const componentsDocRoutes = [
   //   path: 'steps',
   //   component: () => import('../pages/steps/index.vue')
   // },
-  // {
-  //   name: 'ReadWriteSwitch 读写切换',
-  //   path: 'read-write-switch',
-  //   component: () => import('../pages/read-write-switch/index.vue')
-  // },
+  {
+    name: 'ReadWriteSwitch 读写切换',
+    path: 'read-write-switch',
+    component: () => import('../pages/read-write-switch/index.vue')
+  },
   {
     name: 'SplitPane 分割面板',
     path: 'split-pane',

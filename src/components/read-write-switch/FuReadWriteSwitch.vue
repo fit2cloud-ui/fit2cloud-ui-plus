@@ -2,7 +2,7 @@
 import {ref, watch, defineComponent, h, nextTick} from 'vue'
 import {uuid} from "@/tools/utils"
 
-const TRIGGERS = ['manual', 'onClick', 'onDblClick']
+const TRIGGERS = ['manual', 'onClick', 'onDblclick']
 
 export default defineComponent({
   name: "FuReadWriteSwitch",

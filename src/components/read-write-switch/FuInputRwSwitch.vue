@@ -2,7 +2,7 @@
   <fu-read-write-switch :write-trigger="writeTrigger" :data="data">
     <template #default="{ read }">
       <el-input v-model="data" v-bind="$attrs" @input="input" @blur="blur(read, $event)"
-                @keydown="keydown(read, $event)"/>
+        @keydown="keydown(read, $event)" />
     </template>
   </fu-read-write-switch>
 </template>
@@ -10,24 +10,24 @@
 <script setup lang="ts">
 
 import FuReadWriteSwitch from "@/components/read-write-switch/FuReadWriteSwitch.vue";
-import {ref, watch} from "vue";
+import { ref, watch } from "vue";
 
-defineOptions({name: "FuInputRwSwitch"});
+defineOptions({ name: "FuInputRwSwitch" });
 const props = defineProps({
-  value: [String, Number],
+  modelValue: [String, Number],
   writeTrigger: {
     type: String,
-    default: "click",
+    default: "onClick",
     validator: (value: string) => {
-      return ['click', 'dblclick'].includes(value)
+      return ['onClick', 'onDblclick'].includes(value)
     }
   }
 })
 const emit = defineEmits(["input", "blur"])
 
-const data = ref(props.value)
+const data = ref(props.modelValue)
 
-watch(() => props.value, (v) => {
+watch(() => props.modelValue, (v) => {
   data.value = v
 })
 

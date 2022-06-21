@@ -17,23 +17,27 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch } from "vue";
+import { ref, watch, PropType } from "vue";
+import { OptionProps } from "./types";
 defineOptions({ name: "FuSelectRwSwitch" });
 const props = defineProps({
-  value: [String, Number],
-  options: Array,
+  modelValue: [String, Number],
+  options: {
+    type: Array as PropType<OptionProps[]>,
+    default: []
+  },
   writeTrigger: {
     type: String,
-    default: "click",
+    default: "onClick",
     validator: (value: string) => {
-      return ['click', 'dblclick'].includes(value)
+      return ['onClick', 'onDblclick'].includes(value)
     }
   }
 })
 const emit = defineEmits(["input", "blur", "change"])
-const data = ref(props.value)
+const data = ref(props.modelValue)
 
-watch(() => props.value, (v) => {
+watch(() => props.modelValue, (v) => {
   data.value = v
 })
 function input(e: Event) {
