@@ -1,15 +1,13 @@
 <template>
-  <div>
-    <!-- 一级标题 -->
-    <h1 class="component-h1">SplitPane 分割面板</h1>
-    <!-- 一级描述 -->
-    <p>可将一片区域，分割为可以拖拽调整宽度或高度的两部分区域。</p>
-    <!--内容 -->
-    <div class="component-block" v-for="(item, index) in comList" :key="index">
-      <h2>{{ item.title }}</h2>
-      <p>{{ item.titleDesc }}</p>
-      <code-example :component="item.component" />
-    </div>
+  <!-- 一级标题 -->
+  <h1 class="component-h1">SplitPane 分割面板</h1>
+  <!-- 一级描述 -->
+  <p>可将一片区域，分割为可以拖拽调整宽度或高度的两部分区域。</p>
+  <!--内容 -->
+  <div class="component-block" v-for="(item, index) in comList" :key="index">
+    <h2>{{ item.title }}</h2>
+    <p>{{ item.titleDesc }}</p>
+    <code-example :component="item.component" />
   </div>
 </template>
 

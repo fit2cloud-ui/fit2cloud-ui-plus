@@ -2,19 +2,19 @@
 <template>
   <div class="demo-split">
     <fu-split-pane left="200" direction="horizontal">
-      <template v-slot:left>
+      <template #left>
         <div class="demo-split-child">
           <fu-split-pane top="50%" direction="vertical">
-            <template v-slot:top>
+            <template #top>
               Top
             </template>
-            <template v-slot:bottom>
+            <template #bottom>
               Bottom
             </template>
           </fu-split-pane>
         </div>
       </template>
-      <template v-slot:right>
+      <template #right>
         Right
       </template>
     </fu-split-pane>

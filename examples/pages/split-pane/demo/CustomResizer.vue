@@ -1,39 +1,41 @@
 <demo>嵌套用法</demo>
 <template>
-  <div>
-    <div class="demo-split">
-      <fu-split-pane left="200" direction="horizontal" :resizer-style="{width:'10px'}">
-        <template v-slot:left>
-          <div style="padding-right:5px">
-            Left
-          </div>
-        </template>
-        <template v-slot:resizer>
-          <el-icon :size="10"><DCaret /></el-icon>
-        </template>
-        <template v-slot:right>
-          <div style="padding-left:5px">
-            Right
-          </div>
-        </template>
-      </fu-split-pane>
-    </div>
-    <el-divider></el-divider>
-    <div class="demo-split">
-      <fu-split-pane top="50%" direction="vertical" :resizer-style="{height:'10px'}">
-        <template v-slot:top>
-          Top
-        </template>
-        <template v-slot:resizer>
-          <el-icon :size="10"><DCaret /></el-icon>
-        </template>
-        <template v-slot:bottom>
-          <div style="padding-top:5px">
-            Bottom
-          </div>
-        </template>
-      </fu-split-pane>
-    </div>
+  <div class="demo-split">
+    <fu-split-pane left="200" direction="horizontal" :resizer-style="{ width: '10px' }">
+      <template #left>
+        <div style="padding-right:5px">
+          Left
+        </div>
+      </template>
+      <template #resizer>
+        <el-icon :size="10">
+          <DCaret />
+        </el-icon>
+      </template>
+      <template #right>
+        <div style="padding-left:5px">
+          Right
+        </div>
+      </template>
+    </fu-split-pane>
+  </div>
+  <el-divider></el-divider>
+  <div class="demo-split">
+    <fu-split-pane top="50%" direction="vertical" :resizer-style="{ height: '10px' }">
+      <template #top>
+        Top
+      </template>
+      <template #resizer>
+        <el-icon :size="10">
+          <DCaret />
+        </el-icon>
+      </template>
+      <template #bottom>
+        <div style="padding-top:5px">
+          Bottom
+        </div>
+      </template>
+    </fu-split-pane>
   </div>
 </template>
 
