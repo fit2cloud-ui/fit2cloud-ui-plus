@@ -83,8 +83,8 @@
     cursor: pointer;
 
     .is-wait {
-      color: getCssVar('color', 'primary');
-      border-color: getCssVar('color', 'primary');
+      color: var(--el-color-primary);
+      border-color: var(--el-color-primary);
     }
   }
 }

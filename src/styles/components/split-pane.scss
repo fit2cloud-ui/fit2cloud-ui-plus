@@ -96,7 +96,7 @@
 
   .is-resizable {
     &.hover {
-      background: getCssVar('color', 'primary', 'light-9');
+      background: var(--el-color-primary-light-9);
     }
 
     @include when(horizontal) {

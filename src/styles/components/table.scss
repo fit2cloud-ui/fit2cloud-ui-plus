@@ -8,17 +8,15 @@
       padding-right: 14px;
     }
   }
-
   &.el-table--small {
     font-size: 13px;
   }
 }
 
 @include b(table-header) {
-  // ****** 颜色变量未定
   th {
-    background-color: #F5F6F7 !important;
-    border-top: 1px solid rgba(31, 35, 41, 0.15);
+    background-color: $table-header-bgColor !important;
+    border-top: 1px solid var(--el-table-border-color);
     font-weight: 500 !important;;
   }
 }
