@@ -15,6 +15,7 @@
 import BaseFilterBar from "./demo/BaseFilterBar.vue";
 import SetConditionsDemo from "./demo/SetConditionsDemo.vue";
 import SlotDemo from "./demo/SlotDemo.vue";
+import SlotComplexTable from "./demo/SlotComplexTable.vue";
 
 const comList = [
   {
@@ -32,6 +33,11 @@ const comList = [
     title: "插槽示例",
     titleDesc: "可以通过插槽设置上部左侧内容、上部右侧内容",
     component: SlotDemo,
+  },
+  {
+    title: "ComplexTable",
+    titleDesc: "可以通过插槽设置上部左侧内容、上部右侧内容",
+    component: SlotComplexTable,
   }
 ]
 </script>
