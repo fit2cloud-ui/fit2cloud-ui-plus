@@ -1,15 +1,17 @@
 <template>
   <el-table class="fu-table" v-bind="$attrs" :key="key" header-row-class-name="fu-table-header">
     <fu-table-body name="table-body" :columns="columns">
-      <slot />
+      <slot/>
     </fu-table-body>
   </el-table>
 </template>
 
 <script lang="ts" setup>
-import { onMounted, useSlots, ref, watch, computed, onUpdated, provide } from "vue";
-import FuTableBody from "@/components/table/FuTableBody";
-defineOptions({ name: "FuTable" });
+import {onMounted, useSlots, ref, watch, computed, onUpdated, provide, VNodeNormalizedChildren, VNode} from "vue";
+import {isFix, getLabel, FuTableBody} from "@/components/table/FuTableBody";
+import {getChildren, isValidChildren} from "@/tools/vnode";
+
+defineOptions({name: "FuTable"});
 const props = defineProps({
   columns: Array,
   refresh: {
@@ -20,29 +22,11 @@ const props = defineProps({
 
 });
 
-const slots = useSlots()
+const slots = useSlots().default?.()
 
 const key = ref(0);
 
-
 const prefix = "FU-T-"
-
-const isFix = (node: any) => {
-  const includeTag = node.type.name.indexOf("FuTableColumnDropdown") >= 0
-  const { fix } = node.props
-  let { type } = node.props
-  return (fix !== undefined && fix !== false) || ["selection", "index", "expand"].includes(type) || includeTag
-}
-
-const getLabel = (node: any) => {
-  if (node.props.label) return node.props.label
-  const includeTag = node.type.name.indexOf("FuTableColumnDropdown") >= 0
-  let { label, type } = node.props
-  if (includeTag) label = prefix + "dropdown"
-  label ??= node.props.label
-  label ??= prefix + type
-  return label;
-}
 
 const cleanColumns = (columns: any) => {
   columns.splice(0, columns.length)
@@ -60,11 +44,11 @@ const initColumns = (nodes: any, columns: any) => {
   nodes.forEach((node: any) => {
     const label = getLabel(node)
     const fix = isFix(node);
-    const { show } = node.props
+    const {show} = node.props
     if (!label && !fix) {
       throw new Error("unfixed column's label is required.")
     }
-    columns.push({ label, show, fix })
+    columns.push({label, show, fix})
   })
 }
 
@@ -92,8 +76,16 @@ const updateColumns = (nodes: any, columns: any) => {
 const columnsKey = computed(() => {
   return prefix + props.localKey
 })
+
 // 去掉v-if=false的node
-const children = slots.default?.().filter((c: any) => c.type.name !== undefined)
+let children: VNodeNormalizedChildren | VNode[]
+if (slots) {
+  if (isValidChildren(slots)) {
+    children = slots
+  }
+  children = getChildren(slots)
+}
+
 watch(() => props.columns,
   () => {
     // 设置refresh，可以避免抖动或闪烁，但是table会更新一次
@@ -105,7 +97,7 @@ watch(() => props.columns,
     }
 
   },
-  { deep: true }
+  {deep: true}
 )
 // 之前的created
 onMounted(() => {
