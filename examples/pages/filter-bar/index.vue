@@ -1,4 +1,6 @@
 <template>
+  <!-- 文档说明 -->
+  <document-table :data="attributes" />
   <!-- 一级标题 -->
   <h1 class="component-h1">FilterBar 筛选条</h1>
   <!-- 一级描述 -->
@@ -15,7 +17,7 @@
 import BaseFilterBar from "./demo/BaseFilterBar.vue";
 import SetConditionsDemo from "./demo/SetConditionsDemo.vue";
 import SlotDemo from "./demo/SlotDemo.vue";
-import SlotComplexTable from "./demo/SlotComplexTable.vue";
+import { attributes } from "./attributes";
 
 const comList = [
   {
@@ -34,11 +36,6 @@ const comList = [
     titleDesc: "可以通过插槽设置上部左侧内容、上部右侧内容",
     component: SlotDemo,
   },
-  {
-    title: "ComplexTable",
-    titleDesc: "可以通过插槽设置上部左侧内容、上部右侧内容",
-    component: SlotComplexTable,
-  }
 ]
 </script>
 
