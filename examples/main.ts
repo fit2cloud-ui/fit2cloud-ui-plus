@@ -6,6 +6,7 @@ import ElementPlus from 'element-plus'
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 import router from "./router/index";
 import CodeExample from "./components/CodeExample.vue";
+import DocumentTable from "./components/DocumentTable.vue";
 import "github-markdown-css";
 
 // UI样式
@@ -17,6 +18,6 @@ for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
   }
 app.use(Fit2CloudPlus);
 app.component('code-example', CodeExample)
-
+app.component('document-table', DocumentTable)
 
 app.mount("#app");

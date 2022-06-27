@@ -7,10 +7,6 @@
 </template>
 <script lang="ts" setup>
 defineProps({
-  size: {
-    type: String,
-    default: "default"
-  },
   label: String,
   disabled: Boolean,
   icon: Boolean,

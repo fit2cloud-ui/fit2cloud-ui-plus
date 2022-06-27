@@ -26,7 +26,6 @@ import FuTableMoreButton from "./FuTableMoreButton.vue";
 
 defineOptions({ name: "FuTableOperations" });
 const props = defineProps({
-  // columns: Array,
   align: {
     type: String,
     default: "center"

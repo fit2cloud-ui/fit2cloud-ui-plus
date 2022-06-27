@@ -2,9 +2,9 @@
 <template>
   <div style="margin-bottom: 20px">
     <span>Popover选列(hover)：</span>
-    <fu-table-column-select :columns="columns" />
+    <fu-table-column-select :columns="columns" trigger="hover"/>
     <span style="margin-left: 20px">Popover选列(click)：</span>
-    <fu-table-column-select :columns="columns" trigger="click" />
+    <fu-table-column-select :columns="columns"  />
     <span style="margin-left: 20px">Dialog选列：</span>
     <fu-table-column-select type="dialog" :columns="columns" />
   </div>

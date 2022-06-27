@@ -1,4 +1,6 @@
 <template>
+  <!-- 文档说明 -->
+  <document-table :data="attributes" />
   <!-- 一级标题 -->
   <h1 class="component-h1">Table 表格</h1>
   <!-- 一级描述 -->
@@ -21,6 +23,7 @@ import TableOperations from "./demo/TableOperations.vue";
 import TablePagination from "./demo/TablePagination.vue";
 import DropdownColumn from "./demo/DropdownColumn.vue";
 import DropdownColumnSlot from "./demo/DropdownColumnSlot.vue";
+import { attributes } from "./attributes";
 
 const comList = [
   {
