@@ -12,6 +12,9 @@
 button {
   margin: 0;
 }
+html {
+  -webkit-font-smoothing: antialiased;
+}
 body {
   margin: 0;
   padding: 0 !important;

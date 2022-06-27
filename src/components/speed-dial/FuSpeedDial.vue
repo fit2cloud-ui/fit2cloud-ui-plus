@@ -1,6 +1,5 @@
 <template>
-  <!-- v-outside-click="outsideClickClose" -->
-  <div class="fu-speed-dial" :style="style">
+  <div class="fu-speed-dial" :style="style" v-click-outside="outsideClickClose">
     <div class="fu-speed-dial__content">
       <slot name="fab">
         <fu-speed-dial-button v-bind="buttonProps" @click="click" @mousedown="mousedown" />
@@ -19,8 +18,7 @@
 <script setup lang="ts">
 import { reactive, ref, watch, getCurrentInstance, onMounted, computed, provide, useSlots } from "vue";
 import type { CSSProperties } from 'vue'
-// import OutsideClick from "element-ui/src/utils/clickoutside"
-// directives: { OutsideClick },
+import { ClickOutside as vClickOutside } from 'element-plus'
 import FuSpeedDialButton from "@/components/speed-dial/FuSpeedDialButton.vue"
 import FuSpeedDialItem from "@/components/speed-dial/FuSpeedDialItem.vue"
 defineOptions({ name: "FuSpeedDial" });
@@ -179,12 +177,12 @@ function toggle(active?: any) {
   }
 }
 
-// function outsideClickClose() {
-//   if (props.outsideClose && !props.manual) {
-//     toggle(false)
-//   }
-//   emit("outside-click", [props.id, active.value])
-// }
+function outsideClickClose() {
+  if (props.outsideClose && !props.manual) {
+    toggle(false)
+  }
+  emit("outside-click", [props.id, active.value])
+}
 function click(e: Event) {
   if (!props.manual) {
     toggle()

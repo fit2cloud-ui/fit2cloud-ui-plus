@@ -1,6 +1,6 @@
 {
   "name": "fit2cloud-ui-plus",
-  "version": "0.0.1-beta.7",
+  "version": "0.0.1-beta.8",
   "private": false,
   "main": "./lib/fit2cloud-ui-plus.es.js",
   "files": [
@@ -23,9 +23,11 @@
     "@element-plus/icons-vue": "^1.1.4",
     "element-plus": "^2.2.2",
     "github-markdown-css": "^5.1.0",
+    "prism-theme-vars": "^0.2.3",
     "prismjs": "^1.28.0",
     "vite-plugin-markdown": "^2.0.2",
     "vue": "^3.2.37",
+    "vue-clipboard3": "^2.0.0",
     "vue-router": "^4.0.14"
   },
   "devDependencies": {

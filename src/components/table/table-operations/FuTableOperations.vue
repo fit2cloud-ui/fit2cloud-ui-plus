@@ -35,7 +35,7 @@ const props = defineProps({
   minWidth: [String, Number],
   ellipsis: { // 超过几个按钮时显示省略号，如果只超过一个也不显示省略号
     type: Number,
-    default: 3
+    default: 2
   },
   buttons: {
     type: Array,

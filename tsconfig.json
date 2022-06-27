@@ -21,5 +21,4 @@
   },
   "include": ["examples/**/*", "src/**/*", "plugins/*"],
   "references": [{ "path": "./tsconfig.node.json" }],
-  "exclude": ["examples/assets/iconfont/iconfont.js"]
 }
