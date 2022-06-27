@@ -1,4 +1,6 @@
 <template>
+  <!-- 文档说明 -->
+  <document-table :data="attributes" />
   <!-- 一级标题 -->
   <h1 class="component-h1">ReadWriteSwitch 读写切换</h1>
   <!-- 一级描述 -->
@@ -19,6 +21,8 @@ import ReadSwitchDemo from "./demo/ReadSwitchDemo.vue";
 import SelectRwSwitchDemo from "./demo/SelectRwSwitchDemo.vue";
 import TableInnerEditDemo from "./demo/TableInnerEditDemo.vue";
 import WriteSwitchDemo from "./demo/WriteSwitchDemo.vue";
+import { attributes } from "./attributes";
+
 const comList = [
   {
     title: "基本用法",
