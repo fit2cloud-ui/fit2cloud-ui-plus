@@ -1,4 +1,6 @@
 <template>
+  <!-- 文档说明 -->
+  <document-table :data="attributes" />
   <!-- 一级标题 -->
   <h1 class="component-h1">SplitPane 分割面板</h1>
   <!-- 一级描述 -->
@@ -16,6 +18,7 @@ import BaseSplit from "./demo/BaseSplit.vue";
 import NestSplit from "./demo/NestSplit.vue";
 import ResizerType from "./demo/ResizerType.vue";
 import CustomResizer from "./demo/CustomResizer.vue";
+import { attributes } from "./attributes";
 const comList = [
   {
     title: "基本用法",

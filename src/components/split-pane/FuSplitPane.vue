@@ -51,7 +51,7 @@ const props = defineProps({
 });
 const emit = defineEmits(["changeSplit"])
 
-const instance = getCurrentInstance()
+const instance: any = getCurrentInstance()
 
 const active = ref(false)
 const usedValue = ref(0)
@@ -133,7 +133,7 @@ const resizerAttr = computed(() => {
     : isReverse.value
       ? "bottom"
       : "top" ;
-})
+}) as any
 const saveKey = computed(() => {
   return "Fu-SP-" + props.localKey;
 })
