@@ -1,4 +1,6 @@
 <template>
+  <!-- 文档说明 -->
+  <document-table :data="attributes" />
   <!-- 一级标题 -->
   <h1 class="component-h1">Tabs 标签页</h1>
   <!-- 一级描述 -->
@@ -13,6 +15,7 @@
 
 <script setup lang="ts">
 import AddCloseTab from "./demo/AddCloseTab.vue";
+import { attributes } from "./attributes";
 const comList = [
   {
     title: "动态增减标签",
