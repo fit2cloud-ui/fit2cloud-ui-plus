@@ -22,7 +22,6 @@
     <template #reference>
       <el-button class="fu-search-bar-button" :icon="icon">{{ t('fu.table.custom_table_rows') }}</el-button>
     </template>
-    <!-- :size="configSize" -->
   </el-popover>
 </template>
 

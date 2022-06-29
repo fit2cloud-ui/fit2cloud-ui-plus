@@ -42,11 +42,11 @@ const props = defineProps({
   },
   icon: {
     type: String,
-    default: "el-icon-plus"
+    default: "Plus"
   },
   activeIcon: {
     type: String,
-    default: "el-icon-close"
+    default: "Close"
   },
   movable: {
     type: Boolean,

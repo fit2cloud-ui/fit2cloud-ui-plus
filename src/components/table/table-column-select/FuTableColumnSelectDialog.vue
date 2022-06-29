@@ -1,7 +1,6 @@
 <template>
   <div style="display: inline-block">
-    <!-- :size="configSize"  -->
-    <el-button class="fu-search-bar-button" :icon="icon" @click="visible = true">{{ t('fu.table.custom_table_rows') }}
+    <el-button class="fu-search-bar-button" :icon="icon" @click="visible = true" >{{ t('fu.table.custom_table_rows') }}
     </el-button>
     <el-dialog custom-class="fu-table-column-select-dialog" v-model="visible" @open="open" append-to-body>
       <template #header>

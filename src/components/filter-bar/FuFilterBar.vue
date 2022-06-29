@@ -7,7 +7,7 @@
       <div class="top_right">
         <slot name="tr">
           <!-- :size="configSize" -->
-          <FuSearchInput v-model="quick" :placeholder="quickPlaceholder" @change="change"/>
+          <FuSearchInput :size="configSize" v-model="quick" :placeholder="quickPlaceholder" @change="change"/>
           <el-button @click="open" icon="Filter">{{ t('fu.filter_bar.filter') }}
             <span v-if="conditions.length > 0">({{ conditions.length }})</span>
           </el-button>
@@ -25,12 +25,12 @@
 
 <script setup lang="ts">
 import {ref, computed} from "vue";
-import {useLocale} from "@/hooks"
+import {useLocale, useSize} from "@/hooks"
 import FuSearchInput from "@/components/filter-bar/FuSearchInput.vue";
 import FuFilter from "@/components/filter-bar/FuFilter.vue";
 defineOptions({ name: "FuFilterBar" });
 const {t} = useLocale()
-
+const configSize = useSize()
 const props = defineProps({
   resultCount: Number,
   quickPlaceholder: String,

@@ -2,7 +2,7 @@
   <div class="fu-filter-component">
     <div class="fu-filter-component__label">{{ label }}</div>
     <div class="fu-filter-component__content">
-      <!-- :size="configSize"  -->
+      <!--configSize-->
       <el-date-picker class="fu-filter-date" v-model="value" v-bind="$attrs"
                       :placeholder="t('fu.search_bar.select_date')" type="daterange" :value-format="valueFormat"
                       :start-placeholder="t('fu.search_bar.start_date')" :end-placeholder="t('fu.search_bar.end_date')">
@@ -18,7 +18,6 @@ import {dateFormat} from "@/tools/time";
 import {useLocale} from "@/hooks"
 defineOptions({ name: "FuFilterDate" });
 const {t} = useLocale()
-
 const props = defineProps({
   label: String,
   field: {
