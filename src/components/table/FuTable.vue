@@ -128,7 +128,6 @@ onMounted(() => {
 })
 
 provide(LocalKey, props.localKey)
-
 onUpdated(() => {
   updateNodes(children)
   updateColumns(children, props.columns)

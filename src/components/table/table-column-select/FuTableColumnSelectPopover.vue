@@ -52,7 +52,8 @@ const props = defineProps({
 
 const { t } = useLocale()
 
-const localKey = inject(LocalKey)
+const localKey = inject(LocalKey, undefined)
+
 
 const {
   columnsKey,
