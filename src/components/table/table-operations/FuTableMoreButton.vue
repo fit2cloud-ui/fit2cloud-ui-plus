@@ -23,7 +23,7 @@ import { computed } from "vue";
 import { useLocale } from "@/hooks"
 import { PropType } from "vue";
 import { DropdownProps } from "@/tools/types";
-
+defineOptions({ name: "FuTableMoreButton" });
 const { t } = useLocale()
 const props = defineProps({
   row: Object,

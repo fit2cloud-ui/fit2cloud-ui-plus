@@ -6,7 +6,7 @@
       </div>
       <div class="top_right">
         <slot name="tr">
-          <FuSearchInput :size="size" v-model="quick" :placeholder="quickPlaceholder" @change="change" />
+          <fu-search-input :size="size" v-model="quick" :placeholder="quickPlaceholder" @change="change" />
           <el-button @click="open" icon="Filter" :size="size">{{ t('fu.filter_bar.filter') }}
             <span v-if="conditions.length > 0">({{ conditions.length }})</span>
           </el-button>
@@ -15,9 +15,9 @@
       </div>
     </div>
     <div class="fu-filter-bar__bottom">
-      <FuFilter ref="filterRef" @filter="filter" :count="resultCount" :components="components" :size="size">
+      <fu-filter ref="filterRef" @filter="filter" :count="resultCount" :components="components" :size="size">
         <slot></slot>
-      </FuFilter>
+      </fu-filter>
     </div>
   </div>
 </template>

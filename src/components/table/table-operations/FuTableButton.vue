@@ -6,6 +6,7 @@
   </el-tooltip>
 </template>
 <script lang="ts" setup>
+defineOptions({ name: "FuTableButton" });
 defineProps({
   label: String,
   disabled: Boolean,

@@ -1,6 +1,6 @@
 <template>
   <div style="display: inline-block">
-    <el-button class="fu-search-bar-button" :icon="icon" @click="visible = true" >{{ t('fu.table.custom_table_rows') }}
+    <el-button class="fu-search-bar-button" :icon="icon" @click="visible = true">{{ t('fu.table.custom_table_rows') }}
     </el-button>
     <el-dialog custom-class="fu-table-column-select-dialog" v-model="visible" @open="open" append-to-body>
       <template #header>
@@ -33,7 +33,7 @@
 import { ref, inject } from "vue";
 import { tableColumnSelect } from "./utils"
 import { useLocale } from "@/hooks"
-
+import { LocalKey } from "../types";
 const props = defineProps({
   icon: {
     type: String,
@@ -46,7 +46,7 @@ const props = defineProps({
 
 })
 
-const localKey = inject("localKey")
+const localKey = inject(LocalKey)
 
 const { t } = useLocale()
 
@@ -84,7 +84,7 @@ function ok() {
 }
 
 function reset() {
-  if (columnsKey) {
+  if (columnsKey.value) {
     localStorage.removeItem(columnsKey.value)
   }
   props.columns.splice(0, props.columns.length)

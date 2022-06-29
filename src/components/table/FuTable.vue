@@ -1,17 +1,18 @@
 <template>
   <el-table class="fu-table" v-bind="$attrs" :key="key" header-row-class-name="fu-table-header">
     <fu-table-body name="table-body" :columns="columns">
-      <slot/>
+      <slot />
     </fu-table-body>
   </el-table>
 </template>
 
 <script lang="ts" setup>
-import {onMounted, useSlots, ref, watch, computed, onUpdated, provide, VNodeNormalizedChildren, VNode} from "vue";
-import {isFix, getLabel, FuTableBody} from "@/components/table/FuTableBody";
-import {getChildren, isValidChildren} from "@/tools/vnode";
+import { onMounted, useSlots, ref, watch, computed, onUpdated, provide, VNodeNormalizedChildren, VNode } from "vue";
+import { isFix, getLabel, FuTableBody } from "@/components/table/FuTableBody";
+import { getChildren, isValidChildren } from "@/tools/vnode";
+import { LocalKey } from "@/components/table/types";
 
-defineOptions({name: "FuTable"});
+defineOptions({ name: "FuTable" });
 const props = defineProps({
   columns: Array,
   refresh: {
@@ -44,11 +45,11 @@ const initColumns = (nodes: any, columns: any) => {
   nodes.forEach((node: any) => {
     const label = getLabel(node)
     const fix = isFix(node);
-    const {show} = node.props
+    const { show } = node.props
     if (!label && !fix) {
       throw new Error("unfixed column's label is required.")
     }
-    columns.push({label, show, fix})
+    columns.push({ label, show, fix })
   })
 }
 
@@ -97,7 +98,7 @@ watch(() => props.columns,
     }
 
   },
-  {deep: true}
+  { deep: true }
 )
 // 之前的created
 onMounted(() => {
@@ -126,8 +127,7 @@ onMounted(() => {
   }
 })
 
-
-provide("localKey", props.localKey)
+provide(LocalKey, props.localKey)
 
 onUpdated(() => {
   updateNodes(children)

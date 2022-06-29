@@ -1,34 +1,37 @@
 <template>
-  <el-popover class="fu-table-column-select" popper-class="fu-table-column-select-popper" :trigger="trigger"
-    :show-arrow="false" v-show="hasSelect">
-    <h3>
-      {{ t('fu.table.custom_table_fields') }}
-    </h3>
-    <div class="fu-table-column-select-popper__body">
-      <div v-for="(c, i) in columns" :key="i" class="fu-table-column-select-popper__item">
-        <el-checkbox v-model="c.show" :checked="c.show !== false" draggable="true" @dragstart="dragstart($event, i)"
-          @dragenter="dragenter" @dragleave="dragleave" @dragover.prevent @dragend="dragend"
-          @drop="drop($event, columns, i)" v-show="!c.fix">
-          {{ c.label }}
-        </el-checkbox>
+  <div v-show="hasSelect" style="display: inline-block">
+    <el-popover class="fu-table-column-select" popper-class="fu-table-column-select-popper" :trigger="trigger"
+      :show-arrow="false">
+      <h3>
+        {{ t('fu.table.custom_table_fields') }}
+      </h3>
+      <div class="fu-table-column-select-popper__body">
+        <div v-for="(c, i) in columns" :key="i" class="fu-table-column-select-popper__item">
+          <el-checkbox v-model="c.show" :checked="c.show !== false" draggable="true" @dragstart="dragstart($event, i)"
+            @dragenter="dragenter" @dragleave="dragleave" @dragover.prevent @dragend="dragend"
+            @drop="drop($event, columns, i)" v-show="!c.fix">
+            {{ c.label }}
+          </el-checkbox>
+        </div>
       </div>
-    </div>
-    <div class="fu-table-column-select-popper__footer">
-      <el-button @click="reset" v-if="columnsKey">
-        {{ t('fu.table.reset') }}
-      </el-button>
-    </div>
+      <div class="fu-table-column-select-popper__footer">
+        <el-button @click="reset" v-if="columnsKey">
+          {{ t('fu.table.reset') }}
+        </el-button>
+      </div>
 
-    <template #reference>
-      <el-button class="fu-search-bar-button" :icon="icon">{{ t('fu.table.custom_table_rows') }}</el-button>
-    </template>
-  </el-popover>
+      <template #reference>
+        <el-button class="fu-search-bar-button" :icon="icon">{{ t('fu.table.custom_table_rows') }}</el-button>
+      </template>
+    </el-popover>
+  </div>
 </template>
 
 <script setup lang="ts">
 import { computed, inject } from "vue";
 import { tableColumnSelect } from "./utils"
 import { useLocale } from "@/hooks"
+import { LocalKey } from "../types";
 
 const props = defineProps({
   icon: {
@@ -49,7 +52,7 @@ const props = defineProps({
 
 const { t } = useLocale()
 
-const localKey = inject("localKey")
+const localKey = inject(LocalKey)
 
 const {
   columnsKey,
