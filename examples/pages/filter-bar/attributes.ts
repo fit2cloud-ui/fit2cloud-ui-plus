@@ -13,13 +13,13 @@ export const attributes = [
         name: '@Attributes',
         header: {prop: '参数', desc: "说明", type: '类型', enum: "可选值", default: "默认值"},
         table: [
-          // {
-          //   prop: 'size',
-          //   desc: '大小',
-          //   type: 'String',
-          //   enum: 'medium / small / mini',
-          //   default: '-',
-          // },
+          {
+            prop: 'size',
+            desc: '大小',
+            type: 'String',
+            enum: ' - / default / small / large',
+            default: '-',
+          },
           {
             prop: 'result-count',
             desc: '查询结果数量',

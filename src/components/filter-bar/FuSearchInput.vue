@@ -1,12 +1,18 @@
 <template>
-  <el-input class="fu-search-input" prefix-icon="Search" v-model="quick" @input="input" @blur="blur"
-    @keydown="keydown" v-bind="$attrs" clearable />
+  <el-input class="fu-search-input" prefix-icon="Search" v-model="quick" @input="input" @blur="blur" @keydown="keydown"
+    v-bind="$attrs" clearable :size="size"/>
 </template>
 
 <script setup lang="ts">
 import { ref, watch } from "vue";
+import { validateSize } from "@/tools/size";
 defineOptions({ name: "FuSearchInput" });
+
 const props = defineProps({
+  size: {
+    type: String,
+    validator: validateSize
+  },
   value: String,
 })
 const emit = defineEmits(["input", "change"])

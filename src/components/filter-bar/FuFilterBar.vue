@@ -6,9 +6,8 @@
       </div>
       <div class="top_right">
         <slot name="tr">
-          <!-- :size="configSize" -->
-          <FuSearchInput :size="configSize" v-model="quick" :placeholder="quickPlaceholder" @change="change"/>
-          <el-button @click="open" icon="Filter">{{ t('fu.filter_bar.filter') }}
+          <FuSearchInput :size="size" v-model="quick" :placeholder="quickPlaceholder" @change="change" />
+          <el-button @click="open" icon="Filter" :size="size">{{ t('fu.filter_bar.filter') }}
             <span v-if="conditions.length > 0">({{ conditions.length }})</span>
           </el-button>
         </slot>
@@ -16,7 +15,7 @@
       </div>
     </div>
     <div class="fu-filter-bar__bottom">
-      <FuFilter ref="filterRef" @filter="filter" :count="resultCount" :components="components">
+      <FuFilter ref="filterRef" @filter="filter" :count="resultCount" :components="components" :size="size">
         <slot></slot>
       </FuFilter>
     </div>
@@ -24,14 +23,18 @@
 </template>
 
 <script setup lang="ts">
-import {ref, computed} from "vue";
-import {useLocale, useSize} from "@/hooks"
+import { ref, computed } from "vue";
+import { useLocale } from "@/hooks"
+import { validateSize } from "@/tools/size";
 import FuSearchInput from "@/components/filter-bar/FuSearchInput.vue";
 import FuFilter from "@/components/filter-bar/FuFilter.vue";
 defineOptions({ name: "FuFilterBar" });
-const {t} = useLocale()
-const configSize = useSize()
-const props = defineProps({
+const { t } = useLocale()
+defineProps({
+  size: {
+    type: String,
+    validator: validateSize
+  },
   resultCount: Number,
   quickPlaceholder: String,
   components: Array
@@ -62,7 +65,7 @@ function setConditions(conditionObj: any) {
 }
 
 const conditionObj = computed(() => {
-  let obj: any = {quick: quick.value}
+  let obj: any = { quick: quick.value }
   conditions.value.forEach((c: any) => {
     obj[c.field] = c
   })

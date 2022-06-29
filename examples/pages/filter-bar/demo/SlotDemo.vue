@@ -1,17 +1,17 @@
 <demo>插槽示例</demo>
 <template>
   <div>
-    <fu-filter-bar ref="filter" @exec="exec" :result-count="count" size="small">
+    <fu-filter-bar ref="filter" @exec="exec" :result-count="count" size="default">
       <template #tl>
         <el-button>导出数据</el-button>
       </template>
       <template #default>
-        <fu-filter-select size="small" label="事件类型" field="type" :options="options" multiple clearable filterable />
-        <fu-filter-date size="small" label="操作日期" field="date" />
-        <fu-filter-date-time size="small" label="操作时间" field="datetime" />
+        <fu-filter-select size="default" label="事件类型" field="type" :options="options" multiple clearable filterable />
+        <fu-filter-date size="default" label="操作日期" field="date" />
+        <fu-filter-date-time size="default" label="操作时间" field="datetime" />
       </template>
       <template #buttons>
-        <fu-table-column-select type="button" :columns="columns" size="small" />
+        <fu-table-column-select type="button" :columns="columns" size="default" />
       </template>
     </fu-filter-bar>
   </div>

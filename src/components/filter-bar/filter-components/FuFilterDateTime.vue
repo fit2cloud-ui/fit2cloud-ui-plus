@@ -3,25 +3,28 @@
     <div class="fu-filter-component__label">{{ label }}</div>
     <div class="fu-filter-component__content">
       <!-- :size="configSize"  -->
-      <el-date-picker class="fu-filter-date" v-model="value" v-bind="$attrs"
-                      :placeholder="t('fu.search_bar.select_date_time')" type="datetimerange"
-                      :value-format="valueFormat"
-                      :start-placeholder="t('fu.search_bar.start_date_time')"
-                      :end-placeholder="t('fu.search_bar.end_date_time')">
+      <el-date-picker class="fu-filter-date" v-model="value" v-bind="$attrs" :size="size"
+        :placeholder="t('fu.search_bar.select_date_time')" type="datetimerange" :value-format="valueFormat"
+        :start-placeholder="t('fu.search_bar.start_date_time')" :end-placeholder="t('fu.search_bar.end_date_time')">
       </el-date-picker>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import {ref, computed, inject} from "vue";
-import {FilterCondition, ReferenceContext, referenceKey} from "../types";
-import {datetimeFormat} from "@/tools/time";
-import {useLocale} from "@/hooks"
+import { ref, computed, inject } from "vue";
+import { FilterCondition, ReferenceContext, referenceKey } from "../types";
+import { datetimeFormat } from "@/tools/time";
+import { useLocale } from "@/hooks"
+import { validateSize } from "@/tools/size";
 defineOptions({ name: "FuFilterDateTime" });
-const {t} = useLocale()
+const { t } = useLocale()
 
 const props = defineProps({
+  size: {
+    type: String,
+    validator: validateSize
+  },
   label: String,
   field: {
     type: String,
@@ -45,8 +48,8 @@ const valueLabel = computed(() => {
 
 function getCondition(): FilterCondition | undefined {
   if (!String(value.value)) return;
-  let {field, label} = props
-  return {field, label, value: value.value, valueLabel: valueLabel.value}
+  let { field, label } = props
+  return { field, label, value: value.value, valueLabel: valueLabel.value }
 }
 
 function init(v: any) {
@@ -55,7 +58,7 @@ function init(v: any) {
 
 const references = inject(referenceKey)
 const field = props.field
-const reference: ReferenceContext = {field, init, getCondition}
+const reference: ReferenceContext = { field, init, getCondition }
 references?.value.push(reference)
 
 defineExpose({
