@@ -11,7 +11,9 @@
             <span v-if="conditions.length > 0">({{ conditions.length }})</span>
           </el-button>
         </slot>
+
         <slot name="buttons"></slot>
+
       </div>
     </div>
     <div class="fu-filter-bar__bottom">
