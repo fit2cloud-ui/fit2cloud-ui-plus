@@ -17,11 +17,11 @@ const componentsDocRoutes = [
     path: 'filter',
     component: () => import('../pages/filter-bar/index.vue')
   },
-  // {
-  //   name: 'SpeedDial 快速拨号',
-  //   path: 'speed-dial',
-  //   component: () => import('../pages/speed-dial/index.vue')
-  // },
+  {
+    name: 'SpeedDial 快速拨号',
+    path: 'speed-dial',
+    component: () => import('../pages/speed-dial/index.vue')
+  },
   // {
   //   name: 'Steps 步骤条',
   //   path: 'steps',

@@ -1,3 +1,4 @@
+<demo>定位方式</demo>
 <template>
   <div class="speed-dial-demo">
     <div>
@@ -16,36 +17,29 @@
     </div>
 
     <div class="speed-dial-move">
-      <fu-speed-dial :position="position" bottom="calc(50% - 20px)" right="calc(50% - 20px)"
-                     :movable="movable" :items="items" @click="click"/>
+      <fu-speed-dial :position="position" bottom="calc(50% - 20px)" right="calc(50% - 20px)" :movable="movable"
+        :items="items" @click="click" />
     </div>
   </div>
 </template>
 
-<script>
-export default {
-  name: "SpeedDialPosition",
-  data() {
-    return {
-      position: "absolute",
-      movable: false,
-      items: [
-        {title: "Item 1", click: this.clickItem},
-        {title: "Item 2", click: this.clickItem},
-        {title: "Item 3", click: this.clickItem},
-        {title: "Item 4", click: this.clickItem},
-        {title: "Item 5", click: this.clickItem},
-      ]
-    }
-  },
-  methods: {
-    click(obj, e) {
-      console.log(obj, e)
-    },
-    clickItem(item, e) {
-      console.log(item, e)
-    }
-  },
+<script setup lang="ts">
+import { ref } from "vue"
+const items = [
+  { title: "Item 1", click: clickItem },
+  { title: "Item 2", click: clickItem },
+  { title: "Item 3", click: clickItem, icon: "Avatar" },
+  { title: "Item 4", click: clickItem },
+  { title: "Item 5", click: clickItem },
+]
+const position = ref("absolute")
+const movable = ref(false)
+
+function click(obj: any, e: any) {
+  console.log(obj, e)
+}
+function clickItem(item: any, e: any) {
+  console.log(item, e)
 }
 </script>
 
@@ -61,6 +55,4 @@ export default {
     height: 100px;
   }
 }
-
-
 </style>

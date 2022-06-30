@@ -25,17 +25,20 @@ const comList = [
     titleDesc: "可以设置方向，大小，主题，图标",
     component: BaseSpeedDial,
     description: `控制台查看click事件`
-  }, {
+  },
+  {
     title: "定位方式",
     titleDesc: "position 设置 absolute / fixed 可以固定位置，并且可以移动位置",
     component: SpeedDialPosition,
     description: `设置localKey，可以保存移动位置到localStorage`
-  }, {
+  },
+  {
     title: "开关方式",
     titleDesc: "",
     component: SpeedDialTrigger,
     description: `设置localKey，可以保存移动位置到localStorage`
-  }, {
+  },
+  {
     title: "自定义内容",
     titleDesc: "",
     component: SpeedDialCustom,

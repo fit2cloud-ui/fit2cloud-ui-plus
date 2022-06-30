@@ -2,17 +2,15 @@
 <template>
   <div class="speed-dial-demo">
     <div>
-      <fu-speed-dial id="left" size="big" direction="left" :items="items" @click="click" />
+      <fu-speed-dial id="left" size="large" direction="left" :items="items" @click="click" />
     </div>
 
     <div>
-      <fu-speed-dial id="top" :items="items" @click="click" type="success" icon="el-icon-video-play"
-        active-icon="el-icon-video-pause" />
+      <fu-speed-dial id="top" :items="items" @click="click" type="success" icon="VideoPlay" active-icon="VideoPause" />
     </div>
 
     <div>
-      <fu-speed-dial icon="iconfont icon-money" id="right" size="medium" direction="right" type="warning" :items="items"
-        @click="click" />
+      <fu-speed-dial id="right" size="default" direction="right" type="warning" :items="items" @click="click" />
     </div>
 
     <div>
@@ -25,7 +23,7 @@
 const items = [
   { title: "Item 1", click: clickItem },
   { title: "Item 2", click: clickItem },
-  { title: "Item 3", click: clickItem, icon: "iconfont icon-huiyuan" },
+  { title: "Item 3", click: clickItem, icon: "Avatar" },
   { title: "Item 4", click: clickItem },
   { title: "Item 5", click: clickItem },
 ]
