@@ -16,7 +16,7 @@
 
 
 <script setup lang="ts">
-import { reactive, ref, watch, getCurrentInstance, onMounted, computed, provide, useSlots, PropType } from "vue";
+import { ref, watch, getCurrentInstance, onMounted, computed, provide, useSlots, PropType } from "vue";
 import type { CSSProperties } from 'vue'
 import type { ZIndexProperty, PositionProperty } from 'csstype'
 import { ClickOutside as vClickOutside } from 'element-plus'
@@ -25,8 +25,8 @@ import FuSpeedDialItem from "@/components/speed-dial/FuSpeedDialItem.vue"
 import { SpeedDialKey } from "./types";
 defineOptions({ name: "FuSpeedDial" });
 const props = defineProps({
-  id: String,
   modelValue: Boolean,
+  id: String,
   type: {
     type: String,
     default: "primary"

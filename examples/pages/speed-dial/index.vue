@@ -1,15 +1,15 @@
 <template>
-  <div>
-    <!-- 一级标题 -->
-    <h1 class="component-h1">SpeedDial 快速拨号</h1>
-    <!-- 一级描述 -->
-    <p>快速拨号，支持4个方向，支持固定位置，支持移动位置；图标支持iconfont；</p>
-    <!-- BaseTable内容 -->
-    <div class="component-block" v-for="(item, index) in comList" :key="index">
-      <h2>{{ item.title }}</h2>
-      <p>{{ item.titleDesc }}</p>
-      <code-example :description="item.description" :component="item.component" />
-    </div>
+  <!-- 文档说明 -->
+  <document-table :data="attributes" />
+  <!-- 一级标题 -->
+  <h1 class="component-h1">SpeedDial 快速拨号</h1>
+  <!-- 一级描述 -->
+  <p>快速拨号，支持4个方向，支持固定位置，支持移动位置；图标支持iconfont；</p>
+  <!-- BaseTable内容 -->
+  <div class="component-block" v-for="(item, index) in comList" :key="index">
+    <h2>{{ item.title }}</h2>
+    <p>{{ item.titleDesc }}</p>
+    <code-example :description="item.description" :component="item.component" />
   </div>
 </template>
 
@@ -18,6 +18,7 @@ import BaseSpeedDial from "./demo/BaseSpeedDial.vue";
 import SpeedDialPosition from "./demo/SpeedDialPosition.vue";
 import SpeedDialTrigger from "./demo/SpeedDialTrigger.vue";
 import SpeedDialCustom from "./demo/SpeedDialCustom.vue";
+import { attributes } from "./attributes";
 
 const comList = [
   {

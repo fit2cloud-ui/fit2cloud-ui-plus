@@ -36,4 +36,6 @@ html:not(.dark) {
 pre {
   font-weight: 400;
   font-size: 14px;
+  word-wrap: break-word!important;
+  white-space: pre-wrap!important;
 }
