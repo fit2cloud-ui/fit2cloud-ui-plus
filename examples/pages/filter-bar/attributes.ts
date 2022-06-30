@@ -82,13 +82,13 @@ export const attributes = [
         name: '@FilterSelect Attributes',
         header: {prop: '参数', desc: "说明", type: '类型', enum: "可选值", default: "默认值"},
         table: [
-          // {
-          //   prop: 'size',
-          //   desc: '大小',
-          //   type: 'String',
-          //   enum: 'medium / small / mini',
-          //   default: '-',
-          // },
+          {
+            prop: 'size',
+            desc: '大小',
+            type: 'String',
+            enum: 'large / default / small',
+            default: 'default',
+          },
           {
             prop: 'field',
             desc: '字段名',
@@ -116,13 +116,13 @@ export const attributes = [
         name: '@ComplexDate Attributes',
         header: {prop: '参数', desc: "说明", type: '类型', enum: "可选值", default: "默认值"},
         table: [
-          // {
-          //   prop: 'size',
-          //   desc: '大小',
-          //   type: 'String',
-          //   enum: 'medium / small / mini',
-          //   default: '-',
-          // },
+          {
+            prop: 'size',
+            desc: '大小',
+            type: 'String',
+            enum: 'large / default / small',
+            default: 'default',
+          },
           {
             prop: 'align',
             desc: '对齐方式',
@@ -157,13 +157,13 @@ export const attributes = [
         name: '@ComplexDateTime Attributes',
         header: {prop: '参数', desc: "说明", type: '类型', enum: "可选值", default: "默认值"},
         table: [
-          // {
-          //   prop: 'size',
-          //   desc: '大小',
-          //   type: 'String',
-          //   enum: 'medium / small / mini',
-          //   default: '-',
-          // },
+          {
+            prop: 'size',
+            desc: '大小',
+            type: 'String',
+            enum: 'large / default / small',
+            default: 'default',
+          },
           {
             prop: 'align',
             desc: '对齐方式',
