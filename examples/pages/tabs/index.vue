@@ -9,7 +9,7 @@
   <div class="component-block" v-for="(item, index) in comList" :key="index">
     <h2>{{ item.title }}</h2>
     <p>{{ item.titleDesc }}</p>
-    <code-example :component="item.component" />
+    <code-example :component="item.component" :description="item.description" />
   </div>
 </template>
 
@@ -21,11 +21,18 @@ const comList = [
     title: "动态增减标签",
     titleDesc: "增减标签页",
     component: AddCloseTab,
+    description: ""
   },
 ]
 </script>
 
 <style lang="scss" scoped>
+.component-h1 {
+  font-weight: 400;
+  color: #1f2f3d;
+  font-size: 28px;
+}
+
 .component-block {
   margin-top: 40px;
 

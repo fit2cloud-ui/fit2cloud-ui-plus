@@ -48,6 +48,12 @@ const comList = [
 </script>
 
 <style lang="scss" scoped>
+.component-h1 {
+  font-weight: 400;
+  color: #1f2f3d;
+  font-size: 28px;
+}
+
 .component-block {
   margin-top: 40px;
 

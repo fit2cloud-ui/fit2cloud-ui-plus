@@ -9,7 +9,7 @@
   <div class="component-block" v-for="(item, index) in comList" :key="index">
     <h2>{{ item.title }}</h2>
     <p>{{ item.titleDesc }}</p>
-    <code-example :component="item.component" />
+    <code-example :description="item.description"  :component="item.component" />
   </div>
 </template>
 
@@ -66,6 +66,12 @@ const comList = [
 </script>
 
 <style lang="scss" scoped>
+.component-h1 {
+  font-weight: 400;
+  color: #1f2f3d;
+  font-size: 28px;
+}
+
 .component-block {
   margin-top: 40px;
 

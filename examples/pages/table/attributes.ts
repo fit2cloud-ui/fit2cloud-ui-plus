@@ -98,9 +98,9 @@ export const attributes = [
       },
       // {
       //   prop: "size",
-      //   desc: "按钮大小",
-      //   type: "Array",
-      //   enum: "medium / small / mini",
+      //   desc: "大小",
+      //   type: "String",
+      //   enum: " - / default / small / large",
       //   default: "-",
       // },
       {
@@ -164,10 +164,82 @@ export const attributes = [
         enum: "label（文字） / icon（图标）",
         default: "label",
       },
-
     ],
   },
-
+  {
+    name: "Table Button",
+    children: [
+      {
+        name: "@Attributes",
+        header: {
+          prop: "参数",
+          desc: "说明",
+          type: "类型",
+          enum: "可选值",
+          default: "默认值",
+        },
+        table: [
+          {
+            prop: "label",
+            desc: "按钮名称",
+            type: "String",
+            enum: "-",
+            default: "-",
+          },
+          {
+            prop: "icon",
+            desc: "图标",
+            type: "String",
+            enum: "-",
+            default: "-",
+          },
+          {
+            prop: "type",
+            desc: "按钮类型",
+            type: "String",
+            enum: "primary / success / warning / danger / info / text",
+            default: "-",
+          },
+          {
+            prop: "disabled",
+            desc: "禁用, Function时参数为行内容",
+            type: "Boolean / Function(row)",
+            enum: "true / false",
+            default: "-",
+          },
+          // {
+          //   prop: "size",
+          //   desc: "大小",
+          //   type: "String",
+          //   enum: " - / default / small / large",
+          //   default: "-",
+          // },
+          {
+            prop: "show",
+            desc: "是否显示, Function时参数为行内容",
+            type: "Boolean / Function(row)",
+            enum: "true / false",
+            default: "-",
+          },
+        ],
+      },
+      {
+        name: "@Events",
+        header: {
+          event: "事件名",
+          desc: "说明",
+          value: "回调参数",
+        },
+        table: [
+          {
+            event: "click",
+            desc: "点击时触发",
+            value: "-",
+          },
+        ],
+      },
+    ],
+  },
   // 多表
   {
     name: "TablePagination",
