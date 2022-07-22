@@ -1,16 +1,68 @@
-# Vue 3 + TypeScript + Vite
+# FIT2CLOUD UI PLUS
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+FIT2CLOUD UI PLUS是基于Element Plus二次开发的Vue 3组件库，提供企业软件开发时常用的组件
 
-## Recommended IDE Setup
+### 安装
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.volar)
+```sh
+npm install fit2cloud-ui-plus
+```
 
-## Type Support For `.vue` Imports in TS
+使用时需要安装Element Plus
 
-Since TypeScript cannot handle type information for `.vue` imports, they are shimmed to be a generic Vue component type by default. In most cases this is fine if you don't really care about component prop types outside of templates. However, if you wish to get actual prop types in `.vue` imports (for example to get props validation when using manual `h(...)` calls), you can enable Volar's Take Over mode by following these steps:
+```sh
+npm install element-plus --save
+```
 
-1. Run `Extensions: Show Built-in Extensions` from VS Code's command palette, look for `TypeScript and JavaScript Language Features`, then right click and select `Disable (Workspace)`. By default, Take Over mode will enable itself if the default TypeScript extension is disabled.
-2. Reload the VS Code window by running `Developer: Reload Window` from the command palette.
+因为需要使用scss，所以需要安装sass
 
-You can learn more about Take Over mode [here](https://github.com/johnsoncodehk/volar/discussions/471).
+```sh
+npm install -D sass sass-loader
+```
+
+如果使用element plus的icon，根据element plus文档安装
+
+```sh
+npm install @element-plus/icons-vue
+```
+
+### 完整引入
+
+```js
+import { createApp } from 'vue'
+import App from './App.vue'
+import ElementPlus from 'element-plus'
+import Fit2CloudPlus from 'fit2cloud-ui-plus';
+import "fit2cloud-ui-plus/src/styles/index.scss"; // 已经包含了element plus的scss
+
+import * as ElementPlusIconsVue from '@element-plus/icons-vue' // element plus的icon需要另安装
+
+const app = createApp(App)
+app.use(ElementPlus)
+app.use(Fit2CloudPlus)
+
+for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
+  app.component(key, component)
+}
+app.mount('#app')
+```
+### 组件文档
+
+文档地址：https://fit2cloud-ui.github.io/docs/
+
+### 致谢
+
+- [Element Plus](https://element-plus.org/zh-CN/) 感谢 Element Plus 提供的优秀组件库
+
+### License & Copyright
+
+Copyright (c) 2014-2022 飞致云 FIT2CLOUD, All rights reserved.
+
+Licensed under The GNU General Public License version 3 (GPLv3)  (the "License"); you may not use this file except in
+compliance with the License. You may obtain a copy of the License at
+
+https://www.gnu.org/licenses/gpl-3.0.html
+
+Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "
+AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific
+language governing permissions and limitations under the License.
