@@ -19,6 +19,7 @@
     "dev": "vite",
     "build": "vite build",
     "build-lib": "vite build --mode lib && vue-tsc --emitDeclarationOnly",
+    "build-docs": "vite build --mode docs",
     "preview": "vite preview"
   },
   "dependencies": {

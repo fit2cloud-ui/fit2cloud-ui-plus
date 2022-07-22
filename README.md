@@ -48,7 +48,7 @@ app.mount('#app')
 ```
 ### 组件文档
 
-文档地址：https://fit2cloud-ui.github.io/docs/
+文档地址：https://fit2cloud-ui.github.io/fit2cloud-ui-plus/
 
 ### 致谢
 
