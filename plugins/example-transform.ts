@@ -1,18 +1,19 @@
-import path from "path";
 import fs from "fs";
-import { baseParse } from "@vue/compiler-core";
+import {baseParse} from "@vue/compiler-core";
 
 const ExampleTransform = {
   // 插件名称
   name: "demo",
   // 代码转译，这个函数的功能类似于 `webpack` 的 `loader`
-  transform(code, id) {
+  transform(code: any, id: string = "") {
     if (
       !/\/examples\/pages\/.*\/demo\/.*\.vue/.test(id) ||
       !/vue&type=demo/.test(id)
     ) {
       return;
     }
+    if (id == null) return
+    // @ts-ignore
     let path = `.${id.match(/\/examples\/pages\/.*\/demo\/.*\.vue/)[0]}`;
     const file = fs.readFileSync(path).toString();
 

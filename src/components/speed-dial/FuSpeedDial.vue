@@ -2,12 +2,12 @@
   <div class="fu-speed-dial" :style="style" v-click-outside="outsideClickClose">
     <div class="fu-speed-dial__content">
       <slot name="fab">
-        <fu-speed-dial-button v-bind="buttonProps" @click="click" @mousedown="mousedown" />
+        <fu-speed-dial-button v-bind="buttonProps" @click="click" @mousedown="mousedown"/>
       </slot>
       <div :style="contentPosition">
         <slot>
           <fu-speed-dial-item v-for="(item, index) in items" :index="index" :key="index" v-bind="item"
-            @click="itemClick" />
+                              @click="itemClick(index)"/>
         </slot>
       </div>
     </div>
@@ -16,14 +16,15 @@
 
 
 <script setup lang="ts">
-import { ref, watch, getCurrentInstance, onMounted, computed, provide, useSlots, PropType } from "vue";
-import type { CSSProperties } from 'vue'
-import type { ZIndexProperty, PositionProperty } from 'csstype'
-import { ClickOutside as vClickOutside } from 'element-plus'
+import {ref, watch, getCurrentInstance, onMounted, computed, provide, useSlots, PropType} from "vue";
+import type {CSSProperties} from 'vue'
+import type {ZIndexProperty, PositionProperty} from 'csstype'
+import {ClickOutside as vClickOutside} from 'element-plus'
 import FuSpeedDialButton from "@/components/speed-dial/FuSpeedDialButton.vue"
 import FuSpeedDialItem from "@/components/speed-dial/FuSpeedDialItem.vue"
-import { SpeedDialKey } from "./types";
-defineOptions({ name: "FuSpeedDial" });
+import {SpeedDialKey} from "./types";
+
+defineOptions({name: "FuSpeedDial"});
 const props = defineProps({
   modelValue: Boolean,
   id: String,
@@ -84,16 +85,16 @@ const props = defineProps({
     default: () => {
       return {
         large: {
-          fab: { size: 56, fontSize: "18px" },
-          item: { size: 40, spacing: 0, titleFontSize: "14px", buttonFontSize: "18px" }
+          fab: {size: 56, fontSize: "18px"},
+          item: {size: 40, spacing: 0, titleFontSize: "14px", buttonFontSize: "18px"}
         },
         default: {
-          fab: { size: 40, fontSize: "16px" },
-          item: { size: 32, spacing: 0, titleFontSize: "14px", buttonFontSize: "16px" }
+          fab: {size: 40, fontSize: "16px"},
+          item: {size: 32, spacing: 0, titleFontSize: "14px", buttonFontSize: "16px"}
         },
         small: {
-          fab: { size: 32, fontSize: "12px", padding: 0 },
-          item: { size: 24, spacing: 0, titleFontSize: "12px", buttonFontSize: "12px" }
+          fab: {size: 32, fontSize: "12px", padding: 0},
+          item: {size: 24, spacing: 0, titleFontSize: "12px", buttonFontSize: "12px"}
         },
       }
     }
@@ -108,8 +109,8 @@ const instance = getCurrentInstance()
 const active = ref(false)
 const moving = ref(false)
 
-const { zIndex, position, left, top, right, bottom } = props
-const style = ref({ zIndex, position, left, top, right, bottom })
+const {zIndex, position, left, top, right, bottom} = props
+const style = ref({zIndex, position, left, top, right, bottom})
 
 watch(() => props.modelValue, (v) => {
   active.value = v
@@ -122,8 +123,8 @@ watch(() => props.top, () => updateStyle())
 watch(() => props.bottom, () => updateStyle())
 
 function updateStyle() {
-  const { zIndex, position, left, top, right, bottom } = props
-  style.value = { zIndex, position, left, top, right, bottom }
+  const {zIndex, position, left, top, right, bottom} = props
+  style.value = {zIndex, position, left, top, right, bottom}
 
 }
 
@@ -144,7 +145,7 @@ const buttonProps = computed(() => {
   let size = config.value.fab.size + "px"
   let fontSize = config.value.fab.fontSize
   let icon = props.activeIcon === props.icon ? props.icon : active.value ? props.activeIcon : props.icon
-  return { type: props.type, rotate, active: active.value, size, fontSize, icon }
+  return {type: props.type, rotate, active: active.value, size, fontSize, icon}
 })
 const spacing = computed(() => {
   let spacing = config.value.item.spacing || 0
@@ -158,7 +159,7 @@ const contentPosition = computed(() => {
     position = -config.value.fab.size - spacing.value
   }
 
-  let positionStyle: CSSProperties = { position: "absolute", zIndex: props.zIndex }
+  let positionStyle: CSSProperties = {position: "absolute", zIndex: props.zIndex}
   if (["top", "bottom"].includes(props.direction)) {
     positionStyle.top = position + "px"
   } else {
@@ -167,8 +168,6 @@ const contentPosition = computed(() => {
   }
   return positionStyle
 })
-
-
 
 
 function toggle(bool?: any) {
@@ -183,18 +182,21 @@ function outsideClickClose() {
   }
   emit("outside-click", [props.id, active.value])
 }
+
 function click(e: Event) {
   if (!props.manual) {
     toggle()
   }
   emit("click", [props.id, active.value], e)
 }
+
 function mousedown() {
   if (props.movable) {
     document.addEventListener('mousemove', mousemove)
     document.addEventListener('mouseup', mouseup)
   }
 }
+
 function mousemove(e: MouseEvent) {
   moving.value = true
   if (props.position === "fixed") {
@@ -208,7 +210,7 @@ function mousemove(e: MouseEvent) {
     delete style.value.bottom
   }
   if (props.position === "absolute") {
-    const { offsetLeft, offsetTop, clientWidth, clientHeight, offsetParent } = instance?.vnode.el as HTMLElement
+    const {offsetLeft, offsetTop, clientWidth, clientHeight, offsetParent} = instance?.vnode.el as HTMLElement
 
     const maxWidth = offsetParent && offsetParent.clientWidth || 0 - clientWidth
     const maxHeight = offsetParent && offsetParent.clientHeight || 0 - clientHeight
@@ -225,17 +227,20 @@ function mousemove(e: MouseEvent) {
     }
   }
 }
+
 function mouseup() {
   writePosition()
   document.removeEventListener('mousemove', mousemove)
   document.removeEventListener('mouseup', mouseup)
   setTimeout(() => moving.value = false)
 }
+
 function writePosition() {
   if (props.localKey) {
     localStorage.setItem(saveKey.value, JSON.stringify(style.value))
   }
 }
+
 function readPosition() {
   // *******????
   // if (this.savePosition) {
@@ -250,11 +255,11 @@ function readPosition() {
   }
   // }
 }
-function itemClick(arg: any, e: any) {
-  const { index } = arg
+
+function itemClick(index: any) {
   if (index !== undefined) {
     const item = props.items[index] as any;
-    if (item.click && typeof item.click === "function") return item.click(arg, e)
+    if (item.click && typeof item.click === "function") return item.click(index)
   }
 }
 

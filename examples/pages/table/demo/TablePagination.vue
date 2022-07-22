@@ -8,12 +8,12 @@
   </fu-table>
   <div class="pagination">
     <fu-table-pagination v-model:current-page="currentPage" v-model:page-size="pageSize" :total="total"
-      @size-change="sizeChange" @current-change="currentChange" />
+                         @size-change="sizeChange" @current-change="currentChange"/>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { onMounted, ref } from 'vue'
+import {onMounted, Ref, ref} from 'vue'
 
 const items = [{
   date: '2016-05-01',
@@ -65,7 +65,7 @@ const items = [{
   address: '北京朝阳区财富中心 12室'
 }];
 
-const tableData = ref([])
+const tableData: Ref<Array<any>> = ref([])
 const currentPage = ref(1)
 const pageSize = ref(5)
 const total = ref(0)
@@ -74,6 +74,7 @@ function currentChange() {
   console.log("currentChange")
   search()
 }
+
 function sizeChange() {
   console.log("sizeChange")
   currentPage.value = 1;

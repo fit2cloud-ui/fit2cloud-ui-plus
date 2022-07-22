@@ -14,10 +14,12 @@
     "lib": ["esnext", "dom"],
     "skipLibCheck": true,
     "paths": {
-      "@/*": ["src/*"],
+      "@/*": ["src/*"]
     },
     "types": ["unplugin-vue-define-options", "vite/client"],
-    "allowJs": true
+    "allowJs": true,
+    "declaration": true,
+    "outDir": "types"
   },
   "include": ["examples/**/*", "src/**/*", "plugins/*"],
   "references": [{ "path": "./tsconfig.node.json" }],
