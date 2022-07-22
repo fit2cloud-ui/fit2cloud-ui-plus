@@ -4,8 +4,8 @@
       <img src="../../assets/logo.png" height="25" alt="" />
     </div>
     <div class="right">
-      <span class="version">{{ PackageJSON.version }}</span> 
-      <a href="https://github.com/fit2cloud-ui/fit2cloud-ui" target="_blank"><img src="../../assets/github.png" height="30" alt="" /></a>
+      <span class="version">{{ PackageJSON.version }}</span>
+      <a href="https://github.com/fit2cloud-ui/fit2cloud-ui-plus" target="_blank"><img src="../../assets/github.png" height="30" alt="" /></a>
     </div>
   </div>
 </template>
