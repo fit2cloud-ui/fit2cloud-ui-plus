@@ -12,8 +12,8 @@
   </div>
 </template>
 
-<script lang="ts" setup>
-import {onMounted, Ref, ref} from 'vue'
+<script setup>
+import {onMounted, ref} from 'vue'
 
 const items = [{
   date: '2016-05-01',
@@ -65,7 +65,7 @@ const items = [{
   address: '北京朝阳区财富中心 12室'
 }];
 
-const tableData: Ref<Array<any>> = ref([])
+const tableData = ref([])
 const currentPage = ref(1)
 const pageSize = ref(5)
 const total = ref(0)

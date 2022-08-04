@@ -20,9 +20,6 @@
     font-weight: 500 !important;;
   }
 }
-.el-table__inner-wrapper::before {
-  background: none;
-}
 
 @include b(table-column-select) {
   margin-left: 10px;
