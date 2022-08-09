@@ -9,7 +9,7 @@
 <script lang="ts" setup>
 import { onMounted, useSlots, ref, watch, computed, onUpdated, provide, VNodeNormalizedChildren, VNode } from "vue";
 import { isFix, getLabel, FuTableBody } from "@/components/table/FuTableBody";
-import { getChildren, isValidChildren } from "@/tools/vnode";
+import { isValidElementNode, getChildren, isValidChildren } from "@/tools/vnode";
 import { LocalKey } from "@/components/table/types";
 
 defineOptions({ name: "FuTable" });
@@ -35,8 +35,8 @@ const cleanColumns = (columns: any) => {
 
 const updateNodes = (nodes: any) => {
   nodes.forEach((node: any) => {
-    if (!node.type.key) {
-      node.type.key = getLabel(node)
+    if (isValidElementNode(node) && !(node.type as any).key) {
+      (node.type as any).key = getLabel(node)
     }
   })
 }
