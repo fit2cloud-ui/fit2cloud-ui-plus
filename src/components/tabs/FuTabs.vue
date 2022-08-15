@@ -1,13 +1,12 @@
 <template>
   <el-tabs class="fu-tabs" :before-leave="beforeLeave" :editable="false" :addable="false" v-bind="$attrs">
-    <slot></slot>
-    <el-tab-pane name="add" key="add" v-if="addable">
+      <el-tab-pane name="add" key="add" v-if="addable" :lazy="true">
       <template #label>
         <slot name="add">
           <!-- 下拉方式 -->
           <el-dropdown @command="handleCommand" v-if="addType === 'dropdown'" :trigger="addTrigger">
             <slot name="dropdownButton">
-              <el-button type="primary" plain>
+              <el-button type="primary" plain >
                 <el-icon>
                   <component :is="addIcon" />
                 </el-icon>
@@ -34,6 +33,8 @@
         </slot>
       </template>
     </el-tab-pane>
+    <slot />
+
   </el-tabs>
 </template>
 
