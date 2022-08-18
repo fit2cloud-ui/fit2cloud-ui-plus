@@ -6,7 +6,7 @@
       </div>
       <div class="top_right">
         <slot name="tr">
-          <fu-search-input :size="size" v-model="quick" :placeholder="quickPlaceholder" @change="change" />
+          <fu-search-input :size="size" v-model="quick" :placeholder="quickPlaceholder" @change="change"/>
           <el-button @click="open" icon="Filter" :size="size">{{ t('fu.filter_bar.filter') }}
             <span v-if="conditions.length > 0">({{ conditions.length }})</span>
           </el-button>
@@ -17,7 +17,8 @@
       </div>
     </div>
     <div class="fu-filter-bar__bottom">
-      <fu-filter ref="filterRef" @filter="filter" :count="resultCount" :components="components" :size="size">
+      <fu-filter ref="filterRef" @filter="filter" :count="resultCount" :components="components" :size="size"
+                 :show-empty="showEmpty">
         <slot></slot>
       </fu-filter>
     </div>
@@ -25,13 +26,14 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from "vue";
-import { useLocale } from "@/hooks"
-import { validateSize } from "@/tools/size";
+import {ref, computed} from "vue";
+import {useLocale} from "@/hooks"
+import {validateSize} from "@/tools/size";
 import FuSearchInput from "@/components/filter-bar/FuSearchInput.vue";
 import FuFilter from "@/components/filter-bar/FuFilter.vue";
-defineOptions({ name: "FuFilterBar" });
-const { t } = useLocale()
+
+defineOptions({name: "FuFilterBar"});
+const {t} = useLocale()
 defineProps({
   size: {
     type: String,
@@ -39,7 +41,11 @@ defineProps({
   },
   resultCount: Number,
   quickPlaceholder: String,
-  components: Array
+  components: Array,
+  showEmpty: {
+    type: Boolean,
+    default: false
+  }
 })
 
 const emit = defineEmits(["exec"])
@@ -67,7 +73,7 @@ function setConditions(conditionObj: any) {
 }
 
 const conditionObj = computed(() => {
-  let obj: any = { quick: quick.value }
+  let obj: any = {quick: quick.value}
   conditions.value.forEach((c: any) => {
     obj[c.field] = c
   })
