@@ -67,7 +67,8 @@
 
 @include b(table-more-button) {
   button+& {
-    margin-left: 10px;
+    margin-left: 12px;
+    vertical-align: middle;
   }
 }
 
