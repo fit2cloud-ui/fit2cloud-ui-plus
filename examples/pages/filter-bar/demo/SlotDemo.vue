@@ -5,13 +5,32 @@
       <template #tl>
         <el-button>导出数据</el-button>
       </template>
+      <template #tr="condition">
+        <el-select v-model="selection" placeholder="Select" style="width: 115px">
+          <el-option label="ID" value="id"/>
+          <el-option label="姓名" value="name"/>
+        </el-select>
+        <fu-filter-input v-model="quick" placeholder="Please input" @change="exec(condition)"/>
+
+        <!--        <el-input v-model="quick" placeholder="Please input">-->
+        <!--          <template #prepend>-->
+        <!--            <el-select v-model="selection" placeholder="Select" style="width: 115px">-->
+        <!--              <el-option label="ID" value="id"/>-->
+        <!--              <el-option label="姓名" value="name"/>-->
+        <!--            </el-select>-->
+        <!--          </template>-->
+        <!--          <template #append>-->
+        <!--            <el-button :icon="Search"/>-->
+        <!--          </template>-->
+        <!--        </el-input>-->
+      </template>
       <template #default>
-        <fu-filter-select size="default" label="事件类型" field="type" :options="options" multiple clearable filterable />
-        <fu-filter-date size="default" label="操作日期" field="date" />
-        <fu-filter-date-time size="default" label="操作时间" field="datetime" />
+        <fu-filter-select size="default" label="事件类型" field="type" :options="options" multiple clearable/>
+        <fu-filter-date size="default" label="操作日期" field="date"/>
+        <fu-filter-date-time size="default" label="操作时间" field="datetime"/>
       </template>
       <template #buttons>
-        <fu-table-column-select type="button" :columns="columns" size="default" />
+        <fu-table-column-select type="button" :columns="columns" size="default"/>
       </template>
     </fu-filter-bar>
   </div>
@@ -25,17 +44,19 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue"
-const options = [{ label: "选项1", value: 1 },
-{ label: "选项2", value: 2 },
-{ label: "选项3", value: 3 },
-{ label: "选项4", value: 4 },
-{ label: "选项5", value: 5 },
-{ label: "选项6", value: 6 },
-{ label: "选项7", value: 7 },
-{ label: "选项8", value: 8 },
-{ label: "选项9", value: 9 },
-{ label: "选项10", value: 10 },
+import {ref} from "vue"
+import {Search} from '@element-plus/icons-vue'
+
+const options = [{label: "选项1", value: 1},
+  {label: "选项2", value: 2},
+  {label: "选项3", value: 3},
+  {label: "选项4", value: 4},
+  {label: "选项5", value: 5},
+  {label: "选项6", value: 6},
+  {label: "选项7", value: 7},
+  {label: "选项8", value: 8},
+  {label: "选项9", value: 9},
+  {label: "选项10", value: 10},
 ]
 
 const tableData = [{
@@ -56,12 +77,25 @@ const tableData = [{
   address: "北京朝阳区财富中心 3室",
 }]
 const count = ref(0)
-const condition = ref({})
 const columns = ref([])
+const selection = ref("")
+const quick = ref("")
+const condition = ref({})
 
-function exec(condition: any) {
-  condition.value = condition
-  count.value = Object.keys(condition).length * 10
+function change() {
+  exec(condition.value)
+}
+
+function exec(c: any) {
+  if (quick.value) {
+    c.quick = {
+      field: selection.value,
+      value: quick.value
+    }
+  }
+  condition.value = c
+  count.value = Object.keys(condition.value).length * 10
+  console.log("筛选条件：", condition.value)
 }
 
 </script>
