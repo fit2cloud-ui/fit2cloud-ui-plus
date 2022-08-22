@@ -10,19 +10,7 @@
           <el-option label="ID" value="id"/>
           <el-option label="姓名" value="name"/>
         </el-select>
-        <fu-filter-input v-model="quick" placeholder="Please input" @change="exec(condition)"/>
-
-        <!--        <el-input v-model="quick" placeholder="Please input">-->
-        <!--          <template #prepend>-->
-        <!--            <el-select v-model="selection" placeholder="Select" style="width: 115px">-->
-        <!--              <el-option label="ID" value="id"/>-->
-        <!--              <el-option label="姓名" value="name"/>-->
-        <!--            </el-select>-->
-        <!--          </template>-->
-        <!--          <template #append>-->
-        <!--            <el-button :icon="Search"/>-->
-        <!--          </template>-->
-        <!--        </el-input>-->
+        <fu-filter-input v-model="quick" placeholder="Please input" @change="change"/>
       </template>
       <template #default>
         <fu-filter-select size="default" label="事件类型" field="type" :options="options" multiple clearable/>
