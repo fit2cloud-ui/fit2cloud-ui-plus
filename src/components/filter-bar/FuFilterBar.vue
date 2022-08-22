@@ -5,15 +5,14 @@
         <slot name="tl"></slot>
       </div>
       <div class="top_right">
-        <slot name="tr">
-          <fu-search-input :size="size" v-model="quick" :placeholder="quickPlaceholder" @change="change"/>
-          <el-button @click="open" icon="Filter" :size="size">{{ t('fu.filter_bar.filter') }}
-            <span v-if="conditions.length > 0">({{ conditions.length }})</span>
-          </el-button>
+        <slot name="tr" :condition="conditionObj">
+          <fu-filter-input :size="size" v-model="quick" :placeholder="quickPlaceholder" @change="change"/>
         </slot>
+        <el-button class="fu-filter-button" @click="open" icon="Filter" :size="size">{{ t('fu.filter_bar.filter') }}
+          <span v-if="conditions.length > 0">({{ conditions.length }})</span>
+        </el-button>
 
         <slot name="buttons"></slot>
-
       </div>
     </div>
     <div class="fu-filter-bar__bottom">
@@ -29,7 +28,7 @@
 import {ref, computed} from "vue";
 import {useLocale} from "@/hooks"
 import {validateSize} from "@/tools/size";
-import FuSearchInput from "@/components/filter-bar/FuSearchInput.vue";
+import FuFilterInput from "@/components/filter-bar/FuFilterInput.vue";
 import FuFilter from "@/components/filter-bar/FuFilter.vue";
 
 defineOptions({name: "FuFilterBar"});
@@ -73,7 +72,10 @@ function setConditions(conditionObj: any) {
 }
 
 const conditionObj = computed(() => {
-  let obj: any = {quick: quick.value}
+  let obj: any = {}
+  if (quick.value) {
+    obj.quick = quick.value
+  }
   conditions.value.forEach((c: any) => {
     obj[c.field] = c
   })
@@ -81,6 +83,7 @@ const conditionObj = computed(() => {
 });
 
 defineExpose({
-  setConditions
+  setConditions,
+  open
 })
 </script>

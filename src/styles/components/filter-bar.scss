@@ -19,9 +19,8 @@
   }
 }
 
-@include b(search-input) {
+@include b(filter-input) {
   width: 240px;
-  margin-right: 10px;
   .el-input__prefix, .el-input__suffix {
     .el-input__icon {
       color: $filter-color;
@@ -32,6 +31,10 @@
   // .el-icon-circle-close:before {
   //   content: "\e79d"
   // }
+}
+
+@include b(filter-button) {
+  margin-left: 12px;
 }
 
 @include b(filter) {
