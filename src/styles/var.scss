@@ -1,0 +1,8 @@
+@use "./common/mixins" as *;
+@use "./common/variables.scss" as *;
+
+:root {
+  // 遍历组件变量: --fu-search-bar-{key}: {value}
+  @include set-component-css-var('search-bar', $fu-search-bar);
+  @include set-component-css-var('filter-bar', $fu-filter-bar);
+}

@@ -2,9 +2,11 @@
 @use "element-plus/theme-chalk/src/index.scss" as *;
 @use "./components/speed-dial";
 @use "./components/filter-bar";
+@use "./components/search-bar";
 @use "./components/table";
 @use "./components/steps";
 @use "./components/read-write-switch";
 @use "./components/split-pane";
 @use "./components/tabs";
 @use "./components/virtual-scroller";
+@use "./var";

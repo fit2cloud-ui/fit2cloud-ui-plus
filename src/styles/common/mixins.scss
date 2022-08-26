@@ -1,8 +1,4 @@
 @use 'function' as *;
-@use 'variables' as *;
-// forward mixins
-@forward 'config';
-@forward 'function';
 @use 'config' as *;
 
 // BEM
@@ -83,3 +79,12 @@
   }
 }
 
+@mixin set-css-var($name, $value) {
+  #{joinVarName($name)}: #{$value};
+}
+
+@mixin set-component-css-var($name, $variables) {
+  @each $attribute, $value in $variables {
+    #{getCssVarName($name, $attribute)}: #{$value};
+  }
+}

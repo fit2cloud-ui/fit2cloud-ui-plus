@@ -3,7 +3,7 @@
 
 @include b(table) {
   &.el-table {
-    th.el-table-column--selection>.cell {
+    th.el-table-column--selection > .cell {
       padding-left: 14px;
       padding-right: 14px;
     }
@@ -15,7 +15,7 @@
 
 @include b(table-header) {
   th {
-    background-color: $table-header-bgColor !important;
+    background-color: var(--el-table-header-bg-color) !important;
     border-top: 1px solid var(--el-table-border-color);
     font-weight: 500 !important;;
   }
@@ -37,7 +37,7 @@
   }
 
   @include e(item) {
-    &+& {
+    & + & {
       margin-top: 5px;
     }
   }
@@ -60,13 +60,13 @@
 }
 
 @include b(table-operations) {
-  div[type='dialog']>.fu-search-bar-button {
+  div[type='dialog'] > .fu-search-bar-button {
     border: none;
   }
 }
 
 @include b(table-more-button) {
-  button+& {
+  button + & {
     margin-left: 12px;
     vertical-align: middle;
   }

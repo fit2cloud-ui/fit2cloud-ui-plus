@@ -1,3 +1,4 @@
+@use 'sass:map';
 
 @forward 'element-plus/theme-chalk/src/common/var.scss' with (
   $colors: (
@@ -14,11 +15,37 @@
 );
 
 // fit2cloud ui variables
-$table-header-bgColor: #F5F6F7 !default;
+$fu-search-bar: () !default;
+$fu-search-bar: map.deep-merge(
+    (
+      'width': 100%,
+      'height': 48px,
+      'condition-color': #424242,
+      'condition-bgColor': #E6E6E6,
+    ),
+    $fu-search-bar
+);
+$fu-search-bar-width: map.get($fu-search-bar, 'width') !default;
+$fu-search-bar-height: map.get($fu-search-bar, 'height') !default;
+$fu-search-bar-condition-color: map.get($fu-search-bar, 'condition-color') !default;
+$fu-search-bar-condition-bgColor: map.get($fu-search-bar, 'condition-bgColor') !default;
 
-$filter-color: #646A73 !default;
-$filter-drawer-color: #646A73 !default;
-$filter-condition-color: #0C296E !default;
-$filter-condition-bgColor: rgba(51, 112, 255, 0.1) !default;
-$filter-option-bgColor:  #F5F6F7 !default;
-$filter-scroll-bgColor:  rgba(31, 35, 41, 0.1) !default;
+$fu-filter-bar: () !default;
+$fu-filter-bar: map.deep-merge(
+    (
+      'color': #646A73,
+      'drawer-color': #646A73,
+      'condition-color': #0C296E,
+      'condition-bgColor': #3370FF19,
+      'option-bgColor': #F5F6F7,
+      'scroll-bgColor': #1F232919
+    ),
+    $fu-filter-bar
+);
+
+$fu-filter-bar-color: map.get($fu-filter-bar, 'color') !default;
+$fu-filter-bar-drawer-color: map.get($fu-filter-bar, 'drawer-color') !default;
+$fu-filter-bar-condition-color: map.get($fu-filter-bar, 'condition-color') !default;
+$fu-filter-bar-condition-bgColor: map.get($fu-filter-bar, 'condition-bgColor') !default;
+$fu-filter-bar-option-bgColor: map.get($fu-filter-bar, 'option-bgColor') !default;
+$fu-filter-bar-scroll-bgColor: map.get($fu-filter-bar, 'scroll-bgColor') !default;
