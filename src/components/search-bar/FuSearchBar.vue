@@ -139,7 +139,7 @@ function merge(source: ComplexCondition[], target: ComplexCondition[]) {
 }
 
 function setConditions(conditionObj: any) {
-  conditions.value = complexRef.value?.setConditions(conditionObj)
+  conditions.value = complexRef.value?.setConditions(conditionObj) || []
   if (props.useQuickSearch && conditionObj[props.quickKey] !== undefined) {
     quick.value = conditionObj[props.quickKey].value
     exec()

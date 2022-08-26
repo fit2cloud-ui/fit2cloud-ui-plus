@@ -19,7 +19,7 @@
 </template>
 
 <script setup lang="ts">
-import {ref, inject, computed} from "vue";
+import {ref, inject, computed, PropType} from "vue";
 import {useLocale} from "@/hooks"
 import {validateSize} from "@/tools/size";
 import {ComplexCondition, referenceKey} from "./types";
@@ -31,7 +31,7 @@ const props = defineProps({
     type: String,
     validator: validateSize
   },
-  components: Array
+  components: Array as PropType<any[]>,
 })
 
 const emit = defineEmits(["close", "change"])
