@@ -1,13 +1,16 @@
 import PackageJSON from "../package.json"
 
-import type { App } from 'vue'
+import type {App} from 'vue'
+import {GlobalConfig, provideGlobalConfig} from "@/hooks";
+
 const components = import.meta.globEager('@/components/*/index.ts');
 
-const install = (app: App): void => {
+const install = (app: App, config: GlobalConfig): void => {
   Object.keys(components).forEach(key => {
     let component = components[key].default;
     app.use(component)
   })
+  provideGlobalConfig(config)
 }
 
 const plugin = {

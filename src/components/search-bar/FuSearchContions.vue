@@ -1,5 +1,5 @@
 <template>
-  <div :class="['fu-search-conditions', 'fu-search-conditions--' + size]">
+  <div :class="['fu-search-conditions', 'fu-search-conditions--' + configSize]">
     <div class="fu-search-conditions__item" v-for="(condition, index) in conditions">
       <div v-if="condition.label">{{ condition.label }}</div>
       <div class="condition-value">{{ condition.valueLabel }}</div>
@@ -14,6 +14,7 @@
 import {PropType} from "vue";
 import {ComplexCondition} from "./types";
 import {validateSize} from "@/tools/size";
+import {useSize} from "@/hooks";
 
 defineOptions({name: "FuSearchConditions"});
 
@@ -27,6 +28,8 @@ const props = defineProps({
     required: true
   }
 })
+
+const configSize = useSize()
 
 const emit = defineEmits<{ (e: 'change', conditions: Array<ComplexCondition>): void }>()
 

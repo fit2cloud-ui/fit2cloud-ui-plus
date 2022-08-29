@@ -1,7 +1,7 @@
 import { computed, isRef, ref, unref } from 'vue'
 import { get } from 'lodash-unified'
 import Chinese from '@/locale/lang/zh-cn'
-import { useGlobalConfig } from '../use-global-config'
+import { useGlobalConfig } from '@/hooks'
 import type { MaybeRef } from '@vueuse/core'
 import type { Ref } from 'vue'
 import type { Language } from '@/locale'

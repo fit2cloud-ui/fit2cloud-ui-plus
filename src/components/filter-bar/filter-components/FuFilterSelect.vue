@@ -6,7 +6,7 @@
       <el-popover popper-class="fu-filter-component-popover" :show-arrow="false" placement="bottom-start"
         trigger="click" width="240">
         <el-select v-model="selection" v-bind="$attrs" :multiple="multiple" @change="change" :teleported="false"
-          :size="size" :placeholder="t('fu.search_bar.please_select')">
+          :size="configSize" :placeholder="t('fu.search_bar.please_select')">
           <el-option value="" v-if="useSelectAll && multiple">
             <div @click="selectAll">{{ t('fu.filter_bar.select_all') }}</div>
           </el-option>
@@ -30,10 +30,9 @@ import { ref, provide, computed, PropType, Ref, inject } from "vue";
 import FuFilterOption from "./FuFilterOption.vue";
 import { FilterCondition, OptionProps, ReferenceContext, referenceKey, selectKey } from "../types";
 
-import { useLocale } from "@/hooks"
+import {useLocale, useSize} from "@/hooks"
 import { validateSize } from "@/tools/size";
 defineOptions({ name: "FuFilterSelect" });
-const { t } = useLocale()
 
 const props = defineProps({
   size: {
@@ -65,7 +64,7 @@ const props = defineProps({
 const emit = defineEmits(["change"])
 
 const selection: Ref<Array<string | number> | string | number> = ref(props.multiple ? [] : '')
-
+const configSize = useSize()
 const showOptions = computed(() => {
   return props.options.filter((o, i) => {
     let show = props.showLimit < 0 ? true : i < props.showLimit
@@ -87,6 +86,8 @@ const valueLabel = computed(() => {
   }
   return getValueLabel(selection.value);
 })
+
+const { t } = useLocale()
 
 function change(v: string) {
   if (v.includes("")) {

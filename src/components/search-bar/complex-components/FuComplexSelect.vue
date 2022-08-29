@@ -5,7 +5,7 @@
       <el-select class="fu-complex-select"
                  :placeholder="t('fu.search_bar.please_select')"
                  v-model="selection"
-                 :size="size"
+                 :size="configSize"
                  v-bind="$attrs"
                  clearable>
         <el-option v-for="o in options" :key="o.value" :label="o.label" :value="o.value"></el-option>
@@ -18,7 +18,7 @@
 import {ref, computed, PropType, inject} from "vue";
 import {ComplexCondition, OptionProps, ReferenceContext, referenceKey} from "../types";
 import {validateSize} from "@/tools/size";
-import {useLocale} from "@/hooks"
+import {useLocale, useSize} from "@/hooks"
 
 defineOptions({name: "FuComplexSelect"});
 
@@ -43,6 +43,8 @@ const props = defineProps({
 })
 
 const selection = ref<Array<string | number> | string | number>(props.multiple ? [] : '')
+
+const configSize = useSize()
 
 const valueLabel = computed(() => {
   if (Array.isArray(selection.value)) {

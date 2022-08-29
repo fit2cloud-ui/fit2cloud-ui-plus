@@ -2,7 +2,7 @@
   <div class="fu-complex-component">
     <div class="fu-complex-component__label">{{ label }}</div>
     <div class="fu-complex-component__content">
-      <el-input v-model="inputValue" :placeholder="t('fu.search_bar.please_input')" :size="size" v-bind="$attrs"/>
+      <el-input v-model="inputValue" :placeholder="t('fu.search_bar.please_input')" :size="configSize" v-bind="$attrs"/>
     </div>
   </div>
 </template>
@@ -11,7 +11,7 @@
 import {ref, inject} from "vue";
 import {ComplexCondition, ReferenceContext, referenceKey} from "../types";
 import {validateSize} from "@/tools/size";
-import {useLocale} from "@/hooks"
+import {useLocale, useSize} from "@/hooks"
 
 defineOptions({name: "FuComplexInput"});
 
@@ -28,6 +28,8 @@ const props = defineProps({
 })
 
 const inputValue = ref<string | number>("")
+
+const configSize = useSize()
 
 const {t} = useLocale()
 

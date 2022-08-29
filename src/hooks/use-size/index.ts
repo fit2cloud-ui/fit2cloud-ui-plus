@@ -1,8 +1,9 @@
-import { computed, ref, unref, getCurrentInstance } from 'vue'
-import { useGlobalConfig } from '../use-global-config'
-import type { ComputedRef } from 'vue'
-import type { ComponentSize } from '@/tools/size'
-import type { MaybeRef } from '@vueuse/core'
+import {computed, getCurrentInstance, ref, unref} from 'vue'
+import {useGlobalConfig} from '@/hooks'
+import type {ComputedRef} from 'vue'
+import type {ComponentSize} from '@/tools/size'
+import {validateSize} from "@/tools/size";
+import {MaybeRef} from "@vueuse/core";
 
 export const useProp = <T>(name: string): ComputedRef<T | undefined> => {
   const vm = getCurrentInstance()!
@@ -25,5 +26,10 @@ export const useSize = (
       globalConfig.value ||
       ''
   )
+}
+
+export const useSizeProp = {
+  type: String,
+  validator: validateSize,
 }
 

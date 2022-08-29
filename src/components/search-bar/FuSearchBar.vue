@@ -1,18 +1,19 @@
 <template>
   <div class="fu-search-bar">
     <div class="fu-search-bar__content">
-      <fu-complex-search ref="complexRef" :components="components" @change="change" :size="size" @close="closePopover">
+      <fu-complex-search ref="complexRef" :components="components" @change="change" :size="configSize"
+                         @close="closePopover">
         <slot name="complex"></slot>
       </fu-complex-search>
-      <fu-search-conditions :conditions="conditions" :size="size" @change="change" v-if="showComplex"/>
-      <fu-quick-search :size="size" :use-icon="!showComplex" :placeholder="placeholder" v-model="quick"
+      <fu-search-conditions :conditions="conditions" :size="configSize" @change="change" v-if="showComplex"/>
+      <fu-quick-search :size="configSize" :use-icon="!showComplex" :placeholder="placeholder" v-model="quick"
                        @change="exec" v-if="useQuickSearch"/>
     </div>
     <div class="fu-search-bar__buttons">
       <slot name="buttons">
-        <fu-search-bar-button icon="Close" @click="clean" :size="size" :tooltip="t('fu.search_bar.clean')"
+        <fu-search-bar-button icon="Close" @click="clean" :size="configSize" :tooltip="t('fu.search_bar.clean')"
                               v-if="showClean"/>
-        <fu-search-bar-button icon="Refresh" @click="refresh" :size="size" :tooltip="t('fu.search_bar.refresh')"
+        <fu-search-bar-button icon="Refresh" @click="refresh" :size="configSize" :tooltip="t('fu.search_bar.refresh')"
                               v-if="showRefresh"/>
         <slot></slot>
       </slot>
@@ -26,17 +27,13 @@ import FuComplexSearch from "./FuComplexSearch.vue";
 import FuSearchBarButton from "./FuSearchBarButton.vue";
 import FuSearchConditions from "./FuSearchContions.vue";
 import {ComplexCondition, ReferenceContext, referenceKey} from "./types";
-import {useLocale} from "@/hooks";
-import {validateSize} from "@/tools/size";
+import {useLocale, useSizeProp, useSize} from "@/hooks";
 import {computed, provide, ref} from "vue";
 
 defineOptions({name: "FuSearchBar"});
 
 const props = defineProps({
-  size: {
-    type: String,
-    validator: validateSize
-  },
+  size: useSizeProp,
   quickKey: {
     type: String,
     default: "quick"
@@ -63,6 +60,8 @@ const conditions = ref<ComplexCondition[]>([])
 const references = ref<ReferenceContext[]>([])
 
 provide(referenceKey, references)
+
+const configSize = useSize()
 
 const placeholder = computed(() => {
   return props.quickPlaceholder ? props.quickPlaceholder : t('fu.search_bar.search')

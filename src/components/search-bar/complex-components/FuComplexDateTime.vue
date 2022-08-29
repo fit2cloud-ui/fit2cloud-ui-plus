@@ -3,7 +3,7 @@
     <div class="fu-complex-component__label">{{ label }}</div>
     <div class="fu-complex-component__content">
       <!-- :size="configSize"  -->
-      <el-date-picker class="fu-complex-date-time" v-model="value" v-bind="$attrs" :size="size"
+      <el-date-picker class="fu-complex-date-time" v-model="value" v-bind="$attrs" :size="configSize"
                       :placeholder="t('fu.search_bar.select_date_time')" type="datetimerange"
                       :value-format="valueFormat"
                       :start-placeholder="t('fu.search_bar.start_date_time')"
@@ -17,11 +17,10 @@
 import {ref, computed, inject} from "vue";
 import {ComplexCondition, ReferenceContext, referenceKey} from "../types";
 import {datetimeFormat} from "@/tools/time";
-import {useLocale} from "@/hooks"
+import {useLocale, useSize} from "@/hooks"
 import {validateSize} from "@/tools/size";
 
 defineOptions({name: "FuComplexDateTime"});
-const {t} = useLocale()
 
 const props = defineProps({
   size: {
@@ -41,6 +40,8 @@ const props = defineProps({
 
 const value = ref('')
 
+const configSize = useSize()
+
 const valueLabel = computed(() => {
   return (
     datetimeFormat(value.value[0]) +
@@ -48,6 +49,8 @@ const valueLabel = computed(() => {
     datetimeFormat(value.value[1])
   );
 })
+
+const {t} = useLocale()
 
 function getCondition(): ComplexCondition | undefined {
   if (!String(value.value)) return;

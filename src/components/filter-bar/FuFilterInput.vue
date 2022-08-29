@@ -1,11 +1,12 @@
 <template>
   <el-input class="fu-filter-input" prefix-icon="Search" v-model="quick" @input="input" @blur="blur" @keydown="keydown"
-            @clear="clear" v-bind="$attrs" clearable :size="size"/>
+            @clear="clear" v-bind="$attrs" clearable :size="configSize"/>
 </template>
 
 <script setup lang="ts">
 import {ref, watch} from "vue";
 import {validateSize} from "@/tools/size";
+import {useSize} from "@/hooks";
 
 defineOptions({name: "FuFilterInput"});
 
@@ -16,8 +17,10 @@ const props = defineProps({
   },
   modelValue: String,
 })
+
 const emit = defineEmits(["update:modelValue", "change"])
 const quick = ref("")
+const configSize = useSize()
 
 watch(() => props.modelValue, (val: any) => {
   quick.value = val

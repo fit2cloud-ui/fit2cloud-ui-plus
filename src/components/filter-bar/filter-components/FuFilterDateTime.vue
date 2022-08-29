@@ -3,7 +3,7 @@
     <div class="fu-filter-component__label">{{ label }}</div>
     <div class="fu-filter-component__content">
       <!-- :size="configSize"  -->
-      <el-date-picker class="fu-filter-date" v-model="value" v-bind="$attrs" :size="size"
+      <el-date-picker class="fu-filter-date" v-model="value" v-bind="$attrs" :size="configSize"
         :placeholder="t('fu.search_bar.select_date_time')" type="datetimerange" :value-format="valueFormat"
         :start-placeholder="t('fu.search_bar.start_date_time')" :end-placeholder="t('fu.search_bar.end_date_time')">
       </el-date-picker>
@@ -15,10 +15,9 @@
 import { ref, computed, inject } from "vue";
 import { FilterCondition, ReferenceContext, referenceKey } from "../types";
 import { datetimeFormat } from "@/tools/time";
-import { useLocale } from "@/hooks"
+import {useLocale, useSize} from "@/hooks"
 import { validateSize } from "@/tools/size";
 defineOptions({ name: "FuFilterDateTime" });
-const { t } = useLocale()
 
 const props = defineProps({
   size: {
@@ -37,7 +36,7 @@ const props = defineProps({
 })
 
 const value = ref('')
-
+const configSize = useSize()
 const valueLabel = computed(() => {
   return (
     datetimeFormat(value.value[0]) +
@@ -45,6 +44,7 @@ const valueLabel = computed(() => {
     datetimeFormat(value.value[1])
   );
 })
+const { t } = useLocale()
 
 function getCondition(): FilterCondition | undefined {
   if (!String(value.value)) return;

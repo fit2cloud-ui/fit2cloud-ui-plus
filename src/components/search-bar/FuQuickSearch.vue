@@ -1,5 +1,5 @@
 <template>
-  <div :class="['fu-quick-search', 'fu-quick-search--' + size]">
+  <div :class="['fu-quick-search', 'fu-quick-search--' + configSize]">
     <el-icon v-if="useIcon">
       <Search/>
     </el-icon>
@@ -13,6 +13,7 @@
 <script setup lang="ts">
 import {computed, ref, watch} from "vue";
 import {validateSize} from "@/tools/size";
+import {useSize} from "@/hooks";
 
 defineOptions({name: "FuQuickSearch"});
 
@@ -32,6 +33,8 @@ const props = defineProps({
 const focused = ref(false)
 
 const emit = defineEmits(["update:modelValue", "change"])
+
+const configSize = useSize()
 
 const value = computed({
   get: () => props.modelValue,

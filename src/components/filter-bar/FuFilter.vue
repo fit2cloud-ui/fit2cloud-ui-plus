@@ -31,7 +31,7 @@
     <div class="drawer-body">
       <slot>
         <component v-for="(c, i) in components" :key="i" :is="c.component" v-bind="c" :ref="c.field" v-on="c"
-                   :size="size"/>
+                   :size="configSize"/>
       </slot>
     </div>
     <div class="drawer-footer">
@@ -54,7 +54,7 @@ import {
   ComponentPublicInstance
 } from "vue";
 import FuFilterConditions from "./FuFilterConditions.vue";
-import {useLocale} from "@/hooks"
+import {useLocale, useSize} from "@/hooks"
 import {validateSize} from "@/tools/size";
 import {FilterCondition, ReferenceContext, referenceKey} from "@/components/filter-bar/types";
 
@@ -83,6 +83,7 @@ const props = defineProps({
 
 const emit = defineEmits(["filter"])
 
+const configSize = useSize()
 const drawer = ref(true)
 const scroll = ref(false)
 const conditions: Ref<Array<FilterCondition>> = ref([])

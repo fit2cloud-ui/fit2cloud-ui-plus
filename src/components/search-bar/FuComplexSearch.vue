@@ -3,16 +3,16 @@
     <div class="fu-complex-components">
       <div class="fu-complex-components__body">
         <slot>
-          <component v-for="c in components" :is="c.component" v-bind="c" :size="size"/>
+          <component v-for="c in components" :is="c.component" v-bind="c" :size="configSize"/>
         </slot>
       </div>
       <div class="fu-complex-components__footer">
-        <el-button @click="close" :size="size">{{ t('fu.search_bar.cancel') }}</el-button>
-        <el-button type="primary" @click="ok" :size="size">{{ t('fu.search_bar.ok') }}</el-button>
+        <el-button @click="close" :size="configSize">{{ t('fu.search_bar.cancel') }}</el-button>
+        <el-button type="primary" @click="ok" :size="configSize">{{ t('fu.search_bar.ok') }}</el-button>
       </div>
     </div>
     <template #reference>
-      <el-button circle icon="ArrowRightBold" @click="toggle" :size="size" v-show="showComplex"
+      <el-button circle icon="ArrowRightBold" @click="toggle" :size="configSize" v-show="showComplex"
                  :class="['fu-complex-components-trigger', {'is-active':active}]"/>
     </template>
   </el-popover>
@@ -20,7 +20,7 @@
 
 <script setup lang="ts">
 import {ref, inject, computed, PropType} from "vue";
-import {useLocale} from "@/hooks"
+import {useLocale, useSize} from "@/hooks"
 import {validateSize} from "@/tools/size";
 import {ComplexCondition, referenceKey} from "./types";
 
@@ -38,6 +38,8 @@ const emit = defineEmits(["close", "change"])
 
 const active = ref(false)
 const references = inject(referenceKey)
+
+const configSize = useSize()
 
 const showComplex = computed(() => {
   return references ? references.value.length > 0 : false
