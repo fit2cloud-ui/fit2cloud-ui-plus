@@ -18,7 +18,7 @@
 
 <script setup lang="ts">
 import FuReadWriteSwitch from "./FuReadWriteSwitch.vue";
-import {ref, watch, PropType} from "vue";
+import {watch, ref, PropType} from "vue";
 import {OptionProps} from "./types";
 
 defineOptions({name: "FuSelectRwSwitch"});
@@ -29,6 +29,10 @@ const props = defineProps({
     type: Array as PropType<OptionProps[]>,
     default: []
   },
+  blurTime: {
+    type: Number,
+    default: 150
+  },
   writeTrigger: {
     type: String,
     default: "onClick",
@@ -37,7 +41,7 @@ const props = defineProps({
     }
   }
 })
-const emit = defineEmits(["input", "blur", "change"])
+const emit = defineEmits(["input", "blur", "change", "update:modelValue"])
 const data = ref(props.modelValue)
 
 watch(() => props.modelValue, (v) => {
@@ -49,13 +53,16 @@ function input(e: Event) {
 }
 
 function blur(read: Function, e: Event) {
-  setTimeout(() => {
-    read()
-  }, 100)
-  emit("blur", data.value, e)
+  if (props.blurTime > 0) {
+    setTimeout(() => {
+      read()
+    }, props.blurTime)
+    emit("blur", e)
+  }
 }
 
 function change(read: Function, e: Event) {
+  emit("update:modelValue", data.value, e)
   emit("change", data.value, e)
   read()
 }

@@ -112,6 +112,13 @@ export const attributes = [
             type: 'Array',
             enum: '-',
             default: '-',
+          },
+          {
+            prop: 'blurTime',
+            desc: '触发blur时间(单位:ms)，负值不触发blur事件',
+            type: 'Number',
+            enum: '-',
+            default: '150',
           }
         ]
       },
@@ -122,7 +129,7 @@ export const attributes = [
           {
             event: 'blur',
             desc: '写状态下，下拉框失去焦点时触发',
-            value: '选项值',
+            value: 'Event',
           },
           {
             event: 'change',
