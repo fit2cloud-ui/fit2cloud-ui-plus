@@ -215,13 +215,6 @@ export const attributes = [
             default: '-',
           },
           {
-            prop: 'default-operator',
-            desc: '默认的运算符',
-            type: 'String',
-            enum: '-',
-            default: 'like',
-          },
-          {
             prop: '...ElInput',
             desc: '继承ElInput的属性',
             type: '-',
@@ -256,64 +249,9 @@ export const attributes = [
             default: '-',
           },
           {
-            prop: 'default-operator',
-            desc: '默认的运算符',
-            type: 'String',
-            enum: '-',
-            default: '-',
-          },
-          {
             prop: 'options',
             desc: '候选项',
             type: 'Array',
-            enum: '-',
-            default: '-',
-          },
-          {
-            prop: '...ElSelect',
-            desc: '继承ElSelect的属性',
-            type: '-',
-            enum: '-',
-            default: '-',
-          }
-        ]
-      },
-      {
-        name: '@ComplexAsyncSelect Attributes',
-        header: {prop: '参数', desc: "说明", type: '类型', enum: "可选值", default: "默认值"},
-        table: [
-          {
-            prop: 'size',
-            desc: '大小',
-            type: 'String',
-            enum: 'medium / small / mini',
-            default: '-',
-          },
-          {
-            prop: 'field',
-            desc: '字段名',
-            type: 'String',
-            enum: '-',
-            default: '-',
-          },
-          {
-            prop: 'label',
-            desc: '字段Label',
-            type: 'String',
-            enum: '-',
-            default: '-',
-          },
-          {
-            prop: 'default-operator',
-            desc: '默认的运算符',
-            type: 'String',
-            enum: '-',
-            default: '-',
-          },
-          {
-            prop: 'init-options',
-            desc: '候选项初始化方法, 回调参数(options:候选数组, loading: loading对象, 内容{status:true/false})',
-            type: 'Function',
             enum: '-',
             default: '-',
           },
@@ -338,13 +276,6 @@ export const attributes = [
             default: '-',
           },
           {
-            prop: 'align',
-            desc: '对齐方式',
-            type: 'String',
-            enum: 'left / center / right',
-            default: 'right',
-          },
-          {
             prop: 'field',
             desc: '字段名',
             type: 'String',
@@ -357,13 +288,6 @@ export const attributes = [
             type: 'String',
             enum: '-',
             default: '-',
-          },
-          {
-            prop: 'default-operator',
-            desc: '默认的运算符',
-            type: 'String',
-            enum: '-',
-            default: 'between',
           },
           {
             prop: '...ElDatePicker',
@@ -386,13 +310,6 @@ export const attributes = [
             default: '-',
           },
           {
-            prop: 'align',
-            desc: '对齐方式',
-            type: 'String',
-            enum: 'left / center / right',
-            default: 'right',
-          },
-          {
             prop: 'field',
             desc: '字段名',
             type: 'String',
@@ -405,13 +322,6 @@ export const attributes = [
             type: 'String',
             enum: '-',
             default: '-',
-          },
-          {
-            prop: 'default-operator',
-            desc: '默认的运算符',
-            type: 'String',
-            enum: '-',
-            default: 'between',
           },
           {
             prop: '...ElDateTimePicker',
@@ -422,102 +332,6 @@ export const attributes = [
           }
         ]
       },
-      {
-        name: '@ComplexInputNumber Attributes',
-        header: {prop: '参数', desc: "说明", type: '类型', enum: "可选值", default: "默认值"},
-        table: [
-          {
-            prop: 'size',
-            desc: '大小',
-            type: 'String',
-            enum: 'medium / small / mini',
-            default: '-',
-          },
-          {
-            prop: 'field',
-            desc: '字段名',
-            type: 'String',
-            enum: '-',
-            default: '-',
-          },
-          {
-            prop: 'label',
-            desc: '字段Label',
-            type: 'String',
-            enum: '-',
-            default: '-',
-          },
-          {
-            prop: 'default-operator',
-            desc: '默认的运算符',
-            type: 'String',
-            enum: '-',
-            default: 'between',
-          },
-          {
-            prop: 'range-separator',
-            desc: '选择范围时的分隔符',
-            type: 'String',
-            enum: '-',
-            default: '至',
-          },
-          {
-            prop: '...ElInputNumber',
-            desc: '继承ElInputNumber的属性',
-            type: '-',
-            enum: '-',
-            default: '-',
-          }
-        ]
-      },
-      {
-        name: '@ComplexMixSelect Attributes',
-        header: {prop: '参数', desc: "说明", type: '类型', enum: "可选值", default: "默认值"},
-        table: [
-          {
-            prop: 'size',
-            desc: '大小',
-            type: 'String',
-            enum: 'medium / small / mini',
-            default: '-',
-          },
-          {
-            prop: 'field',
-            desc: '字段名',
-            type: 'String',
-            enum: '-',
-            default: '-',
-          },
-          {
-            prop: 'label',
-            desc: '字段Label',
-            type: 'String',
-            enum: '-',
-            default: '-',
-          },
-          {
-            prop: 'default-operator',
-            desc: '默认的运算符',
-            type: 'String',
-            enum: '-',
-            default: 'eq',
-          },
-          {
-            prop: 'options',
-            desc: '候选项',
-            type: 'Array',
-            enum: '-',
-            default: '-',
-          },
-          {
-            prop: '...ElSelect',
-            desc: '继承ElSelect的属性',
-            type: '-',
-            enum: '-',
-            default: '-',
-          }
-        ]
-      }
     ]
   }
 ];
