@@ -10,7 +10,7 @@ import DocumentTable from "./components/DocumentTable.vue";
 import "github-markdown-css";
 
 // UI样式
-import '@/styles/index.scss';
+import './index.scss';
 
 const app = createApp(App);
 app.use(router)

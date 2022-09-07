@@ -1,14 +1,15 @@
-import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
+import {createRouter, createWebHashHistory, RouteRecordRaw} from 'vue-router'
 import Doc from '../layout/index.vue'
 
-import { componentsDocRoutes } from "./doc-routes";
+import {componentsDocRoutes} from "./doc-routes";
+import {stylesDocRoutes} from "./styles-routes";
 
 // md文档文件
-import { h } from 'vue'
+import {h} from 'vue'
 import Markdown from '../components/Markdown.vue'
-import { html as gettingStarted } from '../markdown/getting-started.md'
+import {html as gettingStarted} from '../markdown/getting-started.md'
 
-const md = (string: any) => h(Markdown, { content: string, key: string });
+const md = (string: any) => h(Markdown, {content: string, key: string});
 const GetStartedDoc = md(gettingStarted);
 
 export const routes: Array<RouteRecordRaw> = [
@@ -21,7 +22,7 @@ export const routes: Array<RouteRecordRaw> = [
       {
         name: "快速上手",
         path: "getting-started",
-        component:  GetStartedDoc,
+        component: GetStartedDoc,
       },
     ]
   },
@@ -30,6 +31,12 @@ export const routes: Array<RouteRecordRaw> = [
     path: "/components",
     component: Doc,
     children: componentsDocRoutes,
+  },
+  {
+    name: "样式规范",
+    path: "/styles",
+    component: Doc,
+    children: stylesDocRoutes,
   },
 ]
 const router = createRouter({

@@ -1,0 +1,91 @@
+// 自定义Element plus样式
+@forward 'element-plus/theme-chalk/src/common/var.scss' with (
+  $colors: (
+    'primary': (
+      'base': #3370FF,
+    ),
+    'danger':(
+      'base':#F54A45
+    )
+  ),
+  $input: (
+    'hover-border-color': var(--el-input-focus-border-color),
+    'clear-hover-color': var(--el-input-focus-border-color),
+    'icon-color': var(--el-input-text-color),
+  ),
+  $select: (
+    'border-color-hover': var(--el-select-input-focus-border-color),
+  )
+);
+
+// 自定义FIT2CLOUD UI PLUS的样式
+@forward "../common/variables.scss" with (
+  $fu-filter-bar: (
+    'color': #646A73,
+    'drawer-color': #646A73,
+    'condition-color': #0C296E,
+    'condition-bgColor': #3370FF19,
+    'option-bgColor': #F5F6F7,
+    'option-hover-bgColor': #3370FF19,
+    'scroll-bgColor': #1F232919
+  ),
+  $fu-icon-button: (
+    'color': #1F2329,
+  )
+);
+
+@use 'element-plus/theme-chalk/src/common/var.scss' as *;
+
+.el-button--primary {
+  --el-button-hover-bg-color: #{mix(#FFF, $color-primary, 15%)} !important;
+  --el-button-active-bg-color: #{mix(#000, $color-primary, 15%)} !important;
+}
+
+.el-button--primary.is-plain {
+  --el-button-bg-color: #FFF !important;
+  --el-button-hover-text-color: var(--el-button-text-color) !important;
+  --el-button-hover-bg-color: #{mix($color-primary, #FFF, 15%)} !important;
+  --el-button-active-text-color: var(--el-button-text-color) !important;
+  --el-button-active-bg-color: #{mix($color-primary, #FFF, 30%)} !important;
+}
+
+.el-button--danger {
+  --el-button-hover-bg-color: #{mix(#FFF, $color-danger, 15%)} !important;
+  --el-button-active-bg-color: #{mix(#000, $color-danger, 15%)} !important;
+}
+
+.el-button--default:not(.el-button--primary).is-plain {
+  --el-button-bg-color: #FFF !important;
+  --el-button-hover-text-color: var(--el-button-text-color) !important;
+  --el-button-hover-border-color: var(--el-button-border-color) !important;
+  --el-button-hover-bg-color: #{mix(map-get($text-color,'regular'), #FFF, 5%)} !important;
+  --el-button-active-text-color: var(--el-button-text-color) !important;
+  --el-button-active-border-color: var(--el-button-border-color) !important;
+  --el-button-active-bg-color: #{mix(map-get($text-color,'regular'), #FFF, 10%)} !important;
+}
+
+.el-select .el-input .el-input__wrapper .el-select__caret.el-icon:hover {
+  color: var(--el-select-input-focus-border-color)
+}
+
+.el-button.is-text:not(.is-disabled).is-has-bg {
+  background-color: #FFF !important;
+
+  &.el-button--primary {
+    &:hover, &:focus {
+      background-color: #{mix($color-primary, #FFF, 15%)} !important;
+    }
+
+    &:active {
+      background-color: #{mix($color-primary, #FFF, 30%)} !important;
+    }
+  }
+
+  &:hover, &:focus {
+    background-color: #{mix(map-get($text-color,'regular'), #FFF, 5%)} !important;
+  }
+
+  &:active {
+    background-color: #{mix(map-get($text-color,'regular'), #FFF, 10%)} !important;
+  }
+}

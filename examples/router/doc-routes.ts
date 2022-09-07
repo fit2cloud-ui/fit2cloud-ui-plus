@@ -47,6 +47,11 @@ const componentsDocRoutes = [
     path: 'tabs',
     component: () => import('../pages/tabs/index.vue')
   },
+  {
+    name: 'IconButton 图标按钮',
+    path: 'icon-button',
+    component: () => import('../pages/icon-button/index.vue')
+  },
   // {
   //   name: 'VirtualScroll 虚拟滚动',
   //   path: 'virtual-scroll',
