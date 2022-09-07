@@ -1,0 +1,66 @@
+@use "../common/mixins.scss" as *;
+@use 'element-plus/theme-chalk/src/common/var.scss' as *;
+
+@mixin set-type-css-var($color) {
+  @include set-component-css-var('icon-button', (
+    'color': $color,
+    'bgColor': transparent,
+    'hover-color': $color,
+    'hover-bgColor': rgba($color, 0.1),
+    'active-color': $color,
+    'active-bgColor': rgba($color, 0.2),
+  ));
+}
+
+@include b(icon-button) {
+  @include flex-row(center, center);
+  cursor: pointer;
+  width: 32px;
+  height: 32px;
+  border-radius: 4px;
+  color: var(--fu-icon-button-color);
+  background-color: var(--fu-icon-button-bgColor);
+
+  &:not(.is-disabled) {
+    &:hover, &:focus {
+      color: var(--fu-icon-button-hover-color);
+      background-color: var(--fu-icon-button-hover-bgColor);
+    }
+
+    &:active {
+      color: var(--fu-icon-button-active-color);
+      background-color: var(--fu-icon-button-active-bgColor);
+    }
+  }
+
+  &.is-disabled {
+    color: var(--fu-icon-button-disabled-color);
+    background-color: var(--fu-icon-button-disabled-bgColor);
+    cursor: not-allowed;
+    pointer-events: none;
+
+    .el-icon {
+      color: var(--fu-icon-button-disabled-color);
+    }
+  }
+
+  @include m(primary) {
+    @include set-type-css-var($color-primary);
+  }
+  @include m(success) {
+    @include set-type-css-var($color-success);
+  }
+  @include m(warning) {
+    @include set-type-css-var($color-warning);
+  }
+  @include m(danger) {
+    @include set-type-css-var($color-danger);
+  }
+  @include m(info) {
+    @include set-type-css-var($color-info);
+  }
+
+  & + & {
+    margin-left: var(--fu-icon-button-gap);
+  }
+}

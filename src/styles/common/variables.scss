@@ -1,51 +1,61 @@
 @use 'sass:map';
-
-@forward 'element-plus/theme-chalk/src/common/var.scss' with (
-  $colors: (
-    'primary': (
-      'base': #004A71,
-    ),
-  ),
-  $table: (
-    'border-color' : #dddddd,
-    'header-text-color': '#646A73',
-    'text-color': '#1F2329',
-
-  )
-);
+@use "./mixins" as *;
+@use 'element-plus/theme-chalk/src/common/var.scss' as *;
 
 // fit2cloud ui variables
+$condition: () !default;
+$condition: map.deep-merge(
+    (
+      'color': #646A73,
+      'bgColor': #F5F6F7,
+    ),
+    $condition
+);
+
 $fu-search-bar: () !default;
 $fu-search-bar: map.deep-merge(
     (
       'width': 100%,
       'height': 48px,
-      'condition-color': #424242,
-      'condition-bgColor': #E6E6E6,
+      'condition-color': map-get($condition, "color"),
+      'condition-bgColor': map-get($condition, "bgColor"),
     ),
     $fu-search-bar
 );
-$fu-search-bar-width: map.get($fu-search-bar, 'width') !default;
-$fu-search-bar-height: map.get($fu-search-bar, 'height') !default;
-$fu-search-bar-condition-color: map.get($fu-search-bar, 'condition-color') !default;
-$fu-search-bar-condition-bgColor: map.get($fu-search-bar, 'condition-bgColor') !default;
 
 $fu-filter-bar: () !default;
 $fu-filter-bar: map.deep-merge(
     (
-      'color': #646A73,
-      'drawer-color': #646A73,
-      'condition-color': #0C296E,
-      'condition-bgColor': #3370FF19,
-      'option-bgColor': #F5F6F7,
-      'scroll-bgColor': #1F232919
+      'color': map-get($condition, "color"),
+      'drawer-color': map-get($condition, "color"),
+      'condition-color': map-get($condition, "color"),
+      'condition-bgColor': map-get($condition, "bgColor"),
+      'option-bgColor': map-get($condition, "bgColor"),
+      'option-hover-bgColor': rgba($color-primary, 10%),
+      'scroll-bgColor': mix(#000, map-get($condition, "bgColor"), 15%),
     ),
     $fu-filter-bar
 );
 
-$fu-filter-bar-color: map.get($fu-filter-bar, 'color') !default;
-$fu-filter-bar-drawer-color: map.get($fu-filter-bar, 'drawer-color') !default;
-$fu-filter-bar-condition-color: map.get($fu-filter-bar, 'condition-color') !default;
-$fu-filter-bar-condition-bgColor: map.get($fu-filter-bar, 'condition-bgColor') !default;
-$fu-filter-bar-option-bgColor: map.get($fu-filter-bar, 'option-bgColor') !default;
-$fu-filter-bar-scroll-bgColor: map.get($fu-filter-bar, 'scroll-bgColor') !default;
+$fu-icon-button: () !default;
+$fu-icon-button: map.deep-merge(
+    (
+      'color': map-get($text-color, "primary"),
+      'bgColor': transparent,
+      'hover-color': map-get($fu-icon-button, "color"),
+      'hover-bgColor': rgba(map-get($fu-icon-button, "color"), 0.1),
+      'active-color': map-get($fu-icon-button, "color"),
+      'active-bgColor': rgba(map-get($fu-icon-button, "color"), 0.2),
+      'disabled-color': #BBBFC4,
+      'disabled-bgColor': transparent,
+      'gap': 12px,
+    ),
+    $fu-icon-button
+);
+
+:root {
+  // 遍历组件变量，例如: --fu-search-bar-{key}: {value}
+  @include set-component-css-var('search-bar', $fu-search-bar);
+  @include set-component-css-var('filter-bar', $fu-filter-bar);
+  @include set-component-css-var('icon-button', $fu-icon-button);
+}

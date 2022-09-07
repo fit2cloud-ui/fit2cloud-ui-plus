@@ -1,11 +1,10 @@
 @use "../common/mixins.scss" as *;
-@use "../common/variables.scss" as *;
 
 @include b(search-bar) {
   @include flex-row(flex-start, center);
   position: relative;
-  width: $fu-search-bar-width;
-  height: $fu-search-bar-height;
+  width: var(--fu-search-bar-width);
+  height: var(--fu-search-bar-height);
 
   &:after {
     content: "";
@@ -83,8 +82,8 @@
     box-sizing: border-box;
     padding: 0 10px;
     border-radius: 50px;
-    color: $fu-search-bar-condition-color;
-    background-color: $fu-search-bar-condition-bgColor;
+    color: var(--fu-search-bar-condition-color);
+    background-color: var(--fu-search-bar-condition-bgColor);
     box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .2), 0 1px 1px 0 rgba(0, 0, 0, .14), 0 2px 1px -1px rgba(0, 0, 0, .12);
     margin-left: 10px;
     font-size: inherit;
@@ -152,7 +151,7 @@
     }
 
     &::placeholder {
-      color: var(--el-input-placeholder-color);
+      color: var(--el-text-color-placeholder);
     }
   }
 

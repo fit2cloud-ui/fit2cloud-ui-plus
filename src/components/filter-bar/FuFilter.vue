@@ -51,7 +51,6 @@ import {
   nextTick,
   provide,
   Ref,
-  ComponentPublicInstance
 } from "vue";
 import FuFilterConditions from "./FuFilterConditions.vue";
 import {useLocale, useSize} from "@/hooks"
@@ -62,7 +61,7 @@ defineOptions({name: "FuFilter"});
 const {t} = useLocale()
 
 const filterRef = ref<HTMLElement | null>(null)
-const conditionsRef = ref<ComponentPublicInstance | null>(null)
+const conditionsRef = ref<InstanceType<typeof FuFilterConditions> | null>(null)
 
 const props = defineProps({
   size: {
@@ -114,6 +113,7 @@ function change() {
   nextTick(() => {
     let el = conditionsRef.value?.$el
     scroll.value = el != null && el?.getBoundingClientRect().width >= scrollWidth.value
+    console.log(el?.getBoundingClientRect().width, scrollWidth.value)
   })
   emit("filter", conditions.value)
 }

@@ -26,10 +26,6 @@
       font-size: 14px
     }
   }
-
-  // .el-icon-circle-close:before {
-  //   content: "\e79d"
-  // }
 }
 
 @include b(filter-button) {
@@ -205,8 +201,7 @@
   margin: 6px;
 
   &.is-selected, &:hover {
-    background: var(--fu-filter-bar-condition-bgColor);
-    color: var(--fu-filter-bar-condition-color);
+    background-color: var(--fu-filter-bar-option-hover-bgColor);
   }
 
   &:active {
@@ -223,6 +218,9 @@
 
 @include b(scale-click) {
   cursor: pointer;
+  &:hover, &:focus {
+    opacity: 0.8;
+  }
   &:active {
     transform: scale(0.9)
   }
