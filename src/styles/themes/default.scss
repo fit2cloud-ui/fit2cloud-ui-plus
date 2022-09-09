@@ -2,11 +2,11 @@
 @forward 'element-plus/theme-chalk/src/common/var.scss' with (
   $colors: (
     'primary': (
-      'base': #3370FF,
+      'base': #004A71,
     ),
-    'danger':(
-      'base':#F54A45
-    )
+    //'danger':(
+    //  'base':#F54A45
+    //)
   ),
   $input: (
     'hover-border-color': var(--el-input-focus-border-color),
