@@ -2,7 +2,7 @@
 @forward 'element-plus/theme-chalk/src/common/var.scss' with (
   $colors: (
     'primary': (
-      'base': #004A71,
+      'base': #3370FF,
     ),
     //'danger':(
     //  'base':#F54A45
@@ -88,4 +88,13 @@
   &:active {
     background-color: #{mix(map-get($text-color,'regular'), #FFF, 10%)} !important;
   }
+}
+
+.el-message--info {
+  --el-message-bg-color: #{mix($color-primary, #FFF, 15%)} !important;
+  --el-message-text-color: #{$color-primary} !important;
+}
+
+.el-message__content {
+  color: #{map-get($text-color, 'primary')} !important;
 }

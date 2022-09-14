@@ -20,6 +20,11 @@ const stylesDocRoutes = [
     path: 'button',
     component: () => import('../style-guide/button/index.vue')
   },
+  {
+    name: '消息样式',
+    path: 'message',
+    component: () => import('../style-guide/message/index.vue')
+  },
 ]
 
 export {stylesDocRoutes};
