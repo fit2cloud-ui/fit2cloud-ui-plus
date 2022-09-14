@@ -30,8 +30,7 @@
              v-model="drawer" @open="initComponents">
     <div class="drawer-body">
       <slot>
-        <component v-for="(c, i) in components" :key="i" :is="c.component" v-bind="c" :ref="c.field" v-on="c"
-                   :size="configSize"/>
+        <component v-for="(c, i) in components" :key="i" :is="c.component" v-bind="c" :size="configSize"/>
       </slot>
     </div>
     <div class="drawer-footer">
@@ -113,7 +112,6 @@ function change() {
   nextTick(() => {
     let el = conditionsRef.value?.$el
     scroll.value = el != null && el?.getBoundingClientRect().width >= scrollWidth.value
-    console.log(el?.getBoundingClientRect().width, scrollWidth.value)
   })
   emit("filter", conditions.value)
 }

@@ -2,20 +2,20 @@
   <div class="fu-filter-component">
     <div class="fu-filter-component__label">{{ label }}</div>
     <div class="fu-filter-component__content">
-      <fu-filter-option :label="o.label" :value="o.value" v-for="o in showOptions" :key="o.value" />
+      <fu-filter-option :label="o.label" :value="o.value" v-for="o in showOptions" :key="o.value"/>
       <el-popover popper-class="fu-filter-component-popover" :show-arrow="false" placement="bottom-start"
-        trigger="click" width="240">
+                  trigger="click" width="240">
         <el-select v-model="selection" v-bind="$attrs" :multiple="multiple" @change="change" :teleported="false"
-          :size="configSize" :placeholder="t('fu.search_bar.please_select')">
-          <el-option value="" v-if="useSelectAll && multiple">
+                   :size="configSize" :placeholder="t('fu.search_bar.please_select')">
+          <el-option value="-$SELECT-ALL$-" v-if="showSelectAll">
             <div @click="selectAll">{{ t('fu.filter_bar.select_all') }}</div>
           </el-option>
-          <el-option :label="o.label" :value="o.value" v-for="o in options" :key="o.value" />
+          <el-option :label="o.label" :value="o.value" v-for="o in options" :key="o.value"/>
         </el-select>
         <template #reference>
           <div class="fu-filter-option">
             <el-icon>
-              <Plus />
+              <Plus/>
             </el-icon>
             {{ t('fu.filter_bar.more') }}
           </div>
@@ -26,13 +26,14 @@
 </template>
 
 <script setup lang="ts">
-import { ref, provide, computed, PropType, Ref, inject } from "vue";
+import {ref, provide, computed, PropType, Ref, inject} from "vue";
 import FuFilterOption from "./FuFilterOption.vue";
-import { FilterCondition, OptionProps, ReferenceContext, referenceKey, selectKey } from "../types";
+import {FilterCondition, OptionProps, ReferenceContext, referenceKey, selectKey} from "../types";
 
 import {useLocale, useSize} from "@/hooks"
-import { validateSize } from "@/tools/size";
-defineOptions({ name: "FuFilterSelect" });
+import {validateSize} from "@/tools/size";
+
+defineOptions({name: "FuFilterSelect"});
 
 const props = defineProps({
   size: {
@@ -87,10 +88,14 @@ const valueLabel = computed(() => {
   return getValueLabel(selection.value);
 })
 
-const { t } = useLocale()
+const showSelectAll = computed(() => {
+  return props.useSelectAll && props.multiple
+})
 
-function change(v: string) {
-  if (v.includes("")) {
+const {t} = useLocale()
+
+function change(v: any) {
+  if (showSelectAll.value && v?.includes("-$SELECT-ALL$-")) {
     selection.value = props.options.map(o => o.value)
   }
   emit("change", selection.value)
@@ -124,8 +129,8 @@ function getValueLabel(value: string | number) {
 
 function getCondition(): FilterCondition | undefined {
   if (!selection.value || (Array.isArray(selection.value) && selection.value.length === 0)) return;
-  let { field, label } = props
-  return { field, label, value: selection.value, valueLabel: valueLabel.value }
+  let {field, label} = props
+  return {field, label, value: selection.value, valueLabel: valueLabel.value}
 }
 
 function init(v: any) {
@@ -139,7 +144,7 @@ provide(selectKey, {
 
 const references = inject(referenceKey)
 const field = props.field
-const reference: ReferenceContext = { field, init, getCondition }
+const reference: ReferenceContext = {field, init, getCondition}
 references?.value.push(reference)
 
 defineExpose({
