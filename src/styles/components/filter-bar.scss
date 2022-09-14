@@ -143,6 +143,7 @@
     }
 
     .condition-text {
+      cursor: default;
       font-size: 14px;
       line-height: 22px;
       height: 22px;
@@ -150,7 +151,7 @@
       text-overflow: ellipsis;
       overflow: hidden;
       word-break: break-all;
-      max-width: 254px;
+      max-width: 320px;
       margin-right: 6px;
     }
   }

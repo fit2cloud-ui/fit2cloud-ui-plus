@@ -1,7 +1,7 @@
 <template>
   <div class="fu-filter-conditions">
     <div class="fu-filter-conditions__item" v-for="(condition, index) in conditions" :key="index">
-      <div class="condition-text">{{ text(condition) }}</div>
+      <fu-filter-condition-text :condition="condition"/>
       <el-icon class="fu-scale-click" @click="remove(index)">
         <CloseBold/>
       </el-icon>
@@ -10,9 +10,12 @@
 </template>
 
 <script setup lang="ts">
+import FuFilterConditionText from "@/components/filter-bar/FuFilterConditionText.vue";
+import {PropType} from "vue";
+import {FilterCondition} from "@/components/filter-bar/types";
 
 const props = defineProps({
-  conditions: Array
+  conditions: Array as PropType<Array<FilterCondition>>
 })
 
 const emit = defineEmits(["change"])
