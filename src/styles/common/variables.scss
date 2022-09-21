@@ -37,10 +37,9 @@ $fu-filter-bar: map.deep-merge(
     $fu-filter-bar
 );
 
-$fu-icon-button: () !default;
+$fu-icon-button: ('color': map-get($text-color, "primary")) !default;
 $fu-icon-button: map.deep-merge(
     (
-      'color': map-get($text-color, "primary"),
       'bgColor': transparent,
       'hover-color': map-get($fu-icon-button, "color"),
       'hover-bgColor': rgba(map-get($fu-icon-button, "color"), 0.1),

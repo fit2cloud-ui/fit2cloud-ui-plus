@@ -143,6 +143,7 @@
     }
 
     .condition-text {
+      cursor: default;
       font-size: 14px;
       line-height: 22px;
       height: 22px;
@@ -150,7 +151,7 @@
       text-overflow: ellipsis;
       overflow: hidden;
       word-break: break-all;
-      max-width: 254px;
+      max-width: 320px;
       margin-right: 6px;
     }
   }
@@ -171,6 +172,8 @@
     display: flex;
     align-items: center;
     flex-wrap: wrap;
+    width: 100%;
+    padding: 0 10px;
   }
 }
 
@@ -210,10 +213,15 @@
 }
 
 @include b(filter-date) {
-  margin-left: 6px;
+  margin: 6px;
   &.el-date-editor {
     width: 100% !important;
   }
+}
+
+@include b(filter-input-text) {
+  margin: 0 6px;
+  width: 100%;
 }
 
 @include b(scale-click) {
