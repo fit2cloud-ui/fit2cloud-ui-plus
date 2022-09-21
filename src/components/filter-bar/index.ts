@@ -4,7 +4,8 @@ import FuFilter from "./FuFilter.vue";
 import FuFilterSelect from "./filter-components/FuFilterSelect.vue";
 import FuFilterDate from "./filter-components/FuFilterDate.vue";
 import FuFilterDateTime from "./filter-components/FuFilterDateTime.vue";
-import type { App } from "vue";
+import FuFilterInputText from "./filter-components/FuFilterInputText.vue";
+import type {App} from "vue";
 
 FuFilterBar.install = (app: App): void => {
   app.component(FuFilterBar.name, FuFilterBar);
@@ -13,6 +14,7 @@ FuFilterBar.install = (app: App): void => {
   app.component(FuFilterSelect.name, FuFilterSelect);
   app.component(FuFilterDate.name, FuFilterDate);
   app.component(FuFilterDateTime.name, FuFilterDateTime);
+  app.component(FuFilterInputText.name, FuFilterInputText);
 };
 
 export default FuFilterBar;

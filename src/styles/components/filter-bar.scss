@@ -172,6 +172,8 @@
     display: flex;
     align-items: center;
     flex-wrap: wrap;
+    width: 100%;
+    padding: 0 10px;
   }
 }
 
@@ -211,10 +213,15 @@
 }
 
 @include b(filter-date) {
-  margin-left: 6px;
+  margin: 6px;
   &.el-date-editor {
     width: 100% !important;
   }
+}
+
+@include b(filter-input-text) {
+  margin: 0 6px;
+  width: 100%;
 }
 
 @include b(scale-click) {
