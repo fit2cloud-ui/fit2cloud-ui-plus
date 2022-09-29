@@ -13,7 +13,7 @@
           <el-option :label="o.label" :value="o.value" v-for="o in options" :key="o.value"/>
         </el-select>
         <template #reference>
-          <div class="fu-filter-option">
+          <div class="fu-filter-option" v-if="showMore">
             <el-icon>
               <Plus/>
             </el-icon>
@@ -75,6 +75,10 @@ const showOptions = computed(() => {
       return show || selection.value === o.value
     }
   })
+})
+
+const showMore = computed(() => {
+  return props.options?.length > props.showLimit && props.showLimit > 0
 })
 
 const valueLabel = computed(() => {
