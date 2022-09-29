@@ -35,7 +35,7 @@ const props = defineProps({
     default: "x",
   },
 })
-const value = ref('')
+const value = ref([])
 const configSize = useSize()
 
 const valueLabel = computed(() => {
@@ -49,13 +49,13 @@ const valueLabel = computed(() => {
 const {t} = useLocale()
 
 function getCondition(): FilterCondition | undefined {
-  if (!String(value.value)) return;
+  if (!value.value || value.value.length === 0) return;
   let {field, label} = props
   return {field, label, value: value.value, valueLabel: valueLabel.value}
 }
 
 function init(v: any) {
-  value.value = v !== undefined ? v : ''
+  value.value = v !== undefined ? v : []
 }
 
 const references = inject(referenceKey)
