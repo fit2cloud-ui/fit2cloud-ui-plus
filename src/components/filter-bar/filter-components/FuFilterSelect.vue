@@ -4,7 +4,7 @@
     <div class="fu-filter-component__content">
       <fu-filter-option :label="o.label" :value="o.value" v-for="o in showOptions" :key="o.value"/>
       <el-popover popper-class="fu-filter-component-popover" :show-arrow="false" placement="bottom-start"
-                  trigger="click" width="240">
+                  trigger="click" width="240" v-if="showMore">
         <el-select v-model="selection" v-bind="$attrs" :multiple="multiple" @change="change" :teleported="false"
                    :size="configSize" :placeholder="t('fu.search_bar.please_select')">
           <el-option value="-$SELECT-ALL$-" v-if="showSelectAll">
@@ -13,7 +13,7 @@
           <el-option :label="o.label" :value="o.value" v-for="o in options" :key="o.value"/>
         </el-select>
         <template #reference>
-          <div class="fu-filter-option" v-if="showMore">
+          <div class="fu-filter-option">
             <el-icon>
               <Plus/>
             </el-icon>
