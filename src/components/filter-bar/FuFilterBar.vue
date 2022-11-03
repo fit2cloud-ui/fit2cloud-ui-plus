@@ -68,6 +68,9 @@ function filter(c: any) {
 }
 
 function setConditions(conditionObj: any) {
+  if (conditionObj.quick) {
+    quick.value = conditionObj.quick
+  }
   filterRef.value?.setConditions(conditionObj)
 }
 
