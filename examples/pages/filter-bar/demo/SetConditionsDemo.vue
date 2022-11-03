@@ -42,7 +42,7 @@ const condition = ref({})
 const filterRef = ref()
 
 function init() {
-  filterRef.value?.setConditions({ user: { value: [2, 3, 4] } })
+  filterRef.value?.setConditions({ quick: "12345", user: { value: [2, 3, 4] } })
 }
 function exec(c: any) {
   condition.value = c
