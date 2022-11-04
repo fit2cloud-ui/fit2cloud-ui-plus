@@ -224,6 +224,11 @@
   width: 100%;
 }
 
+@include b(filter-select) {
+  margin: 0 6px;
+  width: 100%;
+}
+
 @include b(scale-click) {
   cursor: pointer;
   &:hover, &:focus {

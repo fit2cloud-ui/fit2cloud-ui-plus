@@ -8,6 +8,8 @@
       <template #default>
         <FuFilterSelect size="default" label="事件类型" field="type" :options="options" multiple clearable filterable
                         use-select-all/>
+        <FuFilterNormalSelect size="default" label="事件类型2" field="type2" :options="options" multiple clearable filterable
+                        use-select-all/>
         <FuFilterDate size="default" label="操作日期" field="date"/>
         <FuFilterDateTime size="default" label="操作时间" field="datetime"/>
         <FuFilterInputText size="default" label="客户名称" field="customer"/>
