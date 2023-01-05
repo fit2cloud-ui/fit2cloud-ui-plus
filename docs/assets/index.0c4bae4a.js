@@ -1,4 +1,4 @@
-import{d as g,b as d,r as u,o as B,e as E,f as n,a as e,w as r,t as C,F as D,_ as x,p as T,i as I,h as H,n as J,g as K,j as h,u as Q,k as W}from"./index.e6562df2.js";function S(l){l.__sourceCode=`<template>
+import{d as g,b as d,r as u,o as B,e as E,f as n,a as e,w as r,t as C,F as D,_ as x,p as T,i as I,h as H,n as J,g as K,j as h,u as Q,k as W}from"./index.65a7c2cc.js";function S(l){l.__sourceCode=`<template>
   <div>
     <h4>
       1\u3001\u4F7F\u7528slot
@@ -7,8 +7,9 @@ import{d as g,b as d,r as u,o as B,e as E,f as n,a as e,w as r,t as C,F as D,_ a
       <template #default>
         <FuFilterSelect size="default" label="\u4E8B\u4EF6\u7C7B\u578B" field="type" :options="options" multiple clearable filterable
                         use-select-all/>
-        <FuFilterNormalSelect size="default" label="\u4E8B\u4EF6\u7C7B\u578B2" field="type2" :options="options" multiple clearable filterable
-                        use-select-all/>
+        <FuFilterNormalSelect size="default" label="\u4E8B\u4EF6\u7C7B\u578B2" field="type2" :options="options" multiple clearable
+                              filterable
+                              use-select-all/>
         <FuFilterDate size="default" label="\u64CD\u4F5C\u65E5\u671F" field="date"/>
         <FuFilterDateTime size="default" label="\u64CD\u4F5C\u65F6\u95F4" field="datetime"/>
         <FuFilterInputText size="default" label="\u5BA2\u6237\u540D\u79F0" field="customer"/>
@@ -25,10 +26,10 @@ import{d as g,b as d,r as u,o as B,e as E,f as n,a as e,w as r,t as C,F as D,_ a
 <script setup lang="ts">
 import {ref} from "vue"
 
-const options = [{label: "\u9009\u98791", value: 1},
-  {label: "\u9009\u98792", value: 2},
+const options = [{label: "\u9009\u98791", value: true},
+  {label: "\u9009\u98792", value: false},
   {label: "\u9009\u98793", value: 3},
-  {label: "\u9009\u98794", value: 4},
+  {label: "\u9009\u98794", value: '4'},
   {label: "\u9009\u98795", value: 5},
   {label: "\u9009\u98796", value: 6},
   {label: "\u9009\u98797", value: 7},
@@ -73,7 +74,7 @@ function exec(c: any) {
   overflow-y: auto;
   background-color: #f5f9ff;
 }
-</style>`,l.__sourceCodeTitle="\u57FA\u672C\u7528\u6CD5"}const $=l=>(T("data-v-66d6b38c"),l=l(),I(),l),X=$(()=>n("h4",null," 1\u3001\u4F7F\u7528slot ",-1)),Y=$(()=>n("h4",null," 1\u3001\u4F7F\u7528components\u4F20\u53C2 ",-1)),Z={class:"condition_display"},q=g({__name:"BaseFilterBar",setup(l){const f=[{label:"\u9009\u98791",value:1},{label:"\u9009\u98792",value:2},{label:"\u9009\u98793",value:3},{label:"\u9009\u98794",value:4},{label:"\u9009\u98795",value:5},{label:"\u9009\u98796",value:6},{label:"\u9009\u98797",value:7},{label:"\u9009\u98798",value:8},{label:"\u9009\u98799",value:9},{label:"\u9009\u987910",value:10}],m=[{field:"groups",label:"\u533A\u57DF",component:"FuFilterSelect",options:[{label:"\u5317\u533A",value:"1"},{label:"\u5357\u533A",value:"2"},{label:"\u4E1C\u533A",value:"3"}],multiple:!0,clearable:!0,filterable:!0},{field:"date",label:"\u64CD\u4F5C\u65E5\u671F",component:"FuFilterDate"},{field:"customer",label:"\u5BA2\u6237\u540D\u79F0",component:"FuFilterInputText"}],i=d(0),a=d({});function o(t){a.value=t,i.value=Object.keys(a).length*10}return(t,c)=>{const s=u("FuFilterSelect"),v=u("FuFilterNormalSelect"),p=u("FuFilterDate"),b=u("FuFilterDateTime"),F=u("FuFilterInputText"),_=u("FuFilterBar"),A=u("fu-filter-bar");return B(),E(D,null,[n("div",null,[X,e(_,{ref:"filterRef",onExec:o,"result-count":i.value,size:"default"},{default:r(()=>[e(s,{size:"default",label:"\u4E8B\u4EF6\u7C7B\u578B",field:"type",options:f,multiple:"",clearable:"",filterable:"","use-select-all":""}),e(v,{size:"default",label:"\u4E8B\u4EF6\u7C7B\u578B2",field:"type2",options:f,multiple:"",clearable:"",filterable:"","use-select-all":""}),e(p,{size:"default",label:"\u64CD\u4F5C\u65E5\u671F",field:"date"}),e(b,{size:"default",label:"\u64CD\u4F5C\u65F6\u95F4",field:"datetime"}),e(F,{size:"default",label:"\u5BA2\u6237\u540D\u79F0",field:"customer"})]),_:1},8,["result-count"]),Y,e(A,{ref:"filterRef",onExec:o,"result-count":i.value,size:"default",components:m},null,8,["result-count"])]),n("pre",Z,C(a.value),1)],64)}}});typeof S=="function"&&S(q);var ee=x(q,[["__scopeId","data-v-66d6b38c"],["__file","/home/runner/work/fit2cloud-ui-plus/fit2cloud-ui-plus/examples/pages/filter-bar/demo/BaseFilterBar.vue"]]);function z(l){l.__sourceCode=`<template>
+</style>`,l.__sourceCodeTitle="\u57FA\u672C\u7528\u6CD5"}const $=l=>(T("data-v-66d6b38c"),l=l(),I(),l),X=$(()=>n("h4",null," 1\u3001\u4F7F\u7528slot ",-1)),Y=$(()=>n("h4",null," 1\u3001\u4F7F\u7528components\u4F20\u53C2 ",-1)),Z={class:"condition_display"},q=g({__name:"BaseFilterBar",setup(l){const f=[{label:"\u9009\u98791",value:!0},{label:"\u9009\u98792",value:!1},{label:"\u9009\u98793",value:3},{label:"\u9009\u98794",value:"4"},{label:"\u9009\u98795",value:5},{label:"\u9009\u98796",value:6},{label:"\u9009\u98797",value:7},{label:"\u9009\u98798",value:8},{label:"\u9009\u98799",value:9},{label:"\u9009\u987910",value:10}],m=[{field:"groups",label:"\u533A\u57DF",component:"FuFilterSelect",options:[{label:"\u5317\u533A",value:"1"},{label:"\u5357\u533A",value:"2"},{label:"\u4E1C\u533A",value:"3"}],multiple:!0,clearable:!0,filterable:!0},{field:"date",label:"\u64CD\u4F5C\u65E5\u671F",component:"FuFilterDate"},{field:"customer",label:"\u5BA2\u6237\u540D\u79F0",component:"FuFilterInputText"}],i=d(0),a=d({});function o(t){a.value=t,i.value=Object.keys(a).length*10}return(t,c)=>{const s=u("FuFilterSelect"),v=u("FuFilterNormalSelect"),p=u("FuFilterDate"),b=u("FuFilterDateTime"),F=u("FuFilterInputText"),_=u("FuFilterBar"),A=u("fu-filter-bar");return B(),E(D,null,[n("div",null,[X,e(_,{ref:"filterRef",onExec:o,"result-count":i.value,size:"default"},{default:r(()=>[e(s,{size:"default",label:"\u4E8B\u4EF6\u7C7B\u578B",field:"type",options:f,multiple:"",clearable:"",filterable:"","use-select-all":""}),e(v,{size:"default",label:"\u4E8B\u4EF6\u7C7B\u578B2",field:"type2",options:f,multiple:"",clearable:"",filterable:"","use-select-all":""}),e(p,{size:"default",label:"\u64CD\u4F5C\u65E5\u671F",field:"date"}),e(b,{size:"default",label:"\u64CD\u4F5C\u65F6\u95F4",field:"datetime"}),e(F,{size:"default",label:"\u5BA2\u6237\u540D\u79F0",field:"customer"})]),_:1},8,["result-count"]),Y,e(A,{ref:"filterRef",onExec:o,"result-count":i.value,size:"default",components:m},null,8,["result-count"])]),n("pre",Z,C(a.value),1)],64)}}});typeof S=="function"&&S(q);var ee=x(q,[["__scopeId","data-v-66d6b38c"],["__file","/home/runner/work/fit2cloud-ui-plus/fit2cloud-ui-plus/examples/pages/filter-bar/demo/BaseFilterBar.vue"]]);function z(l){l.__sourceCode=`<template>
   <div>
     <fu-filter-bar ref="filterRef" @exec="exec" :result-count="count" size="default">
       <template #default>
