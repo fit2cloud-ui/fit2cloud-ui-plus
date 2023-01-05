@@ -10,7 +10,7 @@ import {selectKey} from "@/components/filter-bar/types";
 
 const props = defineProps({
   value: {
-    type: [String, Number],
+    type: [String, Number, Boolean, Object],
     required: true
   },
   label: [String, Number],

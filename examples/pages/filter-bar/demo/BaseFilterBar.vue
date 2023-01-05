@@ -8,8 +8,9 @@
       <template #default>
         <FuFilterSelect size="default" label="事件类型" field="type" :options="options" multiple clearable filterable
                         use-select-all/>
-        <FuFilterNormalSelect size="default" label="事件类型2" field="type2" :options="options" multiple clearable filterable
-                        use-select-all/>
+        <FuFilterNormalSelect size="default" label="事件类型2" field="type2" :options="options" multiple clearable
+                              filterable
+                              use-select-all/>
         <FuFilterDate size="default" label="操作日期" field="date"/>
         <FuFilterDateTime size="default" label="操作时间" field="datetime"/>
         <FuFilterInputText size="default" label="客户名称" field="customer"/>
@@ -26,10 +27,10 @@
 <script setup lang="ts">
 import {ref} from "vue"
 
-const options = [{label: "选项1", value: 1},
-  {label: "选项2", value: 2},
+const options = [{label: "选项1", value: true},
+  {label: "选项2", value: false},
   {label: "选项3", value: 3},
-  {label: "选项4", value: 4},
+  {label: "选项4", value: '4'},
   {label: "选项5", value: 5},
   {label: "选项6", value: 6},
   {label: "选项7", value: 7},
