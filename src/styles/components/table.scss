@@ -1,23 +1,10 @@
 @use "../common/mixins.scss" as *;
 @use "../common/variables.scss" as *;
 
-@include b(table) {
-  &.el-table {
-    th.el-table-column--selection > .cell {
-      padding-left: 14px;
-      padding-right: 14px;
-    }
-  }
-  &.el-table--small {
-    font-size: 13px;
-  }
-}
-
 @include b(table-header) {
   th {
     background-color: var(--el-table-header-bg-color) !important;
     border-top: 1px solid var(--el-table-border-color);
-    font-weight: 500 !important;;
   }
 }
 
