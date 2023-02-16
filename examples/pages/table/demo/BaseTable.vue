@@ -1,15 +1,25 @@
 <demo>基本用法</demo>
 
 <template>
-  <fu-table :data="tableData" style="width: 100%">
+  <fu-table :data="tableData" style="width: 100%" ref="table">
     <el-table-column type="selection"></el-table-column>
     <el-table-column prop="date" label="日期" width="180"></el-table-column>
     <el-table-column prop="name" label="姓名" width="180"></el-table-column>
     <el-table-column prop="address" label="地址"></el-table-column>
   </fu-table>
+  <el-button @click="clearSelection">use elTable clearSelection</el-button>
 </template>
 
 <script setup lang="ts">
+import {ref} from "vue";
+
+const table = ref(null)
+const clearSelection = () => {
+  const ref: any = table.value;
+  if (ref) {
+    ref.refElTable.clearSelection();
+  }
+};
 const tableData = [
   {
     date: "2016-05-02",
