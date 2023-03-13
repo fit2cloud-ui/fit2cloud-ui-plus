@@ -2,11 +2,11 @@
 <template>
   <div style="margin-bottom: 20px">
     <span>Popover选列(hover)：</span>
-    <fu-table-column-select :columns="columns" trigger="hover"/>
+    <fu-table-column-select :columns="columns" trigger="hover" title="自定义Title" popper-class="popper-class"/>
     <span style="margin-left: 20px">Popover选列(click)：</span>
-    <fu-table-column-select :columns="columns"  />
+    <fu-table-column-select :columns="columns"/>
     <span style="margin-left: 20px">Dialog选列：</span>
-    <fu-table-column-select type="dialog" :columns="columns" />
+    <fu-table-column-select type="dialog" :columns="columns"/>
   </div>
   <fu-table :data="tableData" :columns="columns">
     <el-table-column type="selection"></el-table-column>
@@ -18,7 +18,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import {ref} from 'vue'
 
 const columns = ref([])
 
@@ -45,3 +45,12 @@ const tableData = [
   }
 ]
 </script>
+
+<style lang="scss">
+// 不能用scoped，因为el-popover的样式是全局的
+.popper-class {
+  .fu-table-column-select-popper__body {
+    max-height: 80px;
+  }
+}
+</style>

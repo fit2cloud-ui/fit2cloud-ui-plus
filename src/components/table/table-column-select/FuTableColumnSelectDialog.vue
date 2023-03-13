@@ -5,14 +5,14 @@
     <el-dialog custom-class="fu-table-column-select-dialog" v-model="visible" @open="open" append-to-body>
       <template #header>
         <h3>
-          {{ t('fu.table.custom_table_fields') }}
+          {{ header }}
         </h3>
-        <el-alert :title="t('fu.table.custom_table_fields_desc')" type="info" :closable="false" />
+        <el-alert :title="t('fu.table.custom_table_fields_desc')" type="info" :closable="false"/>
       </template>
 
       <el-checkbox v-for="(c, i) in cloneColumns" :key="i" v-model="c.show" :checked="c.show !== false" draggable="true"
-        @dragstart="dragstart($event, i)" @dragenter="dragenter" @dragleave="dragleave" @dragover.prevent
-        @dragend="dragend" @drop="drop($event, cloneColumns, i)" v-show="!c.fix">
+                   @dragstart="dragstart($event, i)" @dragenter="dragenter" @dragleave="dragleave" @dragover.prevent
+                   @dragend="dragend" @drop="drop($event, cloneColumns, i)" v-show="!c.fix">
         {{ c.label }}
       </el-checkbox>
 
@@ -30,10 +30,11 @@
 </template>
 
 <script setup lang="ts">
-import { ref, inject } from "vue";
-import { tableColumnSelect } from "./utils"
-import { useLocale } from "@/hooks"
-import { LocalKey } from "../types";
+import {ref, inject, computed} from "vue";
+import {tableColumnSelect} from "./utils"
+import {useLocale} from "@/hooks"
+import {LocalKey} from "../types";
+
 const props = defineProps({
   icon: {
     type: String,
@@ -43,12 +44,15 @@ const props = defineProps({
     type: Array,
     default: () => []
   },
-
+  title: {
+    type: String,
+    default: ''
+  }
 })
 
 const localKey = inject(LocalKey, undefined)
 
-const { t } = useLocale()
+const {t} = useLocale()
 
 const cloneColumn = (source: any, target: any) => {
   source.forEach((col: any) => {
@@ -69,6 +73,10 @@ const {
 
 const cloneColumns = ref([]) as any
 const visible = ref(false)
+
+const header = computed(() => {
+  return props.title || t('fu.table.custom_table_fields')
+});
 
 function open() {
   cloneColumns.value = []
