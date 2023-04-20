@@ -26,7 +26,7 @@
     </div>
   </div>
 
-  <el-drawer :size="drawerWidth" custom-class="fu-filter__drawer" :title="t('fu.filter_bar.drawer_title')"
+  <el-drawer :size="drawerWidth" class="fu-filter__drawer" :title="t('fu.filter_bar.drawer_title')"
              v-model="drawer" @open="initComponents">
     <div class="drawer-body">
       <slot>
@@ -65,7 +65,8 @@ const conditionsRef = ref<InstanceType<typeof FuFilterConditions> | null>(null)
 const props = defineProps({
   size: {
     type: String,
-    validator: validateSize
+    validator: validateSize,
+    required: true
   },
   count: {
     type: Number,
