@@ -1,4 +1,4 @@
-import{d as B,r as E,a as t,o as f,c as F,b as e,w as a,F as D,_ as h,e as C,f as p,g as G,p as V,h as N,i as y,u as H,j as J,t as x}from"./index.8b8d879f.js";function k(n){n.__sourceCode=`<template>
+import{d as B,r as E,a as t,o as f,c as F,b as e,w as a,F as D,_ as h,e as C,f as p,g as G,p as V,h as N,i as y,u as H,j as J,t as x}from"./index.c2abf562.js";function k(n){n.__sourceCode=`<template>
   <fu-table :data="tableData" style="width: 100%" ref="table">
     <el-table-column type="selection"></el-table-column>
     <el-table-column prop="date" label="\u65E5\u671F" width="180"></el-table-column>
