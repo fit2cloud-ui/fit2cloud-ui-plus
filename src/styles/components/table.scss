@@ -53,6 +53,10 @@
 }
 
 @include b(table-more-button) {
+  button:focus-visible {
+    outline: none;
+  }
+
   button + & {
     margin-left: 12px;
     vertical-align: middle;
