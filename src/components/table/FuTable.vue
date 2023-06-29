@@ -3,6 +3,12 @@
     <fu-table-body name="table-body" :columns="columns">
       <slot/>
     </fu-table-body>
+    <template v-slot:append>
+      <slot name="append"/>
+    </template>
+    <template v-slot:empty>
+      <slot name="empty"/>
+    </template>
   </el-table>
 </template>
 
