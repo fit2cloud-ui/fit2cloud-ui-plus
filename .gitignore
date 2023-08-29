@@ -13,6 +13,7 @@ lib
 types
 dist-ssr
 *.local
+.prettierrc.js
 
 # Editor directories and files
 .vscode
