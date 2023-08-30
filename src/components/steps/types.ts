@@ -1,4 +1,4 @@
-import {Step} from "@/components/ steps/Stepper";
+import {Step} from "@/components/steps/Stepper";
 
 export interface StepperOptions {
   steps: [Step]

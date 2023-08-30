@@ -17,7 +17,7 @@
 <script lang="ts" setup>
 import type { PropType } from 'vue'
 import { computed } from "vue";
-import {Step} from "@/components/ steps/Stepper";
+import {Step} from "@/components/steps/Stepper";
 const props = defineProps({
   stepper: Object,
   steps: Array as PropType<Step[]>,
