@@ -3,7 +3,7 @@
     <el-step v-for="(step, i) in steps" :key="i" v-bind="step" @click="click(i)"
       :class="disable!(i) && 'fu-step--disable'">
       <template #description>
-        <span>{{ step?.description }}</span>
+        <span>{{ step.description }}</span>
         <el-collapse-transition>
           <div class="fu-steps__container" v-if="i === active" :style="heightStyle">
             <slot v-bind:step="step"></slot>
@@ -17,9 +17,10 @@
 <script lang="ts" setup>
 import type { PropType } from 'vue'
 import { computed } from "vue";
+import {Step} from "@/components/ steps/Stepper";
 const props = defineProps({
   stepper: Object,
-  steps: Array,
+  steps: Array as PropType<Step[]>,
   disable: Function as PropType<(index: number) => boolean>
 })
 const emit = defineEmits(["active"])
