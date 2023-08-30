@@ -27,11 +27,6 @@ const componentsDocRoutes = [
     path: 'speed-dial',
     component: () => import('../pages/speed-dial/index.vue')
   },
-  // {
-  //   name: 'Steps 步骤条',
-  //   path: 'steps',
-  //   component: () => import('../pages/steps/index.vue')
-  // },
   {
     name: 'ReadWriteSwitch 读写切换',
     path: 'read-write-switch',
@@ -52,11 +47,11 @@ const componentsDocRoutes = [
     path: 'icon-button',
     component: () => import('../pages/icon-button/index.vue')
   },
-  // {
-  //   name: 'VirtualScroll 虚拟滚动',
-  //   path: 'virtual-scroll',
-  //   component: 'VirtualScrollDoc'
-  // }
+  {
+    name: 'Steps 步骤条',
+    path: 'steps',
+    component: () => import('../pages/steps/index.vue')
+  },
 ]
 
 export { componentsDocRoutes };

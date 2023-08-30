@@ -19,8 +19,9 @@
     "types": ["unplugin-vue-define-options", "vite/client"],
     "allowJs": true,
     "declaration": true,
-    "outDir": "types"
+    "outDir": "types",
   },
   "include": ["examples/**/*", "src/**/*", "plugins/*"],
   "references": [{ "path": "./tsconfig.node.json" }],
+
 }
