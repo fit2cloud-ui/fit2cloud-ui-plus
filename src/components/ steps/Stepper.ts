@@ -1,9 +1,10 @@
-import { useLocale } from '@/hooks';
-const { t } = useLocale();
-import { stepperOptions, stepOptions } from './types';
+import {useLocale} from '@/hooks';
 
-export class Stepper {
-  steps: [];
+const {t} = useLocale();
+import {StepperOptions, StepOptions} from './types';
+
+export class Stepper implements StepperOptions {
+  steps: [Step];
   index: number;
   activeSet: any;
   isLoading: boolean;
@@ -17,8 +18,9 @@ export class Stepper {
   beforeActive: Function;
   beforeLeave: Function;
   height: string;
-  constructor(options?: stepperOptions) {
-    options = options || ({} as stepperOptions);
+
+  constructor(options?: StepperOptions) {
+    options = options || ({} as StepperOptions);
     // 所有步骤节点(Step对象数组)
     this.steps = options.steps;
     // 正在执行的节点的索引
@@ -45,35 +47,35 @@ export class Stepper {
   }
 
   // index是否为第一个节点
-  isFirst(index: number) {
+  isFirst(index: number): boolean {
     return index === 0;
   }
 
   // index是否为最后一个节点
-  isLast(index: number) {
+  isLast(index: number): boolean {
     return index === this.steps.length - 1;
   }
 
   // index的节点是否激活过
-  isActive(index: number) {
+  isActive(index: number): boolean {
     return this.activeSet.has(index);
   }
 
   // index的节点是否为正在激活的节点
-  isCurrent(index: number) {
+  isCurrent(index: number): boolean {
     return this.index === index;
   }
 
   // 激活
   async active(index: number) {
     // 在节点范围内，并且不等于当前节点
-    const isValid = index >= 0 && index < this.steps.length && this.index !== index;
-    const forward = index > this.index;
+    const isValid: boolean = index >= 0 && index < this.steps.length && this.index !== index;
+    const forward: boolean = index > this.index;
     if (isValid) {
       // 离开前钩子返回false，则不执行激活
-      if ((await this.executeHook('beforeLeave', this.index, forward)) !== false) {
+      if (await (this.executeBeforeLeave(this.index, forward)) !== false) {
         // 激活前钩子返回false，则不执行激活
-        if ((await this.executeHook('beforeActive', index, forward)) !== false) {
+        if (await (this.executeBeforeActive(index, forward)) !== false) {
           // 激活
           this.index = index;
           this.activeSet.add(index);
@@ -83,59 +85,66 @@ export class Stepper {
   }
 
   // 反激活
-  inactive(index: number) {
-    this.activeSet.delete(index);
-  }
+  // inactive(index: number): void {
+  //   this.activeSet.delete(index);
+  // }
 
   // 下一步
-  next() {
+  next(): void {
     if (!this.isLast(this.index)) {
       this.active(this.index + 1);
     }
   }
 
   // 上一步
-  prev() {
+  prev(): void {
     if (!this.isFirst(this.index)) {
       this.active(this.index - 1);
     }
   }
 
   // 使用索引获取Step对象
-  getStep(index: number) {
+  getStep(index: number): Step | undefined {
     if (this.steps && this.steps.length > index) {
       return this.steps[index];
     }
   }
 
   // 使用ID获取节点索引
-  getIndex(id: string) {
-    if (this.steps) {
-      for (let i = 0; i < this.steps.length; i++) {
-        let step: any = this.steps[i];
-        if (id === step.id) {
-          return i;
-        }
-      }
+  // getIndex(id: string): number {
+  //   if (this.steps) {
+  //     for (let i = 0; i < this.steps.length; i++) {
+  //       let step: any = this.steps[i];
+  //       if (id === step.id) {
+  //         return i;
+  //       }
+  //     }
+  //   }
+  //   return -1;
+  // }
+
+  executeBeforeLeave(index: number, forward: boolean) {
+    const step: any = this.getStep(index);
+    if (step.beforeLeave) {
+      return step.beforeLeave(step, forward);
     }
-    return -1;
+    if (this.beforeLeave) {
+      return this.beforeLeave(step, forward);
+    }
   }
 
-  executeHook(functionName: string, index: number, forward: boolean) {
+  executeBeforeActive(index: number, forward: boolean) {
     const step: any = this.getStep(index);
-    // 如果节点定义了钩子方法，执行节点的
-    if (step[functionName]) {
-      return step[functionName](step, forward);
+    if (step.beforeActive) {
+      return step.beforeActive(step, forward);
     }
-
-    // 节点没定义，则执行Steps的钩子方法
-    if (this[functionName as keyof typeof this]) {
-      return this[functionName](step, forward);
+    if (this.beforeActive) {
+      return this.beforeActive(step, forward);
     }
   }
 }
 
-export class Step {
+export class Step implements StepOptions {
   id?: string;
   index: number;
   beforeActive?: Function;
@@ -144,8 +153,9 @@ export class Step {
   description?: string;
   icon?: string;
   status?: string;
-  constructor(options?: stepOptions) {
-    options = options || ({} as stepOptions);
+
+  constructor(options?: StepOptions) {
+    options = options || ({} as StepOptions);
     this.id = options.id;
     this.index = options.index;
     // 激活前钩子

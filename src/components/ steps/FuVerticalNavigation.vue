@@ -1,11 +1,11 @@
 <template>
-  <el-steps :active="stepper?.index" v-bind="stepper" direction="vertical" >
+  <el-steps :active="active" v-bind="stepper" direction="vertical" >
     <el-step v-for="(step, i) in steps" :key="i" v-bind="step" @click="click(i)"
       :class="disable!(i) && 'fu-step--disable'">
       <template #description>
         <span>{{ step?.description }}</span>
         <el-collapse-transition>
-          <div class="fu-steps__container" v-if="i === stepper?.index" :style="heightStyle">
+          <div class="fu-steps__container" v-if="i === active" :style="heightStyle">
             <slot v-bind:step="step"></slot>
           </div>
         </el-collapse-transition>
@@ -23,6 +23,10 @@ const props = defineProps({
   disable: Function as PropType<(index: number) => boolean>
 })
 const emit = defineEmits(["active"])
+
+const active = computed(() => {
+  return props.stepper!.index
+})
 
 const heightStyle = computed(() => {
   return {

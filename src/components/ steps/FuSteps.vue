@@ -13,7 +13,7 @@ export default defineComponent({
   props: ['direction'],
   setup(props, { attrs, slots, emit, expose }) {
     const { direction } = props;
-    const FuSteps = ref<HTMLElement>();
+    const FuSteps = ref<typeof FuHorizontalSteps | typeof FuVerticalSteps>();
     function next() {
       FuSteps.value?.next();
     }

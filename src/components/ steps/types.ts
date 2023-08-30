@@ -1,9 +1,7 @@
-import {InjectionKey} from "vue";
+import {Step} from "@/components/ steps/Stepper";
 
-export const stepperKey = Symbol('StepperKey') as unknown as InjectionKey<stepperOptions>
-
-export interface stepperOptions {
-  steps: []
+export interface StepperOptions {
+  steps: [Step]
   index: number
   activeSet: any
   isLoading?: boolean
@@ -19,7 +17,7 @@ export interface stepperOptions {
   height: string
 }
 
-export interface stepOptions {
+export interface StepOptions {
   id?: string
   index: number
   beforeActive?: Function
