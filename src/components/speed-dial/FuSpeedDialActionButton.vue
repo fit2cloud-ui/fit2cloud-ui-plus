@@ -44,9 +44,6 @@ const config = computed(() => {
 const direction = computed(() => {
   return speedDialKey?.direction.value || "";
 })
-// const clickClose =computed(()=>{
-//     return FuSpeedDial.clickClose;
-// })
 
 const titleSize = computed(() => {
   let size = config.value?.fab.size + "px";

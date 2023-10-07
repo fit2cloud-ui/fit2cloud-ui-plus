@@ -67,5 +67,3 @@ function removeTab(targetName: string) {
 }
 
 </script>
-<style lang="scss" scoped>
-</style>

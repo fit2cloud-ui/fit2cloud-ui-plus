@@ -71,7 +71,7 @@ function exec() {
   let conditions: any = [];
   references?.value.forEach(r => {
     let condition = r.getCondition()
-    if (condition && condition.value !== undefined) {
+    if (condition?.value !== undefined) {
       conditions.push(condition)
     }
   })

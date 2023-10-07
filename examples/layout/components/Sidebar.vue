@@ -28,11 +28,11 @@ onMounted(() => {
   showPath.value = route.path || "/";
 });
 
-function Path(path: String, parentPath: String) {
+function Path(path: string, parentPath: string) {
   return `${parentPath}/${path}`;
 }
 
-function toPath(path: String, parentPath: String) {
+function toPath(path: string, parentPath: string) {
   showPath.value = Path(path, parentPath);
   router.push(Path(path, parentPath));
 }
@@ -48,11 +48,10 @@ $themeColor: #2d61a2;
   ul {
     line-height: 35px;
     color: #666666;
-    // margin-left:25px;
     li {
       cursor: pointer;
-      padding: 5px 0;
-      padding-left: 10px;
+      padding: 5px 0 5px 10px;
+
       &:hover {
         color: $themeColor;
       }

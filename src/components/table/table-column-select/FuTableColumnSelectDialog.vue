@@ -56,7 +56,7 @@ const {t} = useLocale()
 
 const cloneColumn = (source: any, target: any) => {
   source.forEach((col: any) => {
-    target.push(Object.assign({}, col))
+    target.push({...col})
   })
   return target
 }

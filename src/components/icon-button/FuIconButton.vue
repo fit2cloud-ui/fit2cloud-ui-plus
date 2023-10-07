@@ -48,7 +48,3 @@ function click(e: MouseEvent) {
 }
 
 </script>
-
-<style scoped>
-
-</style>

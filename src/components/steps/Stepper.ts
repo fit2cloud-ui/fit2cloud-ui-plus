@@ -24,7 +24,7 @@ export class Stepper implements StepperOptions {
     // 所有步骤节点(Step对象数组)
     this.steps = options.steps;
     // 正在执行的节点的索引
-    this.index = options.index === undefined ? 0 : options.index;
+    this.index = options.index ?? 0;
     // 激活过的节点的索引
     this.activeSet = new Set();
     // loading状态
@@ -37,7 +37,7 @@ export class Stepper implements StepperOptions {
     this.buttonSize = options.buttonSize ?? 'default';
     this.footerAlign = options.footerAlign ?? 'flex';
     // 是否显示取消按钮
-    this.showCancel = options.showCancel === undefined ? false : options.showCancel;
+    this.showCancel = options.showCancel ?? false;
     // 激活前钩子
     this.beforeActive = options.beforeActive;
     // 离开前钩子
@@ -137,7 +137,7 @@ export class Step implements StepOptions {
   status?: string;
 
   constructor(options?: StepOptions) {
-    options = options || ({} as StepOptions);
+    options ??= {} as StepOptions;
     this.id = options.id;
     this.index = options.index;
     // 激活前钩子

@@ -85,7 +85,6 @@ const beforeLeave = async ({ id, title, index }: any, forward: string) => {
     console.log(index + ' 异步校验通过');
     // 同步校验, 返回undefined
   }
-  // return true;
 };
 function beforeActive({ id, title, index }: any) {
   console.log(index + '激活前');
