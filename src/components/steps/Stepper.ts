@@ -20,7 +20,7 @@ export class Stepper implements StepperOptions {
   height: string;
 
   constructor(options?: StepperOptions) {
-    options = options || ({} as StepperOptions);
+    options ??= {} as StepperOptions;
     // 所有步骤节点(Step对象数组)
     this.steps = options.steps;
     // 正在执行的节点的索引
@@ -28,14 +28,14 @@ export class Stepper implements StepperOptions {
     // 激活过的节点的索引
     this.activeSet = new Set();
     // loading状态
-    this.isLoading = options?.isLoading || false;
+    this.isLoading = options.isLoading ?? false;
     // footer 属性
-    this.onCancelButtonText = options.onCancelButtonText || t('fu.steps.cancel');
-    this.onFinishButtonText = options.onFinishButtonText || t('fu.steps.finish');
-    this.prevButtonText = options.prevButtonText || t('fu.steps.prev');
-    this.nextButtonText = options.nextButtonText || t('fu.steps.next');
-    this.buttonSize = options.buttonSize || 'default';
-    this.footerAlign = options.footerAlign || 'flex';
+    this.onCancelButtonText = options.onCancelButtonText ?? t('fu.steps.cancel');
+    this.onFinishButtonText = options.onFinishButtonText ?? t('fu.steps.finish');
+    this.prevButtonText = options.prevButtonText ?? t('fu.steps.prev');
+    this.nextButtonText = options.nextButtonText ?? t('fu.steps.next');
+    this.buttonSize = options.buttonSize ?? 'default';
+    this.footerAlign = options.footerAlign ?? 'flex';
     // 是否显示取消按钮
     this.showCancel = options.showCancel === undefined ? false : options.showCancel;
     // 激活前钩子
@@ -84,11 +84,6 @@ export class Stepper implements StepperOptions {
     }
   }
 
-  // 反激活
-  // inactive(index: number): void {
-  //   this.activeSet.delete(index);
-  // }
-
   // 下一步
   next(): void {
     if (!this.isLast(this.index)) {
@@ -109,19 +104,6 @@ export class Stepper implements StepperOptions {
       return this.steps[index];
     }
   }
-
-  // 使用ID获取节点索引
-  // getIndex(id: string): number {
-  //   if (this.steps) {
-  //     for (let i = 0; i < this.steps.length; i++) {
-  //       let step: any = this.steps[i];
-  //       if (id === step.id) {
-  //         return i;
-  //       }
-  //     }
-  //   }
-  //   return -1;
-  // }
 
   executeBeforeLeave(index: number, forward: boolean) {
     const step: any = this.getStep(index);
