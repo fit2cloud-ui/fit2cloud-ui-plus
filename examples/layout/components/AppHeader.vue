@@ -5,7 +5,9 @@
     </div>
     <div class="right">
       <span class="version">{{ PackageJSON.version }}</span>
-      <a href="https://github.com/fit2cloud-ui/fit2cloud-ui-plus" target="_blank"><img src="../../assets/github.png" height="30" alt="" /></a>
+      <a href="https://github.com/fit2cloud-ui/fit2cloud-ui-plus" target="_blank" rel="noopener">
+        <img src="../../assets/github.png" height="30" alt="" />
+      </a>
     </div>
   </div>
 </template>
