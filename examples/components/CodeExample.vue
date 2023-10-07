@@ -20,11 +20,6 @@
         <span v-show="hovering">{{ controlText() }}</span>
       </transition>
     </div>
-    <!-- <el-tooltip content="隐藏代码" placement="left" v-if="component">
-      <el-button v-show="fixedControl" class="is-fixed" @click="showCode = false" circle>
-        <img src="../assets/hidden-code.png" width="18" />
-      </el-button>
-    </el-tooltip> -->
   </div>
 </template>
 
@@ -83,8 +78,7 @@ watch(showCode, (val) => {
     scrollParent.value = document.querySelector(
       ".page-component__scroll > .el-scrollbar__wrap"
     ) as HTMLElement;
-    scrollParent.value &&
-      scrollParent.value.addEventListener("scroll", scrollHandler);
+    scrollParent.value.addEventListener("scroll", scrollHandler);
     scrollHandler();
   }, 200);
 });
@@ -109,8 +103,7 @@ function scrollHandler() {
 }
 
 function removeScrollHandler() {
-  scrollParent.value &&
-    scrollParent.value.removeEventListener("scroll", scrollHandler);
+  scrollParent.value?.removeEventListener("scroll", scrollHandler);
 }
 
 function copyClick() {
