@@ -13,7 +13,7 @@ const ExampleTransform = {
       return;
     }
     if (id == null) return
-    let path = `.${/\/examples\/pages\/.*\/demo\/.*\.vue/.exec(id)[0]}`;
+    let path = `.${/\/examples\/pages\/.*\/demo\/.*\.vue/.exec(id)?.[0]}`;
     const file = fs.readFileSync(path).toString();
 
     const parsed: any = baseParse(file).children.find((n: any) => n.tag === "demo");
