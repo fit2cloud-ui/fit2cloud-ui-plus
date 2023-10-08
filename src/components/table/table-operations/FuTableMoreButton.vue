@@ -19,10 +19,10 @@
   </el-dropdown>
 </template>
 <script lang="ts" setup>
-import { computed } from "vue";
+import { computed, PropType } from "vue";
 import { useLocale } from "@/hooks"
-import { PropType } from "vue";
 import { DropdownProps } from "@/tools/types";
+
 defineOptions({ name: "FuTableMoreButton" });
 const { t } = useLocale()
 const props = defineProps({

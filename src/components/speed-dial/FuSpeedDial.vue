@@ -135,7 +135,7 @@ const hashChildren = computed(() => {
   if (props.items && props.items.length > 0) {
     return true
   }
-  return slots && slots.default
+  return slots?.default
 })
 const config = computed(() => {
   return props.sizeOptions[props.size] || props.sizeOptions["default"]
@@ -212,8 +212,8 @@ function mousemove(e: MouseEvent) {
   if (props.position === "absolute") {
     const {offsetLeft, offsetTop, clientWidth, clientHeight, offsetParent} = instance?.vnode.el as HTMLElement
 
-    const maxWidth = offsetParent && offsetParent.clientWidth || 0 - clientWidth
-    const maxHeight = offsetParent && offsetParent.clientHeight || 0 - clientHeight
+    const maxWidth = offsetParent?.clientWidth ?? 0 - clientWidth
+    const maxHeight = offsetParent?.clientHeight ?? 0 - clientHeight
 
     let left = offsetLeft + e.movementX
     let top = offsetTop + e.movementY

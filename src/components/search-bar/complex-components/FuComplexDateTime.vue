@@ -2,7 +2,6 @@
   <div class="fu-complex-component">
     <div class="fu-complex-component__label">{{ label }}</div>
     <div class="fu-complex-component__content">
-      <!-- :size="configSize"  -->
       <el-date-picker class="fu-complex-date-time" v-model="value" v-bind="$attrs" :size="configSize"
                       :placeholder="t('fu.search_bar.select_date_time')" type="datetimerange"
                       :value-format="valueFormat"

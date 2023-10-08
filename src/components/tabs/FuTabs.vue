@@ -41,7 +41,6 @@
 <script lang="ts" setup>
 import { PropType } from "vue";
 import { DropdownProps } from "@/tools/types";
-import { uuid } from "@/tools/utils";
 defineOptions({ name: "FuTabs" });
 type TabPanelName = string | number
 const props = defineProps({
@@ -69,7 +68,7 @@ const props = defineProps({
 const emit = defineEmits(["command"])
 
 function handleCommand(e: any) {
-  const name = uuid();
+  const name = crypto.randomUUID();
   let obj = null;
   if (e) {
     obj = props.dropdownMenus.find((item: any) => item.command === e);

@@ -32,8 +32,7 @@
   </el-table-column>
 </template>
 <script lang="ts" setup>
-import { computed, getCurrentInstance } from "vue";
-import { PropType } from "vue";
+import { computed, getCurrentInstance, PropType } from "vue";
 import { DropdownProps } from "@/tools/types";
 
 defineOptions({ name: "FuTableColumnDropdown" });

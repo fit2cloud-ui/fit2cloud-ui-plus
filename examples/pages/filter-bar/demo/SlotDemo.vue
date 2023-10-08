@@ -33,7 +33,6 @@
 
 <script setup lang="ts">
 import {ref} from "vue"
-import {Search} from '@element-plus/icons-vue'
 
 const options = [{label: "选项1", value: 1},
   {label: "选项2", value: 2},

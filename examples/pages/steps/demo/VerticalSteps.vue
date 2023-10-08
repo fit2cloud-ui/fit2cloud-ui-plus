@@ -33,5 +33,3 @@ function submit() {
   alert("完成");
 }
 </script>
-<style lang="scss" scoped>
-</style>
