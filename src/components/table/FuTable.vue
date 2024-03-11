@@ -14,7 +14,7 @@
 
 <script lang="ts" setup>
 import {onMounted, useSlots, ref, watch, computed, onUpdated, provide, VNodeNormalizedChildren, VNode} from "vue";
-import {isFix, getLabel, FuTableBody} from "@/components/table/FuTableBody";
+import {isFix, getLabel, getProp, FuTableBody} from "@/components/table/FuTableBody";
 import {isValidElementNode, getChildren, isValidChildren} from "@/tools/vnode";
 import {LocalKey} from "@/components/table/types";
 
@@ -44,7 +44,7 @@ const cleanColumns = (columns: any) => {
 const updateNodes = (nodes: any) => {
   nodes.forEach((node: any) => {
     if (isValidElementNode(node) && !(node.type as any).key) {
-      (node.type as any).key = getLabel(node)
+      (node.type as any).key = getProp(node)
     }
   })
 }
@@ -52,12 +52,13 @@ const updateNodes = (nodes: any) => {
 const initColumns = (nodes: any, columns: any) => {
   nodes.forEach((node: any) => {
     const label = getLabel(node)
+    const prop = getProp(node)
     const fix = isFix(node);
     const {show} = node.props
-    if (!label && !fix) {
+    if (!prop && !fix) {
       throw new Error("unfixed column's label is required.")
     }
-    columns.push({label, show, fix})
+    columns.push({label, prop, show, fix})
   })
 }
 
@@ -74,8 +75,9 @@ const updateColumns = (nodes: any, columns: any) => {
     cleanColumns(columns)
     initColumns(nodes, columns)
   }
-  if (columns.some((col: any) => col.label === undefined)) {
+  if (columns.some((col: any) => col.prop === undefined)) {
     columns.forEach((col: any, i: any) => {
+      col.prop ??= getProp(nodes[i])
       col.label ??= getLabel(nodes[i])
     })
   }

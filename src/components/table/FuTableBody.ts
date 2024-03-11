@@ -1,11 +1,12 @@
 import {getChildren} from "@/tools/vnode";
 import {isArray} from "@vue/shared";
+import {ref} from "vue";
 
 export const isFix = (node: any) => {
-  const includeTag = node.type.name.indexOf("FuTableColumnDropdown") >= 0;
-  const {fix} = node.props;
-  let {type} = node.props;
+  const includeTag = node.type.name.indexOf("FuTableOperations") >= 0;
+  const {fix, prop, type} = node.props;
   return (
+    prop === undefined ||
     (fix !== undefined && fix !== false) ||
     ["selection", "index", "expand"].includes(type) ||
     includeTag
@@ -14,13 +15,12 @@ export const isFix = (node: any) => {
 
 export const getLabel = (node: any) => {
   if (node.props.label) return node.props.label;
-  const prefix = "FU-T-";
-  const includeTag = node.type.name.indexOf("FuTableColumnDropdown") >= 0;
-  let {label, type} = node.props;
-  if (includeTag) label = prefix + "dropdown";
-  label ??= node.props.label;
-  label ??= prefix + type;
-  return label;
+  return node.props.type || node.props.prop;
+};
+
+export const getProp = (node: any) => {
+  if (node.props.prop) return node.props.prop;
+  return node.props.label;
 };
 
 export const FuTableBody = (props: any, context: any) => {
@@ -33,7 +33,12 @@ export const FuTableBody = (props: any, context: any) => {
   columns.forEach((col: any) => {
     if (isArray(children)) {
       let node = children.find((child: any) => {
-        return col.label === getLabel(child) && child.type.name !== undefined;
+        const isColNode = col.prop === getProp(child) && child.type.name !== undefined;
+        // 多语言切换
+        if (isColNode && child.props.label !== col.label && col.prop !== undefined) {
+          col.label = child.props.label
+        }
+        return isColNode
       });
       if (node && (isFix(node) || col.show !== false)) {
         nodes.push(node);
