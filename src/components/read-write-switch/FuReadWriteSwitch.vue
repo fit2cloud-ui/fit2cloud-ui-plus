@@ -1,5 +1,6 @@
 <script lang="ts">
 import {ref, watch, defineComponent, h, nextTick} from 'vue'
+import {v4} from 'uuid';
 
 const TRIGGERS = ['manual', 'onClick', 'onDblclick']
 
@@ -18,7 +19,7 @@ export default defineComponent({
   },
 
   setup(props, {slots, emit}) {
-    const id = ref(crypto.randomUUID())
+    const id = ref(v4())
     const write = ref(props.modelValue)
     watch(() => props.modelValue, (v) => {
       if (v === write.value) return
