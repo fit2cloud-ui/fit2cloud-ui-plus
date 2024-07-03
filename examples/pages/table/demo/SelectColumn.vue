@@ -7,6 +7,8 @@
     <fu-table-column-select :columns="columns"/>
     <span style="margin-left: 20px">Dialog选列：</span>
     <fu-table-column-select type="dialog" :columns="columns"/>
+    <span style="margin-left: 20px">Dialog选列(仅图标)：</span>
+    <fu-table-column-select type="dialog" :columns="columns" :only-icon="true"/>
   </div>
   <fu-table :data="tableData" :columns="columns">
     <el-table-column type="selection"></el-table-column>
