@@ -20,7 +20,7 @@ jobs:
           npm run build-docs
 
       - name: Deploy
-        uses: JamesIves/github-pages-deploy-action@4.0.0
+        uses: JamesIves/github-pages-deploy-action@v4
         with:
           repository-name: fit2cloud-ui/fit2cloud-ui-plus
           target-folder: docs
