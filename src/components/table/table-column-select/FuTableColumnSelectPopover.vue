@@ -20,7 +20,11 @@
     </div>
 
     <template #reference>
-      <el-button class="fu-search-bar-button" :icon="icon">{{ t('fu.table.custom_table_rows') }}</el-button>
+      <el-button class="fu-search-bar-button" :icon="icon">
+        <template v-slot:[slotName]>
+          {{ t('fu.table.custom_table_rows') }}
+        </template>
+      </el-button>
     </template>
   </el-popover>
 </template>
@@ -35,6 +39,10 @@ const props = defineProps({
   icon: {
     type: String,
     default: "Setting"
+  },
+  onlyIcon: {
+    type: Boolean,
+    default: false
   },
   trigger: {
     type: String,
@@ -67,6 +75,8 @@ const {
   dragend,
   drop
 } = tableColumnSelect(localKey)
+
+const slotName = computed(() => props.onlyIcon ? 'onlyIcon' : 'default')
 
 const isFixAll = computed(() => {
   return props.columns?.every((c: any) => {

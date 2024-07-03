@@ -1,6 +1,9 @@
 <template>
   <div style="display: inline-block">
-    <el-button class="fu-search-bar-button" :icon="icon" @click="visible = true">{{ t('fu.table.custom_table_rows') }}
+    <el-button class="fu-search-bar-button" :icon="icon" @click="visible = true">
+      <template v-slot:[slotName]>
+        {{ t('fu.table.custom_table_rows') }}
+      </template>
     </el-button>
     <el-dialog class="fu-table-column-select-dialog" v-model="visible" @open="open" append-to-body>
       <template #header>
@@ -40,6 +43,10 @@ const props = defineProps({
     type: String,
     default: "Setting"
   },
+  onlyIcon: {
+    type: Boolean,
+    default: false
+  },
   columns: {
     type: Array,
     default: () => []
@@ -53,6 +60,8 @@ const props = defineProps({
 const localKey = inject(LocalKey, undefined)
 
 const {t} = useLocale()
+
+const slotName = computed(() => props.onlyIcon ? 'onlyIcon' : 'default')
 
 const cloneColumn = (source: any, target: any) => {
   source.forEach((col: any) => {
