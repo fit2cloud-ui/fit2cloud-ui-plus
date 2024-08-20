@@ -101,10 +101,11 @@
     }
 
     .condition-remove {
-      @include active-scale(0.9);
       margin-left: 6px;
       margin-right: -6px;
       cursor: pointer;
+
+      @include active-scale(0.9);
 
       &:hover {
         color: var(--el-color-primary);
@@ -156,8 +157,8 @@
   }
 
   .clean-button {
-    @include active-scale;
     cursor: pointer;
+    @include active-scale;
 
     &:hover {
       color: var(--el-color-primary);
