@@ -18,9 +18,9 @@
         <template #default="scope">
           <div class="example">
             <el-checkbox-group v-model="checkList">
-              <el-checkbox label="复选框 A" />
-              <el-checkbox label="复选框 B" />
-              <el-checkbox label="复选框 C" />
+              <el-checkbox value="复选框 A" />
+              <el-checkbox value="复选框 B" />
+              <el-checkbox value="复选框 C" />
             </el-checkbox-group>
             <div class="example-button">
               <el-button type="primary" size="small">确认</el-button>

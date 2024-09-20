@@ -1,6 +1,6 @@
 <demo>自定义footer步骤按钮</demo>
 <template>
-  <fu-steps ref="stepsRef" finish-status="success" @change="handleChange" height="200">
+  <fu-steps  ref="stepsRef" finish-status="success" @change="handleChange" height="200">
     <fu-step id="cluster" title="第1步">
       <div class="example">
         <h1>Step 1</h1>
