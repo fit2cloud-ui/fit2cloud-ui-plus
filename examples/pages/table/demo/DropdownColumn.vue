@@ -1,9 +1,9 @@
 <demo>列组件下拉菜单</demo>
 <template>
     <el-radio-group v-model="showType" style="margin-bottom: 20px">
-        <el-radio-button label="always">always</el-radio-button>
-        <el-radio-button label="hover">hover</el-radio-button>
-        <el-radio-button label="selected">selected</el-radio-button>
+        <el-radio-button value="always">always</el-radio-button>
+        <el-radio-button value="hover">hover</el-radio-button>
+        <el-radio-button value="selected">selected</el-radio-button>
     </el-radio-group>
     <fu-table :data="tableData" @selection-change="handleSelectionChange">
         <el-table-column type="selection" />

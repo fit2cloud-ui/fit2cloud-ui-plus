@@ -1,10 +1,10 @@
 <demo>footer步骤按钮的配置</demo>
 <template>
   <el-radio-group v-model="labelPosition" style="margin-bottom: 30px;">
-    <el-radio-button label="left">左对齐</el-radio-button>
-    <el-radio-button label="right">右对齐</el-radio-button>
-    <el-radio-button label="center">居中对齐</el-radio-button>
-    <el-radio-button label="flex">两端对齐</el-radio-button>
+    <el-radio-button value="left">左对齐</el-radio-button>
+    <el-radio-button value="right">右对齐</el-radio-button>
+    <el-radio-button value="center">居中对齐</el-radio-button>
+    <el-radio-button value="flex">两端对齐</el-radio-button>
   </el-radio-group>
   <fu-steps ref="steps" finish-status="success" height="200" @finish="submit" :cancelButtonText="cancelText"
     :finishButtonText="finishText" :prevButtonText="prevText" :nextButtonText="nextText" buttonSize="small"
