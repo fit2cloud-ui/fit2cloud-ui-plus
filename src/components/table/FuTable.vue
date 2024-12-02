@@ -77,8 +77,8 @@ const updateColumns = (nodes: any, columns: any) => {
   }
   if (columns.some((col: any) => col.prop === undefined)) {
     columns.forEach((col: any, i: any) => {
-      col.prop ??= getProp(nodes[i])
-      col.label ??= getLabel(nodes[i])
+      col.prop = getProp(nodes[i])
+      col.label = getLabel(nodes[i])
     })
   }
 }
