@@ -75,12 +75,11 @@ const updateColumns = (nodes: any, columns: any) => {
     cleanColumns(columns)
     initColumns(nodes, columns)
   }
-  if (columns.some((col: any) => col.prop === undefined)) {
-    columns.forEach((col: any, i: any) => {
-      col.prop = getProp(nodes[i])
-      col.label = getLabel(nodes[i])
-    })
-  }
+  // 更新label和prop
+  columns.forEach((col: any, i: any) => {
+    col.prop = getProp(nodes[i])
+    col.label = getLabel(nodes[i])
+  })
 }
 
 
