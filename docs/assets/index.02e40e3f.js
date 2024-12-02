@@ -1,4 +1,4 @@
-import{d as y,r as f,a as p,o as s,k as _,w as A,c as E,j as D,e as S,t as B,u as h,F as C,_ as g,i as m,b as v,f as c,p as L,h as V}from"./index.9603fcc1.js";function T(n){n.__sourceCode=`<template>
+import{d as y,r as f,a as p,o as s,k as _,w as A,c as E,j as D,e as S,t as B,u as h,F as C,_ as g,i as m,b as v,f as c,p as L,h as V}from"./index.b784796a.js";function T(n){n.__sourceCode=`<template>
   <fu-tabs v-model="editableTabsValue" addable addType="dropdown" :dropdownMenus="menus" @command="handleCommand"
     @tab-remove="removeTab">
     <el-tab-pane :key="item.name" v-for="item in editableTabs" :label="item.title" :name="item.name" closable>
