@@ -17,8 +17,8 @@ $fu-search-bar: map.deep-merge(
     (
       'width': 100%,
       'height': 48px,
-      'condition-color': map-get($condition, "color"),
-      'condition-bgColor': map-get($condition, "bgColor"),
+      'condition-color': map.get($condition, "color"),
+      'condition-bgColor': map.get($condition, "bgColor"),
     ),
     $fu-search-bar
 );
@@ -26,25 +26,25 @@ $fu-search-bar: map.deep-merge(
 $fu-filter-bar: () !default;
 $fu-filter-bar: map.deep-merge(
     (
-      'color': map-get($condition, "color"),
-      'drawer-color': map-get($condition, "color"),
-      'condition-color': map-get($condition, "color"),
-      'condition-bgColor': map-get($condition, "bgColor"),
-      'option-bgColor': map-get($condition, "bgColor"),
+      'color': map.get($condition, "color"),
+      'drawer-color': map.get($condition, "color"),
+      'condition-color': map.get($condition, "color"),
+      'condition-bgColor': map.get($condition, "bgColor"),
+      'option-bgColor': map.get($condition, "bgColor"),
       'option-hover-bgColor': rgba($color-primary, 10%),
-      'scroll-bgColor': mix(#000, map-get($condition, "bgColor"), 15%),
+      'scroll-bgColor': mix(#000, map.get($condition, "bgColor"), 15%),
     ),
     $fu-filter-bar
 );
 
-$fu-icon-button: ('color': map-get($text-color, "primary")) !default;
+$fu-icon-button: ('color': map.get($text-color, "primary")) !default;
 $fu-icon-button: map.deep-merge(
     (
       'bgColor': transparent,
-      'hover-color': map-get($fu-icon-button, "color"),
-      'hover-bgColor': rgba(map-get($fu-icon-button, "color"), 0.1),
-      'active-color': map-get($fu-icon-button, "color"),
-      'active-bgColor': rgba(map-get($fu-icon-button, "color"), 0.2),
+      'hover-color': map.get($fu-icon-button, "color"),
+      'hover-bgColor': rgba(map.get($fu-icon-button, "color"), 0.1),
+      'active-color': map.get($fu-icon-button, "color"),
+      'active-bgColor': rgba(map.get($fu-icon-button, "color"), 0.2),
       'disabled-color': #BBBFC4,
       'disabled-bgColor': transparent,
       'gap': 12px,

@@ -1,3 +1,4 @@
+@use 'sass:map';
 // 自定义Element plus样式
 @forward 'element-plus/theme-chalk/src/common/var.scss' with (
   $colors: (
@@ -5,7 +6,7 @@
       'base': #3370FF,
     ),
     //'danger':(
-    //  'base':#F54A45
+    //  'base':#F54A45©
     //)
   ),
   $input: (
@@ -58,10 +59,10 @@
   --el-button-bg-color: #FFF !important;
   --el-button-hover-text-color: var(--el-button-text-color) !important;
   --el-button-hover-border-color: var(--el-button-border-color) !important;
-  --el-button-hover-bg-color: #{mix(map-get($text-color,'regular'), #FFF, 5%)} !important;
+  --el-button-hover-bg-color: #{mix(map.get($text-color,'regular'), #FFF, 5%)} !important;
   --el-button-active-text-color: var(--el-button-text-color) !important;
   --el-button-active-border-color: var(--el-button-border-color) !important;
-  --el-button-active-bg-color: #{mix(map-get($text-color,'regular'), #FFF, 10%)} !important;
+  --el-button-active-bg-color: #{mix(map.get($text-color,'regular'), #FFF, 10%)} !important;
 }
 
 .el-select .el-input .el-input__wrapper .el-select__caret.el-icon:hover {
@@ -82,11 +83,11 @@
   }
 
   &:hover, &:focus {
-    background-color: #{mix(map-get($text-color,'regular'), #FFF, 5%)} !important;
+    background-color: #{mix(map.get($text-color,'regular'), #FFF, 5%)} !important;
   }
 
   &:active {
-    background-color: #{mix(map-get($text-color,'regular'), #FFF, 10%)} !important;
+    background-color: #{mix(map.get($text-color,'regular'), #FFF, 10%)} !important;
   }
 }
 
@@ -96,5 +97,5 @@
 }
 
 .el-message__content {
-  color: #{map-get($text-color, 'primary')} !important;
+  color: #{map.get($text-color, 'primary')} !important;
 }
