@@ -1,4 +1,4 @@
-import{_ as r,a as o,o as p,c as d,b as t,w as u,f as n,F as c,e as i,p as E,h as B,d as R,i as m,u as T,j as N,t as C}from"./index.b784796a.js";function g(e){e.__sourceCode=`<template>
+import{_ as r,a as o,o as p,c as d,b as t,w as u,f as n,F as c,e as i,p as E,h as B,d as R,i as m,u as T,j as N,t as C}from"./index.7672c422.js";function g(e){e.__sourceCode=`<template>
   <el-divider content-position="left">\u6C34\u5E73\u5206\u5272</el-divider>
   <div class="demo-split">
     <fu-split-pane left="200px">
