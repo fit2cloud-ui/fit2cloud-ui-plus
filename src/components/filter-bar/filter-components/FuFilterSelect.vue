@@ -4,14 +4,8 @@
     <div class="fu-filter-component__content">
       <fu-filter-option :label="o.label" :value="o.value" v-for="o in showOptions" :key="o.value"/>
       <el-popover popper-class="fu-filter-component-popover" :show-arrow="false" placement="bottom-start"
-                  trigger="click" width="240" v-if="showMore">
-        <el-select v-model="selection" v-bind="$attrs" :multiple="multiple" @change="change" :teleported="false"
-                   :size="configSize" :placeholder="t('fu.search_bar.please_select')">
-          <el-option value="-$SELECT-ALL$-" v-if="showSelectAll">
-            <div @click="selectAll">{{ t('fu.filter_bar.select_all') }}</div>
-          </el-option>
-          <el-option :label="o.label" :value="o.value" v-for="o in options" :key="o.value"/>
-        </el-select>
+                  trigger="click" v-if="showMore">
+        <fu-filter-option :label="o.label" :value="o.value" v-for="o in options" :key="o.value"/>
         <template #reference>
           <div class="fu-filter-option">
             <el-icon>
@@ -30,7 +24,7 @@ import {ref, provide, computed, PropType, Ref, inject} from "vue";
 import FuFilterOption from "./FuFilterOption.vue";
 import {FilterCondition, OptionProps, ReferenceContext, referenceKey, selectKey} from "../types";
 
-import {useLocale, useSize} from "@/hooks"
+import {useLocale} from "@/hooks"
 import {validateSize} from "@/tools/size";
 
 defineOptions({name: "FuFilterSelect"});
@@ -65,7 +59,6 @@ const props = defineProps({
 const emit = defineEmits(["change"])
 
 const selection: Ref<Array<string | number> | string | number> = ref(props.multiple ? [] : '')
-const configSize = useSize()
 const showOptions = computed(() => {
   return props.options.filter((o, i) => {
     let show = props.showLimit < 0 ? true : i < props.showLimit
@@ -92,18 +85,7 @@ const valueLabel = computed(() => {
   return getValueLabel(selection.value);
 })
 
-const showSelectAll = computed(() => {
-  return props.useSelectAll && props.multiple
-})
-
 const {t} = useLocale()
-
-function change(v: any) {
-  if (showSelectAll.value && v?.includes("-$SELECT-ALL$-")) {
-    selection.value = props.options.map(o => o.value)
-  }
-  emit("change", selection.value)
-}
 
 function setSelected(value: string | number, selected: boolean) {
   if (!Array.isArray(selection.value)) {
@@ -116,10 +98,6 @@ function setSelected(value: string | number, selected: boolean) {
   } else {
     selection.value.push(value)
   }
-}
-
-function selectAll() {
-  selection.value = props.options.map(o => o.value)
 }
 
 function getValueLabel(value: string | number) {

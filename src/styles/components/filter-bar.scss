@@ -180,14 +180,15 @@
 @include b(filter-component-popover) {
   &.el-popover.el-popper {
     display: flex;
-    align-items: center;
-    box-shadow: none;
+    flex-direction: column;
     border: none;
     padding: 0;
-    width: 240px;
+    max-height: 300px;
+    overflow-y: auto;
 
-    .el-select {
-      width: 100%;
+    .fu-filter-option {
+      margin: 3px 5px;
+      padding: 2px 5px;
     }
   }
 }
