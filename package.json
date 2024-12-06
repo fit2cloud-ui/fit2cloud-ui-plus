@@ -1,6 +1,6 @@
 {
   "name": "fit2cloud-ui-plus",
-  "version": "1.1.11",
+  "version": "1.1.12",
   "private": false,
   "main": "./lib/fit2cloud-ui-plus.es.js",
   "files": [
