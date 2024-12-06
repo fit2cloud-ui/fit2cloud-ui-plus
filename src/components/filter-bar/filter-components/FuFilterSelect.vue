@@ -4,7 +4,7 @@
     <div class="fu-filter-component__content">
       <fu-filter-option :label="o.label" :value="o.value" v-for="o in showOptions" :key="o.value"/>
       <el-popover popper-class="fu-filter-component-popover" :show-arrow="false" placement="bottom-start"
-                  trigger="click" v-if="showMore">
+                  trigger="click" ref="popoverRef" v-if="showMore">
         <fu-filter-option :label="o.label" :value="o.value" v-for="o in options" :key="o.value"/>
         <template #reference>
           <div class="fu-filter-option">
@@ -42,10 +42,6 @@ const props = defineProps({
     type: Number,
     default: 3 // -1 全显示
   },
-  useSelectAll: {
-    type: Boolean,
-    default: false
-  },
   label: String,
   field: {
     type: String,
@@ -56,7 +52,8 @@ const props = defineProps({
     default: []
   }
 })
-const emit = defineEmits(["change"])
+
+const popoverRef = ref()
 
 const selection: Ref<Array<string | number> | string | number> = ref(props.multiple ? [] : '')
 const showOptions = computed(() => {
@@ -88,10 +85,13 @@ const valueLabel = computed(() => {
 const {t} = useLocale()
 
 function setSelected(value: string | number, selected: boolean) {
+  // 单选
   if (!Array.isArray(selection.value)) {
     selection.value = selected ? '' : value
+    popoverRef.value.hide()
     return
   }
+  // 多选
   if (selected) {
     let index = selection.value.indexOf(value)
     selection.value.splice(index, 1)
