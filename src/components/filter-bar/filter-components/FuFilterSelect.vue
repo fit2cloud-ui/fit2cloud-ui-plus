@@ -88,7 +88,7 @@ function setSelected(value: string | number, selected: boolean) {
   // 单选
   if (!Array.isArray(selection.value)) {
     selection.value = selected ? '' : value
-    popoverRef.value.hide()
+    popoverRef?.value?.hide()
     return
   }
   // 多选
