@@ -110,7 +110,8 @@ function getValueLabel(value: string | number) {
 }
 
 function getCondition(): FilterCondition | undefined {
-  if (!selection.value || (Array.isArray(selection.value) && selection.value.length === 0)) return;
+  if (selection?.value === undefined || selection?.value === "") return;
+  if (Array.isArray(selection.value) && selection.value.length === 0) return;
   let {field, label} = props
   return {field, label, value: selection.value, valueLabel: valueLabel.value}
 }
