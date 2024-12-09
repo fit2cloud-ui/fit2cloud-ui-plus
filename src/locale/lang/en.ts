@@ -8,6 +8,7 @@ export default {
       drawer_title: "Filter",
       cancel: "Cancel",
       search: "Search",
+      refresh: "Refresh",
       select_all: "Select All",
       more: "More"
     },
