@@ -8,6 +8,7 @@ export default {
       drawer_title: "筛选条件",
       cancel: "取消",
       search: "查询",
+      refresh: "刷新",
       select_all: "全选",
       more: "更多"
     },

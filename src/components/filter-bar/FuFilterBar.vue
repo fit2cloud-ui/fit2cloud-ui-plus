@@ -6,12 +6,14 @@
       </div>
       <div class="top_right">
         <slot name="tr" :condition="conditionObj">
-          <fu-filter-input :size="configSize" v-model="quick" :placeholder="quickPlaceholder" @change="change"/>
+          <fu-filter-input :size="configSize" v-model="quick" :placeholder="quickPlaceholder" @change="execute"/>
         </slot>
+        <el-button class="fu-filter-button" @click="execute" icon="Refresh" :size="configSize" v-if="showRefresh">
+          {{ t('fu.filter_bar.refresh') }}
+        </el-button>
         <el-button class="fu-filter-button" @click="open" icon="Filter" :size="configSize">{{ t('fu.filter_bar.filter') }}
           <span v-if="conditions.length > 0">({{ conditions.length }})</span>
         </el-button>
-
         <slot name="buttons"></slot>
       </div>
     </div>
@@ -44,6 +46,10 @@ defineProps({
   showEmpty: {
     type: Boolean,
     default: false
+  },
+  showRefresh: {
+    type: Boolean,
+    default: false
   }
 })
 
@@ -58,7 +64,7 @@ function open() {
   filterRef.value?.open()
 }
 
-function change() {
+function execute() {
   emit("exec", conditionObj.value)
 }
 

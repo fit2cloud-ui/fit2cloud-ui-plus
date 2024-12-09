@@ -4,7 +4,7 @@
     <h4>
       1、使用slot
     </h4>
-    <FuFilterBar ref="filterRef" @exec="exec" :result-count="count" size="default">
+    <FuFilterBar ref="filterRef" @exec="exec" :result-count="count" size="default" show-refresh>
       <template #default>
         <FuFilterSelect size="default" label="事件类型" field="type" :options="options" multiple clearable filterable
                         use-select-all/>
@@ -66,6 +66,7 @@ const condition = ref({})
 function exec(c: any) {
   condition.value = c
   count.value = Object.keys(condition).length * 10
+  console.log(condition.value)
 }
 </script>
 
