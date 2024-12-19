@@ -1,4 +1,5 @@
 @use 'sass:map';
+@use 'sass:color';
 @use "./mixins" as *;
 @use 'element-plus/theme-chalk/src/common/var.scss' as *;
 
@@ -32,7 +33,7 @@ $fu-filter-bar: map.deep-merge(
       'condition-bgColor': map.get($condition, "bgColor"),
       'option-bgColor': map.get($condition, "bgColor"),
       'option-hover-bgColor': rgba($color-primary, 10%),
-      'scroll-bgColor': mix(#000, map.get($condition, "bgColor"), 15%),
+      'scroll-bgColor': color.mix(#000, map.get($condition, "bgColor"), 15%),
     ),
     $fu-filter-bar
 );
