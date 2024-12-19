@@ -43,7 +43,7 @@ export default {
     },
     table: {
       ok: "确定",
-      reset: "重置",
+      cancel: "取消",
       custom_table_fields: "自定义表格字段",
       custom_table_fields_desc: "固定字段不在选择范围，可拖拽自定义顺序",
       custom_table_rows: "选项列",

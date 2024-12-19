@@ -1,10 +1,6 @@
 import {computed} from "vue";
 
-export const tableColumnSelect = (localKey: any) => {
-
-  const columnsKey = computed((): string => {
-    return localKey ? "FU-T-" + localKey : ''
-  })
+export const tableColumnSelect = () => {
 
   function dragstart(event: DragEvent, index: any) {
     if (event.dataTransfer) {
@@ -52,7 +48,6 @@ export const tableColumnSelect = (localKey: any) => {
   }
 
   return {
-    columnsKey,
     dragstart,
     dragenter,
     dragleave,
