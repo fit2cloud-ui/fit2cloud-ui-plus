@@ -1,4 +1,5 @@
 @use 'sass:map';
+@use 'sass:color';
 // 自定义Element plus样式
 @forward 'element-plus/theme-chalk/src/common/var.scss' with (
   $colors: (
@@ -38,31 +39,31 @@
 @use 'element-plus/theme-chalk/src/common/var.scss' as *;
 
 .el-button--primary {
-  --el-button-hover-bg-color: #{mix(#FFF, $color-primary, 15%)} !important;
-  --el-button-active-bg-color: #{mix(#000, $color-primary, 15%)} !important;
+  --el-button-hover-bg-color: #{color.mix(#FFF, $color-primary, 15%)} !important;
+  --el-button-active-bg-color: #{color.mix(#000, $color-primary, 15%)} !important;
 }
 
 .el-button--primary.is-plain {
   --el-button-bg-color: #FFF !important;
   --el-button-hover-text-color: var(--el-button-text-color) !important;
-  --el-button-hover-bg-color: #{mix($color-primary, #FFF, 15%)} !important;
+  --el-button-hover-bg-color: #{color.mix($color-primary, #FFF, 15%)} !important;
   --el-button-active-text-color: var(--el-button-text-color) !important;
-  --el-button-active-bg-color: #{mix($color-primary, #FFF, 30%)} !important;
+  --el-button-active-bg-color: #{color.mix($color-primary, #FFF, 30%)} !important;
 }
 
 .el-button--danger {
-  --el-button-hover-bg-color: #{mix(#FFF, $color-danger, 15%)} !important;
-  --el-button-active-bg-color: #{mix(#000, $color-danger, 15%)} !important;
+  --el-button-hover-bg-color: #{color.mix(#FFF, $color-danger, 15%)} !important;
+  --el-button-active-bg-color: #{color.mix(#000, $color-danger, 15%)} !important;
 }
 
 .el-button--default:not(.el-button--primary).is-plain {
   --el-button-bg-color: #FFF !important;
   --el-button-hover-text-color: var(--el-button-text-color) !important;
   --el-button-hover-border-color: var(--el-button-border-color) !important;
-  --el-button-hover-bg-color: #{mix(map.get($text-color,'regular'), #FFF, 5%)} !important;
+  --el-button-hover-bg-color: #{color.mix(map.get($text-color,'regular'), #FFF, 5%)} !important;
   --el-button-active-text-color: var(--el-button-text-color) !important;
   --el-button-active-border-color: var(--el-button-border-color) !important;
-  --el-button-active-bg-color: #{mix(map.get($text-color,'regular'), #FFF, 10%)} !important;
+  --el-button-active-bg-color: #{color.mix(map.get($text-color,'regular'), #FFF, 10%)} !important;
 }
 
 .el-select .el-input .el-input__wrapper .el-select__caret.el-icon:hover {
@@ -74,25 +75,25 @@
 
   &.el-button--primary {
     &:hover, &:focus {
-      background-color: #{mix($color-primary, #FFF, 15%)} !important;
+      background-color: #{color.mix($color-primary, #FFF, 15%)} !important;
     }
 
     &:active {
-      background-color: #{mix($color-primary, #FFF, 30%)} !important;
+      background-color: #{color.mix($color-primary, #FFF, 30%)} !important;
     }
   }
 
   &:hover, &:focus {
-    background-color: #{mix(map.get($text-color,'regular'), #FFF, 5%)} !important;
+    background-color: #{color.mix(map.get($text-color,'regular'), #FFF, 5%)} !important;
   }
 
   &:active {
-    background-color: #{mix(map.get($text-color,'regular'), #FFF, 10%)} !important;
+    background-color: #{color.mix(map.get($text-color,'regular'), #FFF, 10%)} !important;
   }
 }
 
 .el-message--info {
-  --el-message-bg-color: #{mix($color-primary, #FFF, 15%)} !important;
+  --el-message-bg-color: #{color.mix($color-primary, #FFF, 15%)} !important;
   --el-message-text-color: #{$color-primary} !important;
 }
 
