@@ -1,6 +1,6 @@
 {
   "name": "fit2cloud-ui-plus",
-  "version": "1.1.18",
+  "version": "1.2.0",
   "private": false,
   "main": "./lib/fit2cloud-ui-plus.es.js",
   "files": [
@@ -32,6 +32,7 @@
     "vite-plugin-markdown": "^2.0.2",
     "vue": "^3.2.37",
     "vue-clipboard3": "^2.0.0",
+    "vue-i18n": "^10.0.5",
     "vue-router": "^4.0.14"
   },
   "devDependencies": {
