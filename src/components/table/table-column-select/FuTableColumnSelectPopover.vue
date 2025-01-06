@@ -1,9 +1,6 @@
 <template>
   <el-popover class="fu-table-column-select" :popper-class="popperClass" :trigger="trigger"
               :show-arrow="false" :style="{'visibility': hasSelect ? 'visible': 'hidden'}">
-    <h3>
-      {{ header }}
-    </h3>
     <div class="fu-table-column-select-popper__body">
       <div v-for="(c, i) in columns" :key="i" class="fu-table-column-select-popper__item">
         <el-checkbox v-model="c.show" :checked="c.show !== false" draggable="true" @dragstart="dragstart($event, i)"
@@ -77,10 +74,6 @@ const isFixAll = computed(() => {
 
 const hasSelect = computed(() => {
   return props.columns?.length > 0 && !isFixAll.value
-});
-
-const header = computed(() => {
-  return props.title || t('fu.table.custom_table_fields')
 });
 
 </script>

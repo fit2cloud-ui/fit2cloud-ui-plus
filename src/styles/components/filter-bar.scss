@@ -76,11 +76,13 @@
     font-size: 14px;
     line-height: 22px;
     height: 22px;
-    min-width: 76px;
-    max-width: 76px;
     color: var(--fu-filter-bar-color);
     cursor: pointer;
     margin-left: 6px;
+
+    & > i.el-icon {
+      margin-right: 4px;
+    }
   }
 
   @include e(drawer) {
