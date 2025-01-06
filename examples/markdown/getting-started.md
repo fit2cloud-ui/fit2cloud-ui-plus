@@ -132,3 +132,53 @@ app.mount('#app')
 
 ```
 
+## 国际化
+
+创建国际化文件，例如:
+
+```typescript
+// locale/lang/zh.ts
+import fit2cloudLocale from 'fit2cloud-ui-plus/src/locale/lang/ru'
+
+const message = {
+  home: "首页",
+  ...
+}
+
+export default {
+  ...fit2cloudLocale,
+  ...message
+};
+```
+
+初始化 i18n ，例如：创建 locale/index.ts 文件：
+
+```typescript
+import {createI18n} from 'vue-i18n';
+import zh from './locale/lang/zh';
+import en from './locale/lang/en';
+
+const i18n = createI18n({
+  legacy: false,
+  locale: localStorage.getItem('lang') || 'zh',
+  fallbackLocale: 'zh',
+  globalInjection: true,
+  messages: {
+    zh,
+    en
+  },
+  warnHtmlMessage: false,
+});
+
+export default i18n;
+
+```
+
+在 main.ts 中引入翻译的方法, 例如:
+
+```typescript
+import i18n from './locale'
+
+const options = {size: 'default', zIndex: 3000, i18n: i18n.global.t}
+app.use(Fit2CloudPlus, options);
+```
