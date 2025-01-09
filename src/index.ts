@@ -10,7 +10,7 @@ const install = (app: App, config: GlobalConfig): void => {
     let component = components[key].default;
     app.use(component)
   })
-  i18n(config.i18n)
+  i18n(config?.i18n)
   provideGlobalConfig(config)
 }
 
