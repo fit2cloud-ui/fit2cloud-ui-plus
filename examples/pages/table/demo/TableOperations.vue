@@ -12,7 +12,7 @@
     <el-table-column prop="date" label="日期" min-width="180"></el-table-column>
     <el-table-column prop="name" label="姓名" min-width="180" fix></el-table-column>
     <el-table-column prop="address" label="地址" min-width="300" :show="false"></el-table-column>
-    <fu-table-operations :ellipsis="2" :buttons="buttons" label="操作" fixed="right" />
+    <fu-table-operations :ellipsis="2" :buttons="buttons" label="操作" fixed="right"/>
   </fu-table>
   <h4>
     icon 按钮
@@ -22,18 +22,19 @@
     <el-table-column prop="date" label="日期" min-width="180"></el-table-column>
     <el-table-column prop="name" label="姓名" min-width="180" fix></el-table-column>
     <el-table-column prop="address" label="地址" min-width="300" :show="false"></el-table-column>
-    <fu-table-operations :ellipsis="2" type="icon" :buttons="buttons" label="操作" fixed="right" />
+    <fu-table-operations :ellipsis="2" type="icon" :buttons="buttons" label="操作" fixed="right"/>
   </fu-table>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import {ref} from 'vue'
 
 interface User {
   date: string
   name: string
   address: string
 }
+
 const tableData = [{
   date: "2016-05-02",
   name: "张三",
@@ -76,7 +77,7 @@ const buttons = [
   }, {
     label: "复制", icon: "DocumentCopy", click: (row: User) => {
       console.log("复制:" + row.name)
-    }
+    }, divided: true
   }
 ]
 
@@ -85,6 +86,7 @@ function enableAll() {
     b.disabled = false
   })
 }
+
 function showAll() {
   buttons.forEach(b => {
     b.show = true
