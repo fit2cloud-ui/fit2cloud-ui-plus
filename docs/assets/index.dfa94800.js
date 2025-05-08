@@ -1,4 +1,4 @@
-import{d as h,r as E,a as t,o as C,c as f,b as e,w as a,F as D,_ as B,e as _,f as p,g as G,p as V,h as N,i as y,u as H,j as J,t as x}from"./index.c16e2c26.js";function k(n){n.__sourceCode=`<template>
+import{d as h,r as E,a as t,o as C,c as f,b as e,w as a,F as D,_ as B,e as _,f as p,g as G,p as V,h as N,i as y,u as H,j as J,t as x}from"./index.c6b55ca0.js";function k(n){n.__sourceCode=`<template>
   <fu-table :data="tableData" style="width: 100%" ref="table">
     <template v-slot:default>
       <el-table-column type="selection"></el-table-column>
@@ -151,7 +151,7 @@ const tableData = [
     <el-table-column prop="date" label="\u65E5\u671F" min-width="180"></el-table-column>
     <el-table-column prop="name" label="\u59D3\u540D" min-width="180" fix></el-table-column>
     <el-table-column prop="address" label="\u5730\u5740" min-width="300" :show="false"></el-table-column>
-    <fu-table-operations :ellipsis="2" :buttons="buttons" label="\u64CD\u4F5C" fixed="right" />
+    <fu-table-operations :ellipsis="2" :buttons="buttons" label="\u64CD\u4F5C" fixed="right"/>
   </fu-table>
   <h4>
     icon \u6309\u94AE
@@ -161,18 +161,19 @@ const tableData = [
     <el-table-column prop="date" label="\u65E5\u671F" min-width="180"></el-table-column>
     <el-table-column prop="name" label="\u59D3\u540D" min-width="180" fix></el-table-column>
     <el-table-column prop="address" label="\u5730\u5740" min-width="300" :show="false"></el-table-column>
-    <fu-table-operations :ellipsis="2" type="icon" :buttons="buttons" label="\u64CD\u4F5C" fixed="right" />
+    <fu-table-operations :ellipsis="2" type="icon" :buttons="buttons" label="\u64CD\u4F5C" fixed="right"/>
   </fu-table>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import {ref} from 'vue'
 
 interface User {
   date: string
   name: string
   address: string
 }
+
 const tableData = [{
   date: "2016-05-02",
   name: "\u5F20\u4E09",
@@ -215,7 +216,7 @@ const buttons = [
   }, {
     label: "\u590D\u5236", icon: "DocumentCopy", click: (row: User) => {
       console.log("\u590D\u5236:" + row.name)
-    }
+    }, divided: true
   }
 ]
 
@@ -224,6 +225,7 @@ function enableAll() {
     b.disabled = false
   })
 }
+
 function showAll() {
   buttons.forEach(b => {
     b.show = true
@@ -231,7 +233,7 @@ function showAll() {
 }
 
 
-<\/script>`,n.__sourceCodeTitle="\u64CD\u4F5C\u5217"}const se={style:{"margin-bottom":"20px"}},ce=_("\u542F\u7528\u5168\u90E8\u6309\u94AE"),de=_("\u663E\u793A\u5168\u90E8\u6309\u94AE"),re=p("h4",null," laber \u6309\u94AE ",-1),ie=p("h4",null," icon \u6309\u94AE ",-1),M=h({__name:"TableOperations",setup(n){const l=[{date:"2016-05-02",name:"\u5F20\u4E09",address:"\u5317\u4EAC\u671D\u9633\u533A\u8D22\u5BCC\u4E2D\u5FC3 0\u5BA4"},{date:"2016-05-04",name:"\u5F20\u4E09",address:"\u5317\u4EAC\u671D\u9633\u533A\u8D22\u5BCC\u4E2D\u5FC3 1\u5BA4"},{date:"2016-05-01",name:"\u5F20\u4E09",address:"\u5317\u4EAC\u671D\u9633\u533A\u8D22\u5BCC\u4E2D\u5FC3 2\u5BA4"},{date:"2016-05-03",name:"\u5F20\u4E09",address:"\u5317\u4EAC\u671D\u9633\u533A\u8D22\u5BCC\u4E2D\u5FC3 3\u5BA4"}],o=E([]),s=[{label:"\u67E5\u770B",icon:"View",click:u=>{console.log("\u67E5\u770B:"+u.name)},disabled:u=>u.date==="2016-05-01"},{label:"\u7F16\u8F91",icon:"Edit",click:u=>{console.log("\u7F16\u8F91:"+u.name)},show:!1},{label:"\u6267\u884C",icon:"VideoPlay",click:u=>{console.log("\u6267\u884C:"+u.name)},disabled:!0},{label:"\u5220\u9664",icon:"Delete",type:"danger",click:u=>{console.log("\u5220\u9664:"+u.name)}},{label:"\u590D\u5236",icon:"DocumentCopy",click:u=>{console.log("\u590D\u5236:"+u.name)}}];function d(){s.forEach(u=>{u.disabled=!1})}function c(){s.forEach(u=>{u.show=!0})}return(u,r)=>{const b=t("el-button"),m=t("el-table-column"),i=t("fu-table-operations"),F=t("fu-table");return C(),f(D,null,[p("div",se,[e(b,{onClick:d},{default:a(()=>[ce]),_:1}),e(b,{onClick:c},{default:a(()=>[de]),_:1})]),re,e(F,{data:l,columns:o.value},{default:a(()=>[e(m,{type:"selection"}),e(m,{prop:"date",label:"\u65E5\u671F","min-width":"180"}),e(m,{prop:"name",label:"\u59D3\u540D","min-width":"180",fix:""}),e(m,{prop:"address",label:"\u5730\u5740","min-width":"300",show:!1}),e(i,{ellipsis:2,buttons:s,label:"\u64CD\u4F5C",fixed:"right"})]),_:1},8,["columns"]),ie,e(F,{data:l,columns:o.value,style:{"margin-top":"20px"}},{default:a(()=>[e(m,{type:"selection"}),e(m,{prop:"date",label:"\u65E5\u671F","min-width":"180"}),e(m,{prop:"name",label:"\u59D3\u540D","min-width":"180",fix:""}),e(m,{prop:"address",label:"\u5730\u5740","min-width":"300",show:!1}),e(i,{ellipsis:2,type:"icon",buttons:s,label:"\u64CD\u4F5C",fixed:"right"})]),_:1},8,["columns"])],64)}}});typeof $=="function"&&$(M);var pe=B(M,[["__file","/home/runner/work/fit2cloud-ui-plus/fit2cloud-ui-plus/examples/pages/table/demo/TableOperations.vue"]]);function z(n){n.__sourceCode=`<template>
+<\/script>`,n.__sourceCodeTitle="\u64CD\u4F5C\u5217"}const se={style:{"margin-bottom":"20px"}},ce=_("\u542F\u7528\u5168\u90E8\u6309\u94AE"),de=_("\u663E\u793A\u5168\u90E8\u6309\u94AE"),re=p("h4",null," laber \u6309\u94AE ",-1),ie=p("h4",null," icon \u6309\u94AE ",-1),M=h({__name:"TableOperations",setup(n){const l=[{date:"2016-05-02",name:"\u5F20\u4E09",address:"\u5317\u4EAC\u671D\u9633\u533A\u8D22\u5BCC\u4E2D\u5FC3 0\u5BA4"},{date:"2016-05-04",name:"\u5F20\u4E09",address:"\u5317\u4EAC\u671D\u9633\u533A\u8D22\u5BCC\u4E2D\u5FC3 1\u5BA4"},{date:"2016-05-01",name:"\u5F20\u4E09",address:"\u5317\u4EAC\u671D\u9633\u533A\u8D22\u5BCC\u4E2D\u5FC3 2\u5BA4"},{date:"2016-05-03",name:"\u5F20\u4E09",address:"\u5317\u4EAC\u671D\u9633\u533A\u8D22\u5BCC\u4E2D\u5FC3 3\u5BA4"}],o=E([]),s=[{label:"\u67E5\u770B",icon:"View",click:u=>{console.log("\u67E5\u770B:"+u.name)},disabled:u=>u.date==="2016-05-01"},{label:"\u7F16\u8F91",icon:"Edit",click:u=>{console.log("\u7F16\u8F91:"+u.name)},show:!1},{label:"\u6267\u884C",icon:"VideoPlay",click:u=>{console.log("\u6267\u884C:"+u.name)},disabled:!0},{label:"\u5220\u9664",icon:"Delete",type:"danger",click:u=>{console.log("\u5220\u9664:"+u.name)}},{label:"\u590D\u5236",icon:"DocumentCopy",click:u=>{console.log("\u590D\u5236:"+u.name)},divided:!0}];function d(){s.forEach(u=>{u.disabled=!1})}function c(){s.forEach(u=>{u.show=!0})}return(u,r)=>{const b=t("el-button"),m=t("el-table-column"),i=t("fu-table-operations"),F=t("fu-table");return C(),f(D,null,[p("div",se,[e(b,{onClick:d},{default:a(()=>[ce]),_:1}),e(b,{onClick:c},{default:a(()=>[de]),_:1})]),re,e(F,{data:l,columns:o.value},{default:a(()=>[e(m,{type:"selection"}),e(m,{prop:"date",label:"\u65E5\u671F","min-width":"180"}),e(m,{prop:"name",label:"\u59D3\u540D","min-width":"180",fix:""}),e(m,{prop:"address",label:"\u5730\u5740","min-width":"300",show:!1}),e(i,{ellipsis:2,buttons:s,label:"\u64CD\u4F5C",fixed:"right"})]),_:1},8,["columns"]),ie,e(F,{data:l,columns:o.value,style:{"margin-top":"20px"}},{default:a(()=>[e(m,{type:"selection"}),e(m,{prop:"date",label:"\u65E5\u671F","min-width":"180"}),e(m,{prop:"name",label:"\u59D3\u540D","min-width":"180",fix:""}),e(m,{prop:"address",label:"\u5730\u5740","min-width":"300",show:!1}),e(i,{ellipsis:2,type:"icon",buttons:s,label:"\u64CD\u4F5C",fixed:"right"})]),_:1},8,["columns"])],64)}}});typeof $=="function"&&$(M);var pe=B(M,[["__file","/home/runner/work/fit2cloud-ui-plus/fit2cloud-ui-plus/examples/pages/table/demo/TableOperations.vue"]]);function z(n){n.__sourceCode=`<template>
   <fu-table :data="tableData">
     <el-table-column type="selection"></el-table-column>
     <el-table-column prop="date" label="\u65E5\u671F" min-width="180"></el-table-column>
