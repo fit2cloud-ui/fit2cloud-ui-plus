@@ -164,6 +164,13 @@ export const attributes = [
         enum: "label（文字） / icon（图标）",
         default: "label",
       },
+      {
+        prop: "divided",
+        desc: "分隔符",
+        type: "Boolean",
+        enum: "true / false",
+        default: "false",
+      },
     ],
   },
   {
