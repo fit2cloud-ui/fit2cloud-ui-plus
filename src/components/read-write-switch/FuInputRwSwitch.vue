@@ -42,6 +42,7 @@ function blur(read: Function, e: Event) {
 
 function keydown(read: Function, e: KeyboardEvent) {
   if (e.key === "Enter") {
+    emit("blur", data.value, e)
     read()
   }
 }
