@@ -5,6 +5,7 @@ export { default as ja } from './lang/ja'
 export { default as ms } from './lang/ms'
 export { default as ru } from './lang/ru'
 export { default as ptBr } from './lang/pt-br'
+export { default as id } from './lang/id'
 
 export type TranslatePair = {
   [key: string]: string | string[] | TranslatePair
