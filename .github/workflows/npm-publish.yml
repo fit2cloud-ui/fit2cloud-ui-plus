@@ -7,10 +7,6 @@ on:
   release:
     types: [ published ]
 
-permissions:
-  id-token: write  # Required for OIDC
-  contents: read
-
 jobs:
   publish-npm:
     runs-on: macos-latest
@@ -23,3 +19,5 @@ jobs:
       - run: npm install
       - run: npm run build-lib
       - run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
