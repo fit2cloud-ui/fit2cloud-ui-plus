@@ -171,6 +171,20 @@ export const attributes = [
         enum: "true / false",
         default: "false",
       },
+        {
+        prop: 'maxHeight',
+        desc: '下拉列表最大高度，超过显示滚动条',
+        type: 'String / Number',
+        enum: '-',
+        default: '-',
+      },
+      {
+        prop: 'trigger',
+        desc: '触发下拉的行为',
+        type: 'String',
+        enum: 'hover / click / contextmenu',
+        default: 'hover',
+      },
     ],
   },
   {
@@ -358,7 +372,7 @@ export const attributes = [
             prop: "trigger",
             desc: "触发下拉的行为",
             type: "String",
-            enum: "hover / click",
+            enum: "hover / click / contextmenu",
             default: "click",
           },
           {
