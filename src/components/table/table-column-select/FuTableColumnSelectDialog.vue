@@ -5,7 +5,7 @@
         {{ t('fu.table.custom_table_rows') }}
       </template>
     </el-button>
-    <el-dialog class="fu-table-column-select-dialog" v-model="visible" @open="open" append-to-body>
+    <el-dialog class="fu-table-column-select-dialog" v-model="visible" @open="open" :show-close="false" append-to-body>
       <template #header>
         <h3>
           {{ header }}
@@ -20,8 +20,8 @@
       </el-checkbox>
 
       <template #footer>
-        <el-button @click="reset" v-if="columnsKey">
-          {{ t('fu.table.reset') }}
+        <el-button @click="cancel">
+          {{ t('fu.table.cancel') }}
         </el-button>
         <el-button type="primary" @click="ok">
           {{ t('fu.table.ok') }}
@@ -33,10 +33,9 @@
 </template>
 
 <script setup lang="ts">
-import {ref, inject, computed} from "vue";
+import {ref, computed} from "vue";
 import {tableColumnSelect} from "./utils"
 import {useLocale} from "@/hooks"
-import {LocalKey} from "../types";
 
 const props = defineProps({
   icon: {
@@ -57,8 +56,6 @@ const props = defineProps({
   }
 })
 
-const localKey = inject(LocalKey, undefined)
-
 const {t} = useLocale()
 
 const slotName = computed(() => props.onlyIcon ? 'onlyIcon' : 'default')
@@ -72,13 +69,12 @@ const cloneColumn = (source: any, target: any) => {
 
 
 const {
-  columnsKey,
   dragstart,
   dragenter,
   dragleave,
   dragend,
   drop
-} = tableColumnSelect(localKey)
+} = tableColumnSelect()
 
 const cloneColumns = ref([]) as any
 const visible = ref(false)
@@ -100,11 +96,8 @@ function ok() {
   visible.value = false
 }
 
-function reset() {
-  if (columnsKey.value) {
-    localStorage.removeItem(columnsKey.value)
-  }
-  props.columns.splice(0, props.columns.length)
+function cancel() {
+  cloneColumns.value = []
   visible.value = false
 }
 

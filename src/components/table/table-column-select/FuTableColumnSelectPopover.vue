@@ -1,9 +1,6 @@
 <template>
   <el-popover class="fu-table-column-select" :popper-class="popperClass" :trigger="trigger"
               :show-arrow="false" :style="{'visibility': hasSelect ? 'visible': 'hidden'}">
-    <h3>
-      {{ header }}
-    </h3>
     <div class="fu-table-column-select-popper__body">
       <div v-for="(c, i) in columns" :key="i" class="fu-table-column-select-popper__item">
         <el-checkbox v-model="c.show" :checked="c.show !== false" draggable="true" @dragstart="dragstart($event, i)"
@@ -12,11 +9,6 @@
           {{ c.label }}
         </el-checkbox>
       </div>
-    </div>
-    <div class="fu-table-column-select-popper__footer">
-      <el-button @click="reset" v-if="columnsKey">
-        {{ t('fu.table.reset') }}
-      </el-button>
     </div>
 
     <template #reference>
@@ -30,10 +22,9 @@
 </template>
 
 <script setup lang="ts">
-import {computed, inject} from "vue";
+import {computed} from "vue";
 import {tableColumnSelect} from "./utils"
 import {useLocale} from "@/hooks"
-import {LocalKey} from "../types";
 
 const props = defineProps({
   icon: {
@@ -65,16 +56,13 @@ const props = defineProps({
 
 const {t} = useLocale()
 
-const localKey = inject(LocalKey, undefined)
-
 const {
-  columnsKey,
   dragstart,
   dragenter,
   dragleave,
   dragend,
   drop
-} = tableColumnSelect(localKey)
+} = tableColumnSelect()
 
 const slotName = computed(() => props.onlyIcon ? 'onlyIcon' : 'default')
 
@@ -88,14 +76,4 @@ const hasSelect = computed(() => {
   return props.columns?.length > 0 && !isFixAll.value
 });
 
-const header = computed(() => {
-  return props.title || t('fu.table.custom_table_fields')
-});
-
-function reset() {
-  if (columnsKey) {
-    localStorage.removeItem(columnsKey.value)
-  }
-  props.columns.splice(0, props.columns.length)
-}
 </script>

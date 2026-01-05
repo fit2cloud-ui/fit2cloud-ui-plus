@@ -14,7 +14,7 @@
           {{ btn.label }}
         </template>
       </fu-table-button>
-      <fu-table-more-button :type="type" :buttons="moreButtons(row)" :row="row" v-if="moreButtons(row).length > 0" />
+      <fu-table-more-button :trigger="trigger" :max-height="maxHeight" :type="type" :buttons="moreButtons(row)" :row="row" v-if="moreButtons(row).length > 0" />
     </template>
   </el-table-column>
 </template>
@@ -45,6 +45,14 @@ const props = defineProps({
     default: "label",
     validator: (value: string) => ['icon', 'label'].includes(value)
   },
+  maxHeight: {
+    type: [String, Number],
+    default: '',
+  },
+  trigger: {
+    type: String,
+    default: 'hover',
+  },
 });
 
 const hasShowFunc = computed(() => {
@@ -65,9 +73,9 @@ const moreButtons: any = computed(() => {
 
 const computeWidth = computed(() => {
   let length = hasShowFunc.value ? props.ellipsis : defaultButtons.value.length
-  let buttonsWidth: string | number = 35 + length * 58 + 58
+  let buttonsWidth = 35 + length * 58 + 58
   if (props.minWidth) {
-    buttonsWidth = buttonsWidth < props.minWidth ? props.minWidth : buttonsWidth
+    buttonsWidth = buttonsWidth < Number(props.minWidth) ? Number(props.minWidth) : buttonsWidth
   }
   return props.width ? props.width : buttonsWidth
 });

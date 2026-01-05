@@ -7,17 +7,20 @@ on:
   release:
     types: [ published ]
 
+permissions:
+  id-token: write  # Required for OIDC
+  packages: write
+  contents: write
+
 jobs:
   publish-npm:
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
-          node-version: 16
-          registry-url: https://registry.npmjs.org/
-      - run: npm install
+          node-version: 18
+          registry-url: 'https://registry.npmjs.org'
+      - run: npm ci
       - run: npm run build-lib
-      - run: npm publish
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+      - run: npm publish --access public

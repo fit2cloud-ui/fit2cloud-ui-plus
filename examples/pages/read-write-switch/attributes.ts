@@ -87,6 +87,16 @@ export const attributes = [
             event: 'blur',
             desc: '写状态下，输入框失去焦点时触发',
             value: '输入值',
+          },
+          {
+            event: 'enter',
+            desc: '写状态下，输入框按下回车键时触发',
+            value: '输入值',
+          },
+          {
+            event: 'input',
+            desc: '写状态下，输入时触发',
+            value: '输入值',
           }
         ]
       }

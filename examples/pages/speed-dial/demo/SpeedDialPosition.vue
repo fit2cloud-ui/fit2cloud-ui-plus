@@ -4,15 +4,15 @@
     <div>
       拖拽:
       <el-radio-group v-model="movable">
-        <el-radio :label="true">允许</el-radio>
-        <el-radio :label="false">禁止</el-radio>
+        <el-radio :value="true">允许</el-radio>
+        <el-radio :value="false">禁止</el-radio>
       </el-radio-group>
     </div>
     <div>
       position:
       <el-radio-group v-model="position">
-        <el-radio label="absolute">absolute</el-radio>
-        <el-radio label="fixed">fixed</el-radio>
+        <el-radio value="absolute">absolute</el-radio>
+        <el-radio value="fixed">fixed</el-radio>
       </el-radio-group>
     </div>
 

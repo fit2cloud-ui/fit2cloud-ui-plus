@@ -13,10 +13,9 @@
 </template>
 
 <script lang="ts" setup>
-import {onMounted, useSlots, ref, watch, computed, onUpdated, provide, VNodeNormalizedChildren, VNode} from "vue";
+import {onMounted, useSlots, ref, watch, computed, onUpdated, VNodeNormalizedChildren, VNode} from "vue";
 import {isFix, getLabel, getProp, FuTableBody} from "@/components/table/FuTableBody";
 import {isValidElementNode, getChildren, isValidChildren} from "@/tools/vnode";
-import {LocalKey} from "@/components/table/types";
 
 defineOptions({name: "FuTable"});
 const props = defineProps({
@@ -75,12 +74,11 @@ const updateColumns = (nodes: any, columns: any) => {
     cleanColumns(columns)
     initColumns(nodes, columns)
   }
-  if (columns.some((col: any) => col.prop === undefined)) {
-    columns.forEach((col: any, i: any) => {
-      col.prop ??= getProp(nodes[i])
-      col.label ??= getLabel(nodes[i])
-    })
-  }
+  // 更新label和prop
+  columns.forEach((col: any, i: any) => {
+    col.prop = getProp(nodes[i])
+    col.label = getLabel(nodes[i])
+  })
 }
 
 
@@ -137,7 +135,6 @@ onMounted(() => {
   }
 })
 
-provide(LocalKey, props.localKey)
 onUpdated(() => {
   updateNodes(children)
   updateColumns(children, props.columns)

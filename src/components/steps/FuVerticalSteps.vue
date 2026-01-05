@@ -1,21 +1,24 @@
 <script lang="ts">
-import { ref, watch, defineComponent, h,provide } from 'vue'
-import FuVerticalNavigation from "./FuVerticalNavigation.vue";
-import FuStepsFooter from "./FuStepsFooter";
-import { Stepper, Step } from "./Stepper";
+import { ref, watch, defineComponent, h, provide } from 'vue';
+import FuVerticalNavigation from './FuVerticalNavigation.vue';
+import FuStepsFooter from './FuStepsFooter';
+import { Stepper, Step } from './Stepper';
 
 export default defineComponent({
-  name: "FuVerticalSteps",
+  name: 'FuVerticalSteps',
   components: { FuVerticalNavigation, FuStepsFooter },
 
   emits: ['change'],
 
   setup(_, { attrs, slots, emit, expose }) {
-    const stepper = ref(new Stepper)
-    stepper.value.activeSet.add(0)
-    watch(() => stepper.value.index, (value) => {
-      emit("change", stepper.value.steps[value]);
-    })
+    const stepper = ref(new Stepper());
+    stepper.value.activeSet.add(0);
+    watch(
+      () => stepper.value.index,
+      (value) => {
+        emit('change', stepper.value.steps[value]);
+      }
+    );
 
     function active(index: number) {
       stepper.value.active(index);
@@ -35,12 +38,12 @@ export default defineComponent({
       emit(name);
     }
 
-    provide('stepper', stepper.value)
+    provide('stepper', stepper.value);
 
     expose({
       next,
       prev,
-      active
+      active,
     });
 
     return () => {
@@ -55,8 +58,8 @@ export default defineComponent({
           const step = new Step(options);
           steps.push(step);
           if (stepper.value.isCurrent(index)) {
-          currentNode = node;
-        }
+            currentNode = node;
+          }
         });
       }
       stepper.value.steps = steps;
@@ -65,7 +68,7 @@ export default defineComponent({
       return h(
         'div',
         {
-          class: ['fu-steps', 'fu-steps--vertical']
+          class: ['fu-steps', 'fu-steps--vertical'],
         },
         [
           h(
@@ -74,21 +77,14 @@ export default defineComponent({
               stepper: stepper.value,
               steps: steps,
               disable: disable,
-              onActive: active
+              onActive: active,
             },
-            ()=> currentNode
+            () => currentNode
           ),
-          h(
-            'div',
-            { class: 'fu-steps__footer' },
-            h(FuStepsFooter, { onStepperFn: $func })
-          )
+          h('div', { class: 'fu-steps__footer' }, slots.footer?.() || h(FuStepsFooter, { onStepperFn: $func })),
         ]
-      )
-
-    }
-  }
-
-})
+      );
+    };
+  },
+});
 </script>
-

@@ -8,6 +8,7 @@ export default {
       drawer_title: "筛选条件",
       cancel: "取消",
       search: "查询",
+      refresh: "刷新",
       select_all: "全选",
       more: "更多"
     },
@@ -42,8 +43,8 @@ export default {
     },
     table: {
       ok: "确定",
-      reset: "重置",
-      custom_table_fields: "自定义表格字段",
+      cancel: "取消",
+      custom_table_fields: "选择字段",
       custom_table_fields_desc: "固定字段不在选择范围，可拖拽自定义顺序",
       custom_table_rows: "选项列",
       more: "更多"

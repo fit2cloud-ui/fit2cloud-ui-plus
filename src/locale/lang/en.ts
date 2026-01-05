@@ -8,6 +8,7 @@ export default {
       drawer_title: "Filter",
       cancel: "Cancel",
       search: "Search",
+      refresh: "Refresh",
       select_all: "Select All",
       more: "More"
     },
@@ -42,7 +43,7 @@ export default {
     },
     table: {
       ok: "OK",
-      reset: "Reset",
+      cancel: "Cancel",
       custom_table_fields: "Custom table fields",
       custom_table_fields_desc: "Fixed field is unselectable, others can be checked and dragged",
       custom_table_rows: "Table rows",

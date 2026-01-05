@@ -8,6 +8,7 @@ export const globalConfigKey: InjectionKey<Ref<GlobalConfig>> = Symbol('GlobalCo
 export interface GlobalConfig {
   size?: string,
   locale?: any
+  i18n?: Function
 }
 
 export function useGlobalConfig(key?: keyof any, defaultValue = undefined) {

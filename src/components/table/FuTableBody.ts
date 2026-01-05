@@ -1,6 +1,5 @@
 import {getChildren} from "@/tools/vnode";
 import {isArray} from "@vue/shared";
-import {ref} from "vue";
 
 export const isFix = (node: any) => {
   const includeTag = node.type.name.indexOf("FuTableOperations") >= 0;
