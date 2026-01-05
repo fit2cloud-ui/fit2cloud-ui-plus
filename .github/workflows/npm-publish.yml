@@ -22,4 +22,4 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
       - run: npm ci
       - run: npm run build-lib
-      - run: npm publish
+      - run: npm publish --access public
